@@ -1,0 +1,13 @@
+<%# The banner at the top of a page. locals: title, eyebrow (optional), lead (optional) %>
+<div class="border-b border-parchment-300 bg-parchment-100">
+  <div class="page py-10 sm:py-14">
+    <% if local_assigns[:eyebrow].present? %>
+      <p class="eyebrow"><%= eyebrow %></p>
+    <% end %>
+    <h1 class="mt-2 text-4xl font-bold sm:text-5xl"><%= title %></h1>
+    <% if local_assigns[:lead].present? %>
+      <p class="mt-4 max-w-2xl text-xl text-slate-700"><%= lead %></p>
+    <% end %>
+    <%= yield %>
+  </div>
+</div>

@@ -62,4 +62,10 @@ class EventTest < ActiveSupport::TestCase
     assert_equal "c. 1836", Event.new(start_date: date, date_precision: "approximate").display_date
     assert_nil Event.new.display_date
   end
+
+  test "display dates shows a range when there is an end date" do
+    jail = Event.new(start_date: Date.new(1838, 12, 1), end_date: Date.new(1839, 4, 6))
+    assert_equal "December 1, 1838 – April 6, 1839", jail.display_dates
+    assert_equal "March 27, 1836", Event.new(start_date: Date.new(1836, 3, 27)).display_dates
+  end
 end

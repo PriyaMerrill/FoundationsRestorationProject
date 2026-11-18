@@ -1,0 +1,22 @@
+<% years = [ @record.start_year, @record.end_year ].compact.uniq.join("–") %>
+<%= render layout: "records/header", locals: { record: @record, facts: [ @record.state, years, (@record.modern_name.present? ? "Today: #{@record.modern_name}" : nil) ] } do %>
+  <p class="mt-4 flex flex-wrap gap-2">
+    <% @record.kinds.each do |kind| %>
+      <%= render "shared/badge", label: kind.humanize, tone: "brown" %>
+    <% end %>
+  </p>
+<% end %>
+
+<article class="page-narrow py-10">
+  <p class="text-xl"><%= @record.summary %></p>
+
+  <% if @record.significance.present? %>
+    <h2 class="mt-8 text-2xl font-bold">Why it matters</h2>
+    <p class="mt-3"><%= @record.significance %></p>
+  <% end %>
+
+  <%= render "shared/record_links", title: "Events here", records: @record.events.chronological %>
+  <%= render "shared/record_links", title: "Revelations received here", records: @record.revelations.order(:section_number) %>
+  <%= render "shared/record_links", title: "People connected to this place", records: @record.people.order(:name) %>
+  <%= render "shared/sources", record: @record %>
+</article>

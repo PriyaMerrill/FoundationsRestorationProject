@@ -1,0 +1,30 @@
+<%= render layout: "records/header", locals: { record: @record, facts: [ @record.display_dates, @record.place&.name ] } do %>
+  <p class="mt-4 flex flex-wrap gap-2">
+    <%= render "shared/badge", label: category_label(@record.category), tone: "forest" %>
+    <%= render "shared/badge", label: period_label(@record.period), tone: "brown" %>
+  </p>
+<% end %>
+
+<article class="page-narrow py-10">
+  <p class="text-xl"><%= @record.summary %></p>
+
+  <% if @record.context.present? %>
+    <h2 class="mt-8 text-2xl font-bold">Historical context</h2>
+    <p class="mt-3"><%= @record.context %></p>
+  <% end %>
+
+  <% if @record.event_participants.any? %>
+    <section class="mt-8">
+      <h2 class="text-2xl font-bold">People involved</h2>
+      <ul class="mt-3 flex flex-wrap gap-2">
+        <% @record.event_participants.includes(:person).each do |participant| %>
+          <li><%= render "shared/record_link", record: participant.person, note: participant.role %></li>
+        <% end %>
+      </ul>
+    </section>
+  <% end %>
+
+  <%= render "shared/record_links", title: "Where it happened", records: [ @record.place ].compact %>
+  <%= render "shared/record_links", title: "Related revelations", records: @record.revelations.order(:section_number) %>
+  <%= render "shared/sources", record: @record %>
+</article>

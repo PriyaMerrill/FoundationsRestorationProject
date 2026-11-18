@@ -1,0 +1,23 @@
+<% content_for :title, "Explore History" %>
+
+<%= render "shared/page_header", eyebrow: "Historical database", title: "Explore History",
+      lead: "Every person, place, event and revelation on this site, with the sources behind each one." %>
+
+<div class="page space-y-12 py-10">
+  <% { "Events" => @events, "Places" => @places, "People" => @people, "Revelations" => @revelations }.each do |heading, records| %>
+    <section aria-labelledby="<%= heading.downcase %>-heading">
+      <h2 id="<%= heading.downcase %>-heading" class="text-3xl font-bold">
+        <%= heading %> <span class="font-sans text-lg font-normal text-slate-600">(<%= records.size %>)</span>
+      </h2>
+      <% if records.any? %>
+        <ul class="mt-4 flex flex-wrap gap-2">
+          <% records.each do |record| %>
+            <li><%= render "shared/record_link", record: record, note: (record.display_date if record.respond_to?(:display_date)) %></li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p class="mt-3 text-slate-600">Nothing here yet.</p>
+      <% end %>
+    </section>
+  <% end %>
+</div>

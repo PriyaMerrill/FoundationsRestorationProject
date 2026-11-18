@@ -1,1 +1,138 @@
 @import "tailwindcss";
+
+/* ---------------------------------------------------------------
+   Design tokens: the "digital history museum" palette and fonts.
+   Use them as Tailwind classes: bg-forest-800, text-gold-500,
+   bg-parchment-100, text-brown-700, font-serif, font-sans.
+   Slate comes from Tailwind's built-in slate scale.
+---------------------------------------------------------------- */
+@theme {
+  --color-forest-50: #f1f6f2;
+  --color-forest-100: #dde9e0;
+  --color-forest-300: #9dbfa6;
+  --color-forest-500: #3f7355;
+  --color-forest-600: #2f5c43;
+  --color-forest-700: #264a37;
+  --color-forest-800: #1e3a2c;
+  --color-forest-900: #152a20;
+
+  --color-gold-200: #efdfb0;
+  --color-gold-300: #e3cb8a;
+  --color-gold-400: #d4b565;
+  --color-gold-500: #b8963e;
+  --color-gold-600: #96782c;
+  --color-gold-700: #6f581b;
+
+  --color-parchment-50: #fbf8f1;
+  --color-parchment-100: #f7f1e3;
+  --color-parchment-200: #efe5cd;
+  --color-parchment-300: #e3d4b0;
+
+  --color-brown-500: #8a6a4b;
+  --color-brown-600: #6f5238;
+  --color-brown-700: #5a4230;
+  --color-brown-800: #44321f;
+  --color-brown-900: #2e2114;
+
+  --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-sans: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-parchment-50 font-sans text-lg leading-relaxed text-slate-800 antialiased;
+  }
+
+  h1, h2, h3 {
+    @apply font-serif text-forest-900;
+    text-wrap: balance;
+  }
+
+  /* One clear focus style everywhere, for keyboard users. */
+  :focus-visible {
+    outline: 3px solid var(--color-gold-500);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *, *::before, *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Page width and side gutters. */
+  .page {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .page-narrow {
+    @apply mx-auto w-full max-w-3xl px-4 sm:px-6;
+  }
+
+  /* Small uppercase label above a heading. */
+  .eyebrow {
+    @apply font-sans text-sm font-semibold uppercase tracking-widest text-gold-700;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-5 py-2.5 text-base font-semibold transition-colors;
+  }
+
+  .btn-primary {
+    @apply bg-forest-700 text-parchment-50 hover:bg-forest-800;
+  }
+
+  .btn-gold {
+    @apply bg-gold-400 text-forest-900 hover:bg-gold-300;
+  }
+
+  .btn-outline {
+    @apply border border-forest-700 text-forest-800 hover:bg-forest-50;
+  }
+
+  .card {
+    @apply block rounded-lg border border-parchment-300 bg-white p-6 shadow-sm;
+  }
+
+  a.card {
+    @apply transition hover:border-gold-500 hover:shadow-md;
+  }
+
+  .badge {
+    @apply inline-flex items-center rounded-full px-3 py-0.5 text-sm font-semibold;
+  }
+
+  .badge-forest { @apply bg-forest-100 text-forest-800; }
+  .badge-gold { @apply bg-gold-200 text-brown-800; }
+  .badge-brown { @apply bg-parchment-200 text-brown-800; }
+  .badge-slate { @apply bg-slate-100 text-slate-700; }
+
+  /* A link to another historical record, shown as a chip. */
+  .record-link {
+    @apply inline-flex items-center gap-2 rounded-md border border-parchment-300 bg-white px-3 py-1.5 text-base text-forest-800 transition-colors hover:border-gold-500 hover:bg-parchment-100;
+  }
+
+  .text-link {
+    @apply font-semibold text-forest-700 underline decoration-gold-500 decoration-2 underline-offset-4 hover:text-forest-900;
+  }
+
+  .nav-link {
+    @apply rounded-md px-3 py-2 text-base font-semibold text-parchment-100 transition-colors hover:bg-forest-700 hover:text-white;
+  }
+
+  .nav-link[aria-current="page"] {
+    @apply bg-forest-700 text-gold-300;
+  }
+}

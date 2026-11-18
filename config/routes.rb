@@ -1,16 +1,18 @@
 Rails.application.routes.draw do
   root "pages#home"
 
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  # The main sections of the site.
+  get "road-trip", to: "sections#road_trip", as: :road_trip
+  get "timeline", to: "sections#timeline", as: :timeline
+  get "numbers", to: "sections#numbers", as: :numbers
+  get "trivia", to: "sections#trivia", as: :trivia
+  get "explore", to: "explore#show", as: :explore
+  get "sources", to: "sources#index", as: :sources
+
+  # One page per historical record, addressed by slug: /events/liberty-jail
+  resources :places, :people, :events, :revelations, only: :show, controller: :records
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
-
-  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
-  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
-
-  # Defines the root path route ("/")
-  # root "posts#index"
 end

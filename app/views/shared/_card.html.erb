@@ -1,0 +1,11 @@
+<%# A boxed summary that links somewhere.
+    locals: title, href (optional), eyebrow (optional), text (optional) %>
+<%= content_tag (local_assigns[:href] ? :a : :div), class: "card", href: local_assigns[:href] do %>
+  <% if local_assigns[:eyebrow].present? %>
+    <p class="eyebrow"><%= eyebrow %></p>
+  <% end %>
+  <h3 class="mt-1 text-2xl font-bold"><%= title %></h3>
+  <% if local_assigns[:text].present? %>
+    <p class="mt-2 text-base text-slate-700"><%= text %></p>
+  <% end %>
+<% end %>

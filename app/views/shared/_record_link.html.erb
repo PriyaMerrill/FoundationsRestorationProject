@@ -1,0 +1,8 @@
+<%# A chip linking to another historical record. locals: record, note (optional) %>
+<%= link_to polymorphic_path(record), class: "record-link" do %>
+  <span class="text-xs font-semibold uppercase tracking-wide text-gold-700"><%= record_type_label(record) %></span>
+  <span class="font-semibold"><%= record_label(record) %></span>
+  <% if local_assigns[:note].present? %>
+    <span class="text-sm text-slate-600"><%= note %></span>
+  <% end %>
+<% end %>

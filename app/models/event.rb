@@ -21,6 +21,12 @@ class Event < ApplicationRecord
 
   validates :title, :start_date, presence: true
 
+  # "December 1, 1838 – April 6, 1839" when the event has an end date.
+  def display_dates
+    return display_date unless end_date && date_precision_exact?
+    "#{display_date} – #{end_date.strftime('%B %-d, %Y')}"
+  end
+
   scope :chronological, -> { order(:start_date, :id) }
   scope :on_this_day, ->(date = Date.current) {
     date_precision_exact.where("EXTRACT(MONTH FROM start_date) = ? AND EXTRACT(DAY FROM start_date) = ?", date.month, date.day)

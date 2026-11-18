@@ -1,0 +1,28 @@
+<footer class="mt-16 bg-forest-900 text-parchment-200">
+  <div class="page grid gap-8 py-10 md:grid-cols-3">
+    <div class="md:col-span-2">
+      <p class="font-serif text-xl font-bold text-parchment-50">Foundations of the Restoration</p>
+      <p class="mt-2 max-w-xl text-base">
+        An interactive history of the early Restoration, from the First Vision to the pioneer era.
+        Historical claims are tied to their sources.
+      </p>
+      <p class="mt-4">
+        <%= link_to "Sources and methodology", sources_path, class: "font-semibold text-gold-300 underline decoration-gold-500 underline-offset-4 hover:text-gold-200" %>
+      </p>
+    </div>
+
+    <nav aria-label="Footer">
+      <ul class="space-y-1 text-base">
+        <% main_navigation.each do |label, path| %>
+          <li><%= link_to label, path, class: "hover:text-white hover:underline" %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="border-t border-forest-700">
+    <p class="page py-4 text-sm text-forest-300">
+      An independent educational project. Not an official publication of The Church of Jesus Christ of Latter-day Saints.
+    </p>
+  </div>
+</footer>

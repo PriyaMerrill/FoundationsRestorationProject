@@ -1,0 +1,36 @@
+<%# Site header. A row of links on desktop; a button that opens a menu on mobile. %>
+<header class="bg-forest-900 text-parchment-100" data-controller="menu" data-action="keydown.esc@window->menu#close">
+  <div class="page flex items-center justify-between py-3">
+    <%= link_to root_path, class: "flex items-center gap-3 rounded-md py-1 pr-2" do %>
+      <span class="flex h-9 w-9 items-center justify-center rounded-full border border-gold-400 font-serif text-lg font-bold text-gold-300" aria-hidden="true">R</span>
+      <span class="font-serif text-xl font-bold leading-tight text-parchment-50">Foundations <span class="font-medium text-gold-300">of the</span> Restoration</span>
+    <% end %>
+
+    <nav class="hidden items-center gap-1 lg:flex" aria-label="Main">
+      <% main_navigation.each do |label, path| %>
+        <%= link_to label, path, class: "nav-link", aria: { current: (current_page?(path) ? "page" : nil) } %>
+      <% end %>
+    </nav>
+
+    <button type="button"
+            class="rounded-md p-2 text-parchment-100 hover:bg-forest-700 lg:hidden"
+            aria-controls="mobile-menu"
+            aria-expanded="false"
+            data-menu-target="button"
+            data-action="menu#toggle">
+      <span class="sr-only">Menu</span>
+      <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <path data-menu-target="openIcon" d="M4 7h16M4 12h16M4 17h16" />
+        <path data-menu-target="closeIcon" class="hidden" d="M6 6l12 12M18 6L6 18" />
+      </svg>
+    </button>
+  </div>
+
+  <nav id="mobile-menu" class="hidden border-t border-forest-700 lg:hidden" aria-label="Main" data-menu-target="panel">
+    <div class="page flex flex-col gap-1 py-3">
+      <% main_navigation.each do |label, path| %>
+        <%= link_to label, path, class: "nav-link", aria: { current: (current_page?(path) ? "page" : nil) } %>
+      <% end %>
+    </div>
+  </nav>
+</header>

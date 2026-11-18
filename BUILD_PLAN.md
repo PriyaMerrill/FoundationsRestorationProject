@@ -114,13 +114,13 @@ Every page reads from these tables.
 
 ## Phase 5: Design system and layout
 
-- [ ] Add the palette to the Tailwind theme: forest green, antique gold, parchment, warm brown, slate
-- [ ] Add fonts: a classic serif for headings, a modern sans-serif for body
-- [ ] Build the shared layout: header or sidebar on desktop, hamburger menu on mobile (a small Stimulus controller)
-- [ ] Build the footer with a link to Sources and Methodology
-- [ ] Build reusable partials: card, tag/badge, source list, record link, slide-over panel
-- [ ] Set visible focus rings and check colour contrast
-- [ ] Define routes: `/`, `/road-trip`, `/timeline`, `/numbers`, `/trivia`, `/explore`, `/sources`, plus `resources` for places, people, events, revelations
+- [x] Add the palette to the Tailwind theme: forest green, antique gold, parchment, warm brown, slate
+- [x] Add fonts: a classic serif for headings, a modern sans-serif for body
+- [x] Build the shared layout: header or sidebar on desktop, hamburger menu on mobile (a small Stimulus controller)
+- [x] Build the footer with a link to Sources and Methodology
+- [x] Build reusable partials: page header, card, badge, source list, record link
+- [x] Set visible focus rings and check colour contrast
+- [x] Define routes: `/`, `/road-trip`, `/timeline`, `/numbers`, `/trivia`, `/explore`, `/sources`, plus `resources` for places, people, events, revelations
 
 **Done when:** every nav link opens a placeholder page that looks right on phone and desktop.
 
@@ -138,6 +138,7 @@ Every page reads from these tables.
 - [ ] Render the timeline (vertical on mobile, horizontal on desktop) grouped by period
 - [ ] Period jump links: New York, Ohio, Missouri, Nauvoo, Westward Migration
 - [ ] Category filter chips, submitted as query params into a Turbo Frame
+- [ ] Build the slide-over panel partial (moved here from Phase 5; the map reuses it)
 - [ ] Clicking an event opens a detail panel in a Turbo Frame: date, place, explanation, participants, scriptures, images, sources
 - [ ] Cross-links from the panel: "View on map", person pages, D&C sections
 - [ ] Search box for person, event, location or revelation
@@ -189,7 +190,7 @@ Every page reads from these tables.
 ## Phase 11: Explore History (search) and Sources page
 
 **Record pages**
-- [ ] Show pages for places, people, events and revelations with the full entry format: title, dates, location, summary, people, context, related revelations, sources, related records
+- [x] Show pages for places, people, events and revelations with the full entry format: title, dates, location, summary, people, context, related revelations, sources, related records (built early, in Phase 5)
 
 **Search**
 - [ ] Add `pg_search`, enable multisearch on all four record types, rebuild the index in seeds
@@ -225,6 +226,7 @@ Content and functionality get reviewed together, once the site is built. Until t
 - [ ] Collect images and record a credit and license for each (none yet)
 - [ ] Decide whether the Twelve's mission to Britain needs a place on the map (it has none)
 - [ ] Decide whether Jefferson City, Hawn's Mill and Kanesville should be road-trip stops (they are on the map but not on the route)
+- [ ] Check the footer wording: it says the site is an independent educational project and not an official Church publication
 - [ ] Remove the DRAFT note at the top of each file in `db/seeds/` once that file is checked
 
 **Functionality**

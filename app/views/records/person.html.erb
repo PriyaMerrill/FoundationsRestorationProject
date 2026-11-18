@@ -1,0 +1,11 @@
+<% lifespan = [ @record.birth_date&.year, @record.death_date&.year ].compact.join("–") %>
+<%= render layout: "records/header", locals: { record: @record, facts: [ lifespan, @record.roles ] } do %><% end %>
+
+<article class="page-narrow py-10">
+  <p class="text-xl"><%= @record.biography %></p>
+
+  <%= render "shared/record_links", title: "Events", records: @record.events.chronological %>
+  <%= render "shared/record_links", title: "Revelations", records: @record.revelations.order(:section_number) %>
+  <%= render "shared/record_links", title: "Places", records: @record.places.order(:name) %>
+  <%= render "shared/sources", record: @record %>
+</article>

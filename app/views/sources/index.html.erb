@@ -1,0 +1,24 @@
+<% content_for :title, "Sources and Methodology" %>
+
+<%= render "shared/page_header", eyebrow: "How we know", title: "Sources and Methodology",
+      lead: "The works this site draws on. Each historical entry lists the sources that support it." %>
+
+<div class="page-narrow space-y-10 py-10">
+  <% { "Primary sources" => @primary, "Secondary sources" => @secondary }.each do |heading, sources| %>
+    <section>
+      <h2 class="text-3xl font-bold"><%= heading %></h2>
+      <ul class="mt-4 space-y-4">
+        <% sources.each do |source| %>
+          <li class="card">
+            <h3 class="text-xl font-bold"><%= source.title %></h3>
+            <% if source.author.present? %><p class="text-base text-brown-700"><%= source.author %></p><% end %>
+            <% if source.citation.present? %><p class="mt-2 text-base"><%= source.citation %></p><% end %>
+            <% if source.url.present? %>
+              <p class="mt-2 text-base"><%= link_to "Visit source", source.url, class: "text-link", rel: "noopener" %></p>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </section>
+  <% end %>
+</div>

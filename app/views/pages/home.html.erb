@@ -1,6 +1,13 @@
-<% content_for :title, "Foundations of the Restoration" %>
-
-<div class="py-24 text-center">
-  <h1 class="text-4xl font-serif font-bold">Foundations of the Restoration</h1>
-  <p class="mt-4 text-lg text-gray-600">An interactive Church history website. Coming soon.</p>
+<div class="bg-forest-800 text-parchment-100">
+  <div class="page py-20 text-center sm:py-28">
+    <p class="eyebrow text-gold-300">An interactive Church history</p>
+    <h1 class="mt-3 text-5xl font-bold text-parchment-50 sm:text-6xl">Explore the Restoration</h1>
+    <p class="mx-auto mt-5 max-w-2xl text-xl">
+      Discover the people, places, revelations and events of early Church history.
+    </p>
+    <p class="mt-8 flex flex-wrap justify-center gap-3">
+      <%= link_to "Explore the Timeline", timeline_path, class: "btn btn-gold" %>
+      <%= link_to "Start the Road Trip", road_trip_path, class: "btn border border-parchment-200 text-parchment-50 hover:bg-forest-700" %>
+    </p>
+  </div>
 </div>

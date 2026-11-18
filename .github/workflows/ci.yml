@@ -16,6 +16,8 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
+          # .ruby-version pins an exact patch release that newer runners do not carry.
+          ruby-version: "3.4"
           bundler-cache: true
 
       - name: Scan for common Rails security vulnerabilities using static analysis
@@ -34,6 +36,8 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
+          # .ruby-version pins an exact patch release that newer runners do not carry.
+          ruby-version: "3.4"
           bundler-cache: true
 
       - name: Scan for security vulnerabilities in JavaScript dependencies
@@ -50,6 +54,8 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
+          # .ruby-version pins an exact patch release that newer runners do not carry.
+          ruby-version: "3.4"
           bundler-cache: true
 
       - name: Prepare RuboCop cache
@@ -94,6 +100,8 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
+          # .ruby-version pins an exact patch release that newer runners do not carry.
+          ruby-version: "3.4"
           bundler-cache: true
 
       - name: Run tests
@@ -133,6 +141,8 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
+          # .ruby-version pins an exact patch release that newer runners do not carry.
+          ruby-version: "3.4"
           bundler-cache: true
 
       - name: Run System Tests

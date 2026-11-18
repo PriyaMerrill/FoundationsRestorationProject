@@ -231,6 +231,7 @@ Content and functionality get reviewed together, once the site is built. Until t
 - [ ] Decide whether Jefferson City, Hawn's Mill and Kanesville should be road-trip stops (they are on the map but not on the route)
 - [ ] Check the chart caveats and definitions on By the Numbers read correctly once the content is verified
 - [ ] Decide whether the road trip needs real driving distances and travel times (it shows straight-line miles now)
+- [ ] Map markers that sit close together (New York and Ohio) are small touch targets when zoomed out; the place list beside the map is the alternative
 - [ ] Check the footer wording: it says the site is an independent educational project and not an official Church publication
 - [ ] Remove the DRAFT note at the top of each file in `db/seeds/` once that file is checked
 
@@ -239,16 +240,18 @@ Content and functionality get reviewed together, once the site is built. Until t
 
 ## Phase 13: Polish and test
 
-- [ ] Walk the spec's visitor journey end to end: timeline > Liberty Jail > map > D&C 121 to 123 > people > trivia
-- [ ] System tests (Capybara) for that journey and for one trivia round
-- [ ] Check every page on phone, tablet and desktop widths
-- [ ] Keyboard-only pass: every control reachable and visibly focused
-- [ ] Run Lighthouse for accessibility and performance; fix what it flags
-- [ ] Alt text on every image; lazy-load images below the fold
-- [ ] Fix N+1 queries with `includes` (the `bullet` gem will point them out)
-- [ ] Custom 404 and 500 pages
-- [ ] Page titles, meta descriptions and a social share image
-- [ ] `bin/rails test` and `bin/rubocop` both pass
+- [x] Walk the spec's visitor journey end to end: timeline > Liberty Jail > map > D&C 121 to 123 > people > trivia
+- [x] System tests (Capybara) for that journey and for one trivia round (9 browser tests in `test/system`; run with `bin/rails test:system`)
+- [x] Check every page on phone, tablet and desktop widths (14 pages at 375, 768 and 1280 pixels: no sideways scrolling)
+- [x] Keyboard-only pass: every control reachable and visibly focused
+- [x] Run Lighthouse for accessibility and performance; fix what it flags (accessibility, best practices and SEO: 100 on eight pages, 96 on the map)
+- [x] Alt text on every image; lazy-load images below the fold
+- [x] Fix N+1 queries with `includes` (the `bullet` gem will point them out) (every page runs 19 queries or fewer; no `bullet` gem needed)
+- [x] Custom 404 and 500 pages
+- [x] Page titles, meta descriptions and a social share image
+- [x] `bin/rails test` and `bin/rubocop` both pass
+- [x] Fix GitHub CI, which had been failing on every push because its runners no longer carry Ruby 3.4.2
+- [ ] Run a Lighthouse performance check on the live site (it is only meaningful there, not on a development machine)
 
 ## Phase 14: Launch
 

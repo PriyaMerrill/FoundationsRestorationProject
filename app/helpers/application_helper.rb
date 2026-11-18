@@ -18,6 +18,13 @@ module ApplicationHelper
     [ content_for(:title).presence, SITE_NAME ].compact.join(" · ")
   end
 
+  DEFAULT_DESCRIPTION = "Explore the people, places, revelations and events of early Latter-day Saint history through maps, timelines, charts and trivia.".freeze
+
+  # The sentence search engines and link previews show for a page.
+  def page_description
+    content_for(:description).presence || DEFAULT_DESCRIPTION
+  end
+
   # What to call a record in a link or heading.
   def record_label(record)
     case record

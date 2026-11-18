@@ -1,5 +1,6 @@
 <%# Banner for a record page. locals: record, facts (array of strings shown under the title) %>
 <% content_for :title, record_label(record) %>
+<% content_for :description, record_excerpt(record) %>
 <%= render layout: "shared/page_header", locals: { eyebrow: record_type_label(record), title: (record.is_a?(Revelation) ? record.title : record_label(record)) } do %>
   <% if facts.compact_blank.any? %>
     <p class="mt-3 text-lg text-brown-700"><%= facts.compact_blank.join(" · ") %></p>

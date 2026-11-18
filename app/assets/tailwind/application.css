@@ -131,6 +131,33 @@
     @apply font-semibold text-forest-700 underline decoration-gold-500 decoration-2 underline-offset-4 hover:text-forest-900;
   }
 
+  /* Toggle buttons for filters and the route (pressed = on). */
+  .map-filter {
+    @apply inline-flex cursor-pointer items-center rounded-full border border-parchment-300 bg-parchment-100 px-4 py-1.5 text-base font-semibold text-forest-800 transition-colors hover:border-gold-500;
+  }
+
+  .map-filter[aria-pressed="true"] {
+    @apply border-forest-700 bg-forest-700 text-parchment-50;
+  }
+
+  /* A round marker, used on the map and in the list of places. */
+  .map-pin {
+    @apply flex h-8 w-8 items-center justify-center rounded-full border-2 border-white bg-forest-700 text-sm font-bold text-white shadow-md;
+  }
+
+  .map-pin-visited {
+    @apply bg-gold-500 text-forest-900;
+  }
+
+  .map-pin-active {
+    @apply ring-4 ring-gold-400;
+  }
+
+  /* Leaflet sets its own font and link colours; bring them in line with the site. */
+  .leaflet-container {
+    font-family: var(--font-sans);
+  }
+
   .nav-link {
     @apply rounded-md px-3 py-2 text-base font-semibold text-parchment-100 transition-colors hover:bg-forest-700 hover:text-white;
   }

@@ -68,4 +68,12 @@ module ApplicationHelper
   def hero_image?
     Rails.application.assets.load_path.find("hero.jpg").present?
   end
+
+  # What the map needs to know about each place, as JSON for the map controller.
+  def map_places_json(places)
+    places.map do |place|
+      { slug: place.slug, name: place.name, lat: place.latitude.to_f, lng: place.longitude.to_f,
+        kinds: place.kinds, stop: place.trail_order, url: place_path(place) }
+    end.to_json
+  end
 end

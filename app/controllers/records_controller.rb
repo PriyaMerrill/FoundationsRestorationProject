@@ -5,7 +5,7 @@
 # compact version of the record instead of the full page.
 class RecordsController < ApplicationController
   MODELS = { "places" => Place, "people" => Person, "events" => Event, "revelations" => Revelation }.freeze
-  PANELS = %w[event].freeze
+  PANELS = %w[event place].freeze
 
   def show
     model = MODELS.fetch(request.path.split("/")[1])

@@ -17,6 +17,19 @@ class Place < ApplicationRecord
   scope :mapped, -> { where.not(latitude: nil).where.not(longitude: nil) }
   scope :along_trail, -> { where.not(trail_order: nil).order(:trail_order) }
 
+  EARTH_RADIUS_MILES = 3958.8
+
+  # Straight-line ("as the crow flies") distance to another place, in miles.
+  def miles_to(other)
+    lat1, lng1, lat2, lng2 = [ latitude, longitude, other.latitude, other.longitude ].map { |degrees| degrees.to_f * Math::PI / 180 }
+    a = Math.sin((lat2 - lat1) / 2)**2 + Math.cos(lat1) * Math.cos(lat2) * Math.sin((lng2 - lng1) / 2)**2
+    (2 * EARTH_RADIUS_MILES * Math.asin(Math.sqrt(a))).round
+  end
+
+  def years
+    [ start_year, end_year ].compact.uniq.join("–")
+  end
+
   private
     def kinds_are_known
       unknown = Array(kinds) - KINDS

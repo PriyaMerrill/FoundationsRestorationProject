@@ -147,17 +147,17 @@ Every page reads from these tables.
 
 ## Phase 8: Restoration Road Trip (map)
 
-- [ ] Pin Leaflet: `bin/importmap pin leaflet`, and add its CSS
-- [ ] Add a JSON endpoint `/places.json` with coordinates, kind and slug
-- [ ] Write a `map` Stimulus controller: create the map, add OpenStreetMap tiles with attribution, add a marker per place
-- [ ] Clicking a marker loads the place panel in a Turbo Frame: name, dates, significance, people, scriptures, photos, documents, citations
-- [ ] Filter buttons: temples, revelation sites, settlements, landmarks
-- [ ] Links from the panel to related timeline events and records
-- [ ] Then-and-now image comparison where both images exist
-- [ ] "Visited" toggle saved to local storage, with visited markers styled differently
-- [ ] Optional road-trip mode: draw a line through places in `trail_order` and show a stop list with approximate distances
-- [ ] Deep links work (`/road-trip?place=kirtland`)
-- [ ] Test: Kirtland panel shows all four spec dates and links to D&C 110
+- [x] Pin Leaflet: `bin/importmap pin leaflet`, and add its CSS
+- [x] Give the map each place's coordinates, kinds and slug (passed in the page, so no separate JSON request)
+- [x] Write a `map` Stimulus controller: create the map, add OpenStreetMap tiles with attribution, add a marker per place
+- [x] Clicking a marker loads the place panel in a Turbo Frame: name, dates, significance, people, scriptures, photos, documents, citations
+- [x] Filter buttons: temples, revelation sites, settlements, landmarks
+- [x] Links from the panel to related timeline events and records
+- [x] Then-and-now image comparison where both images exist (ready; shows once images are added)
+- [x] "Visited" toggle saved to local storage, with visited markers styled differently
+- [x] Road-trip route: a line through places in `trail_order`, with straight-line distances between stops
+- [x] Deep links work (`/road-trip?place=kirtland`)
+- [x] Test: Kirtland panel shows all four spec dates and links to D&C 110
 
 ## Phase 9: Restoration by the Numbers
 
@@ -227,6 +227,7 @@ Content and functionality get reviewed together, once the site is built. Until t
 - [ ] Add a hero photograph at `app/assets/images/hero.jpg`; the home page uses it automatically in place of the green gradient
 - [ ] Decide whether the Twelve's mission to Britain needs a place on the map (it has none)
 - [ ] Decide whether Jefferson City, Hawn's Mill and Kanesville should be road-trip stops (they are on the map but not on the route)
+- [ ] Decide whether the road trip needs real driving distances and travel times (it shows straight-line miles now)
 - [ ] Check the footer wording: it says the site is an independent educational project and not an official Church publication
 - [ ] Remove the DRAFT note at the top of each file in `db/seeds/` once that file is checked
 

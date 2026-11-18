@@ -34,6 +34,7 @@ export default class extends Controller {
     this.frameTarget.removeAttribute("src")
     this.frameTarget.innerHTML = ""
     this.remember(null)
+    this.dispatch("closed")
 
     if (this.opener?.isConnected) this.opener.focus({ preventScroll: true })
     this.opener = null

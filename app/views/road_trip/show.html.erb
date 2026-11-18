@@ -1,0 +1,78 @@
+<% content_for :title, "Restoration Road Trip" %>
+<% content_for :description, "An interactive map of early Church history sites, from Palmyra to the Salt Lake Valley, with the events, people and revelations tied to each place." %>
+
+<%= render "shared/page_header", eyebrow: "The Ultimate Restoration", title: "Road Trip",
+      lead: "Follow the Restoration across the map. Choose a place to see what happened there, who was involved, and what was revealed." %>
+
+<div class="page py-8"
+     data-controller="map"
+     data-map-places-value="<%= map_places_json(@places) %>"
+     data-map-selected-value="<%= @open_place&.slug %>"
+     data-action="turbo:frame-load@document->map#recordOpened panel:closed@document->map#recordClosed visited:change@window->map#refreshVisited">
+
+  <%# ---- Filters and route toggle ---- %>
+  <div class="flex flex-wrap items-end justify-between gap-4">
+    <div>
+      <p class="text-sm font-semibold text-slate-700" id="kind-label">Show</p>
+      <ul class="mt-1 flex flex-wrap gap-2" aria-labelledby="kind-label">
+        <% ([ nil ] + Place::KINDS).each do |kind| %>
+          <li>
+            <button type="button" class="map-filter" aria-pressed="<%= kind.nil? %>"
+                    data-map-target="filter" data-kind="<%= kind %>" data-action="map#filter">
+              <%= kind ? kind.humanize.pluralize : "All places" %>
+            </button>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <button type="button" class="map-filter" aria-pressed="false" data-map-target="routeButton" data-action="map#toggleRoute">
+      Road-trip route
+    </button>
+  </div>
+
+  <div class="mt-5 grid gap-6 lg:grid-cols-3">
+    <%# ---- The map ---- %>
+    <div class="lg:col-span-2">
+      <div class="isolate h-[26rem] overflow-hidden rounded-lg border border-parchment-300 bg-parchment-200 lg:h-[38rem]"
+           data-map-target="canvas" role="region" aria-label="Map of Church history places">
+        <noscript><p class="p-6">The map needs JavaScript. Every place is listed beside it.</p></noscript>
+      </div>
+      <p class="mt-2 text-sm text-slate-600" data-map-target="routeNote" hidden>
+        The route joins the <%= @stops.size %> stops in historical order: about <%= number_with_delimiter(@route_miles) %> miles
+        in straight lines. Driving distances are longer.
+      </p>
+    </div>
+
+    <%# ---- The same places as a list ---- %>
+    <div>
+      <div class="flex items-baseline justify-between gap-3">
+        <h2 class="text-2xl font-bold">Places</h2>
+        <p class="text-sm font-semibold text-brown-700" role="status" data-map-target="progress"></p>
+      </div>
+
+      <ol class="mt-3 space-y-2 lg:max-h-[35rem] lg:overflow-y-auto lg:pr-1">
+        <% previous_stop = nil %>
+        <% @places.each do |place| %>
+          <li data-map-target="item" data-slug="<%= place.slug %>" data-kinds="<%= place.kinds.join(" ") %>">
+            <%= link_to place_path(place), class: "card flex items-start gap-3 p-3", data: { turbo_frame: "panel" } do %>
+              <span class="map-pin shrink-0" data-pin aria-hidden="true"><%= place.trail_order %></span>
+              <span class="min-w-0">
+                <span class="block font-serif text-lg font-bold leading-snug text-forest-900"><%= place.name %></span>
+                <span class="block text-sm text-brown-700"><%= [ place.state, place.years ].compact_blank.join(" · ") %></span>
+                <% if place.trail_order && previous_stop %>
+                  <span class="block text-sm text-slate-600">About <%= number_with_delimiter(previous_stop.miles_to(place)) %> miles from <%= previous_stop.name %></span>
+                <% end %>
+                <span class="block text-sm font-semibold text-forest-700" data-visited-label hidden>Explored</span>
+              </span>
+            <% end %>
+          </li>
+          <% previous_stop = place if place.trail_order %>
+        <% end %>
+      </ol>
+      <p class="mt-3 text-sm text-slate-600" data-map-target="empty" hidden>No places of this kind.</p>
+    </div>
+  </div>
+</div>
+
+<%= render "shared/panel", param: "place", label: "Place details", src: (@open_place ? place_path(@open_place) : nil) %>

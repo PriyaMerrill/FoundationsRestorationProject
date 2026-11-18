@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root "pages#home"
 
   # The main sections of the site.
-  get "road-trip", to: "sections#road_trip", as: :road_trip
+  get "road-trip", to: "road_trip#show", as: :road_trip
   get "timeline", to: "timeline#show", as: :timeline
   get "numbers", to: "sections#numbers", as: :numbers
   get "trivia", to: "sections#trivia", as: :trivia

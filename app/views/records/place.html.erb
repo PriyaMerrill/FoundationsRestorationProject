@@ -1,5 +1,4 @@
-<% years = [ @record.start_year, @record.end_year ].compact.uniq.join("–") %>
-<%= render layout: "records/header", locals: { record: @record, facts: [ @record.state, years, (@record.modern_name.present? ? "Today: #{@record.modern_name}" : nil) ] } do %>
+<%= render layout: "records/header", locals: { record: @record, facts: [ @record.state, @record.years, (@record.modern_name.present? ? "Today: #{@record.modern_name}" : nil) ] } do %>
   <p class="mt-4 flex flex-wrap gap-2">
     <% @record.kinds.each do |kind| %>
       <%= render "shared/badge", label: kind.humanize, tone: "brown" %>

@@ -1,0 +1,20 @@
+<%# A record's pictures. When there is both a historical and a present-day
+    image, they are shown side by side as "Then" and "Now"; otherwise the
+    pictures are listed as usual. locals: record %>
+<% available = record.images.select { |image| Rails.application.assets.load_path.find(image.file_name) } %>
+<% past = available.reject(&:is_modern).first %>
+<% present = available.select(&:is_modern).first %>
+
+<% if past && present %>
+  <div class="mt-5 grid grid-cols-2 gap-3">
+    <% { "Then" => past, "Now" => present }.each do |label, image| %>
+      <figure>
+        <p class="eyebrow"><%= label %></p>
+        <%= image_tag image.file_name, alt: image.caption.to_s, loading: "lazy", class: "mt-1 aspect-[4/3] w-full rounded-md border border-parchment-300 object-cover" %>
+        <figcaption class="mt-1 text-sm text-slate-600"><%= [ image.caption, image.year, image.credit ].compact_blank.join(" · ") %></figcaption>
+      </figure>
+    <% end %>
+  </div>
+<% else %>
+  <%= render "shared/images", record: record %>
+<% end %>

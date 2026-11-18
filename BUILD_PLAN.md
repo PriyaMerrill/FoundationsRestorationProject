@@ -161,15 +161,15 @@ Every page reads from these tables.
 
 ## Phase 9: Restoration by the Numbers
 
-- [ ] Add gems `chartkick` and `groupdate`; pin `chartkick` and `Chart.js`
-- [ ] Membership growth: line chart from `MembershipEstimate`
-- [ ] Revelations by location: bar chart of D&C sections per place
-- [ ] Revelations over time: column chart by year
-- [ ] Period comparison: revelations, settlements, temples and membership per period
-- [ ] Geographic expansion: Leaflet map with a year slider from 1830 to 1850
-- [ ] Filters for year range, period, category and location
-- [ ] Clicking a bar or point opens the matching records (Chart.js `onClick` in a Stimulus controller)
-- [ ] Under every chart: source notes, definitions, and a caveat for approximate figures
+- [x] Add Chart.js (its self-contained build, pinned through importmap; no extra gems needed)
+- [x] Membership growth: line chart from `MembershipEstimate`
+- [x] Revelations by location: bar chart of D&C sections per place
+- [x] Revelations over time: column chart by year; events over time as a second column chart
+- [x] Period comparison: events, revelations, temple events and membership per period, as four small charts
+- [x] Geographic expansion: Leaflet map with a year slider from 1830 to 1850
+- [x] Filters for year range, period, category and location
+- [x] Clicking a bar or point opens the matching records (Chart.js `onClick` in a Stimulus controller)
+- [x] Under every chart: source notes, definitions, and a caveat for approximate figures
 - [ ] Stretch: relationship network diagram of people, events and places using D3
 
 ## Phase 10: Restoration Trivia
@@ -227,6 +227,7 @@ Content and functionality get reviewed together, once the site is built. Until t
 - [ ] Add a hero photograph at `app/assets/images/hero.jpg`; the home page uses it automatically in place of the green gradient
 - [ ] Decide whether the Twelve's mission to Britain needs a place on the map (it has none)
 - [ ] Decide whether Jefferson City, Hawn's Mill and Kanesville should be road-trip stops (they are on the map but not on the route)
+- [ ] Check the chart caveats and definitions on By the Numbers read correctly once the content is verified
 - [ ] Decide whether the road trip needs real driving distances and travel times (it shows straight-line miles now)
 - [ ] Check the footer wording: it says the site is an independent educational project and not an official Church publication
 - [ ] Remove the DRAFT note at the top of each file in `db/seeds/` once that file is checked

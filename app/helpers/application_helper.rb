@@ -76,4 +76,12 @@ module ApplicationHelper
         kinds: place.kinds, stop: place.trail_order, url: place_path(place) }
     end.to_json
   end
+
+  # Turns report points into JSON for the chart controller.
+  def chart_points_json(points)
+    points.map do |point|
+      { label: point.label, value: point.value, detail: point.detail,
+        records: point.records.map { |record| { label: record_label(record), type: record_type_label(record), url: polymorphic_path(record) } } }
+    end.to_json
+  end
 end

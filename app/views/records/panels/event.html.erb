@@ -1,0 +1,46 @@
+<%= turbo_frame_tag "panel" do %>
+  <article class="p-6" data-panel-key="<%= @record.slug %>">
+    <p class="eyebrow">Event</p>
+    <h2 class="mt-1 text-3xl font-bold"><%= @record.title %></h2>
+    <p class="mt-2 text-lg text-brown-700"><%= [ @record.display_dates, @record.place&.name ].compact.join(" · ") %></p>
+
+    <p class="mt-3 flex flex-wrap gap-2">
+      <%= render "shared/badge", label: category_label(@record.category), tone: "forest" %>
+      <%= render "shared/badge", label: period_label(@record.period), tone: "brown" %>
+    </p>
+
+    <%= render "shared/images", record: @record %>
+
+    <p class="mt-5"><%= @record.summary %></p>
+    <% if @record.context.present? %>
+      <p class="mt-3 text-base text-slate-700"><%= @record.context %></p>
+    <% end %>
+
+    <% if @record.event_participants.any? %>
+      <h3 class="mt-6 text-xl font-bold">People involved</h3>
+      <ul class="mt-2 flex flex-wrap gap-2">
+        <% @record.event_participants.includes(:person).each do |participant| %>
+          <li><%= render "shared/record_link", record: participant.person, note: participant.role %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <% if @record.revelations.any? %>
+      <h3 class="mt-6 text-xl font-bold">Scriptures</h3>
+      <ul class="mt-2 flex flex-wrap gap-2">
+        <% @record.revelations.order(:section_number).each do |revelation| %>
+          <li><%= render "shared/record_link", record: revelation %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <p class="mt-6 flex flex-wrap gap-3">
+      <% if @record.place %>
+        <%= link_to "View #{@record.place.name} on the map", road_trip_path(place: @record.place.slug), class: "btn btn-primary" %>
+      <% end %>
+      <%= link_to "Open the full page", event_path(@record), class: "btn btn-outline" %>
+    </p>
+
+    <%= render "shared/sources", record: @record %>
+  </article>
+<% end %>

@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Classes added by JavaScript, which Tailwind cannot see in the templates. */
+@source inline("shadow-2xl");
+
 /* ---------------------------------------------------------------
    Design tokens: the "digital history museum" palette and fonts.
    Use them as Tailwind classes: bg-forest-800, text-gold-500,

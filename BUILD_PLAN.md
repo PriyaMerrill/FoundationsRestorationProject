@@ -134,16 +134,16 @@ Every page reads from these tables.
 
 ## Phase 7: Interactive timeline
 
-- [ ] `TimelineController#index` loading events in date order with place and people
-- [ ] Render the timeline (vertical on mobile, horizontal on desktop) grouped by period
-- [ ] Period jump links: New York, Ohio, Missouri, Nauvoo, Westward Migration
-- [ ] Category filter chips, submitted as query params into a Turbo Frame
-- [ ] Build the slide-over panel partial (moved here from Phase 5; the map reuses it)
-- [ ] Clicking an event opens a detail panel in a Turbo Frame: date, place, explanation, participants, scriptures, images, sources
-- [ ] Cross-links from the panel: "View on map", person pages, D&C sections
-- [ ] Search box for person, event, location or revelation
-- [ ] Deep links work (`/timeline?event=liberty-jail` opens that event)
-- [ ] Test: Liberty Jail shows Joseph Smith, D&C 121 to 123, and a map link
+- [x] `TimelineController#show` loading events in date order with place and people
+- [x] Render the timeline grouped by period: a vertical line on mobile, a row that scrolls sideways per period on desktop
+- [x] Period jump links: New York, Ohio, Missouri, Nauvoo, Westward Migration
+- [x] Category filter chips, submitted as query params into a Turbo Frame
+- [x] Build the slide-over panel partial (moved here from Phase 5; the map reuses it)
+- [x] Clicking an event opens a detail panel in a Turbo Frame: date, place, explanation, participants, scriptures, images, sources
+- [x] Cross-links from the panel: "View on map", person pages, D&C sections
+- [x] Search box for person, event, location or revelation
+- [x] Deep links work (`/timeline?event=liberty-jail` opens that event)
+- [x] Test: Liberty Jail shows Joseph Smith, D&C 121 to 123, and a map link
 
 ## Phase 8: Restoration Road Trip (map)
 

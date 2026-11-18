@@ -1,0 +1,25 @@
+<%# A panel that slides in from the right to show one record without leaving the page.
+    Any link with data-turbo-frame="panel" loads into it and opens it.
+    locals: param  - the URL parameter that remembers what is open (for example "event")
+            src    - a record URL to open straight away (optional)
+            label  - what the panel holds, for screen readers %>
+<div data-controller="panel" data-panel-param-value="<%= param %>" data-action="keydown.esc@window->panel#close">
+  <div class="fixed inset-0 z-40 hidden bg-forest-900/40" data-panel-target="backdrop" data-action="click->panel#close"></div>
+
+  <aside inert class="fixed inset-y-0 right-0 z-50 flex w-full max-w-lg translate-x-full flex-col bg-parchment-50 transition-[translate] duration-200"
+         role="dialog" aria-label="<%= local_assigns.fetch(:label, "Details") %>" tabindex="-1"
+         data-panel-target="drawer">
+    <div class="flex items-center justify-end border-b border-parchment-300 px-4 py-2">
+      <button type="button" class="btn btn-outline px-3 py-1.5 text-sm" data-action="panel#close" data-panel-target="closeButton">
+        Close <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="flex-1 overflow-y-auto">
+      <%= turbo_frame_tag "panel", src: local_assigns[:src], target: "_top",
+            data: { panel_target: "frame", action: "turbo:frame-load->panel#open" } do %>
+        <% if local_assigns[:src] %><p class="p-6 text-slate-600">Loading…</p><% end %>
+      <% end %>
+    </div>
+  </aside>
+</div>

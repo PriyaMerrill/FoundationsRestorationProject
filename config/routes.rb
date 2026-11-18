@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   # The main sections of the site.
   get "road-trip", to: "sections#road_trip", as: :road_trip
-  get "timeline", to: "sections#timeline", as: :timeline
+  get "timeline", to: "timeline#show", as: :timeline
   get "numbers", to: "sections#numbers", as: :numbers
   get "trivia", to: "sections#trivia", as: :trivia
   get "explore", to: "explore#show", as: :explore

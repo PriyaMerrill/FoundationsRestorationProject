@@ -1,0 +1,15 @@
+<%# A record's pictures with their credits. Shows nothing until image files
+    have been added to app/assets/images. locals: record %>
+<% images = record.images.select { |image| Rails.application.assets.load_path.find(image.file_name) } %>
+<% if images.any? %>
+  <div class="mt-5 space-y-4">
+    <% images.each do |image| %>
+      <figure>
+        <%= image_tag image.file_name, alt: image.caption.to_s, loading: "lazy", class: "w-full rounded-md border border-parchment-300" %>
+        <figcaption class="mt-1 text-sm text-slate-600">
+          <%= [ image.caption, image.year, image.credit ].compact_blank.join(" · ") %>
+        </figcaption>
+      </figure>
+    <% end %>
+  </div>
+<% end %>

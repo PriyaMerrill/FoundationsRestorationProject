@@ -3,9 +3,6 @@ class SectionsController < ApplicationController
   def road_trip
   end
 
-  def timeline
-  end
-
   def numbers
   end
 

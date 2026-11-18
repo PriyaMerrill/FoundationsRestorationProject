@@ -1,0 +1,100 @@
+<% content_for :title, "Interactive Timeline" %>
+<% content_for :description, "A timeline of the Restoration from 1820 to 1847. Filter by theme, search, and open any event for its people, scriptures and sources." %>
+
+<%= render "shared/page_header", eyebrow: "1820 to 1847", title: "Interactive Timeline",
+      lead: "Move through the story of the Restoration. Choose an event to see who was there, what was revealed, and where it happened." %>
+
+<div class="page py-8">
+  <%= turbo_frame_tag "timeline_results", data: { turbo_action: "advance" } do %>
+    <%# ---- Search and filters ---- %>
+    <div class="rounded-lg border border-parchment-300 bg-white p-4 sm:p-5">
+      <%= form_with url: timeline_path, method: :get, class: "flex flex-wrap items-end gap-3" do |form| %>
+        <%= form.hidden_field :category, value: @category if @category %>
+        <div class="min-w-0 flex-1">
+          <%= form.label :q, "Search by person, event, place or revelation", class: "block text-sm font-semibold text-slate-700" %>
+          <%= form.search_field :q, value: @query, placeholder: "Try Emma Smith, Kirtland or D&C 76",
+                class: "mt-1 w-full rounded-md border border-slate-400 bg-white px-3 py-2 text-base" %>
+        </div>
+        <%= form.submit "Search", class: "btn btn-primary cursor-pointer" %>
+      <% end %>
+
+      <div class="mt-4">
+        <p class="text-sm font-semibold text-slate-700" id="category-label">Show</p>
+        <ul class="mt-1 flex flex-wrap gap-2" aria-labelledby="category-label">
+          <% ([ nil ] + Event::CATEGORIES).each do |category| %>
+            <% active = category == @category %>
+            <li>
+              <%= link_to (category ? category_label(category) : "All events"),
+                    timeline_path({ category: category, q: @query.presence }.compact),
+                    class: "badge px-4 py-1.5 text-base #{active ? "bg-forest-700 text-parchment-50" : "border border-parchment-300 bg-parchment-100 text-forest-800 hover:border-gold-500"}",
+                    aria: { current: (active ? "true" : nil) } %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
+    <%# ---- Result summary and jumps between periods ---- %>
+    <div class="mt-6 flex flex-wrap items-center justify-between gap-3">
+      <p class="text-base text-slate-700" role="status">
+        <%= pluralize(@total, "event") %>
+        <% if @category %> in <strong><%= category_label(@category) %></strong><% end %>
+        <% if @query.present? %> matching <strong>“<%= @query %>”</strong><% end %>
+        <% if @category || @query.present? %>
+          · <%= link_to "Clear", timeline_path, class: "text-link" %>
+        <% end %>
+      </p>
+
+      <% if @events_by_period.size > 1 %>
+        <nav aria-label="Jump to a period">
+          <ul class="flex flex-wrap gap-x-4 gap-y-1 text-base">
+            <% @events_by_period.each_key do |period| %>
+              <li><%= link_to period_label(period), "#period-#{period}", class: "text-link", data: { turbo: false } %></li>
+            <% end %>
+          </ul>
+        </nav>
+      <% end %>
+    </div>
+
+    <%# ---- The timeline: one track per period ---- %>
+    <% if @events_by_period.empty? %>
+      <div class="card mx-auto mt-10 max-w-xl text-center">
+        <p class="text-xl">No events match.</p>
+        <p class="mt-4"><%= link_to "Show all events", timeline_path, class: "btn btn-primary" %></p>
+      </div>
+    <% end %>
+
+    <% @events_by_period.each do |period, events| %>
+      <section id="period-<%= period %>" class="mt-10 scroll-mt-6" aria-labelledby="period-<%= period %>-heading">
+        <div class="flex flex-wrap items-baseline gap-x-3">
+          <h2 id="period-<%= period %>-heading" class="text-3xl font-bold"><%= period_label(period) %></h2>
+          <p class="text-base text-brown-700">
+            <%= [ events.first.start_date.year, events.last.start_date.year ].uniq.join("–") %> · <%= pluralize(events.size, "event") %>
+          </p>
+        </div>
+
+        <%# A vertical line of events on small screens; a row you scroll sideways on large ones. %>
+        <ol class="mt-5 flex flex-col lg:flex-row lg:overflow-x-auto lg:pb-4 lg:pt-2">
+          <% events.each do |event| %>
+            <li class="relative border-l-2 border-gold-400 pb-5 pl-6 last:pb-0 lg:w-72 lg:shrink-0 lg:border-l-0 lg:border-t-2 lg:pb-0 lg:pl-0 lg:pr-4 lg:pt-6">
+              <span class="absolute -left-[9px] top-5 h-4 w-4 rounded-full border-2 border-gold-500 bg-parchment-50 lg:-top-[9px] lg:left-5" aria-hidden="true"></span>
+
+              <%= link_to event_path(event), class: "card flex h-full flex-col p-4", data: { turbo_frame: "panel" } do %>
+                <span class="text-sm font-semibold text-gold-700"><%= event.display_dates %></span>
+                <span class="mt-1 font-serif text-xl font-bold leading-snug text-forest-900"><%= event.title %></span>
+                <% if event.place %>
+                  <span class="mt-1 text-base text-brown-700"><%= event.place.name %></span>
+                <% end %>
+                <span class="mt-3 flex flex-1 items-end">
+                  <%= render "shared/badge", label: category_label(event.category), tone: "forest" %>
+                </span>
+              <% end %>
+            </li>
+          <% end %>
+        </ol>
+      </section>
+    <% end %>
+  <% end %>
+</div>
+
+<%= render "shared/panel", param: "event", label: "Event details", src: (@open_event ? event_path(@open_event) : nil) %>

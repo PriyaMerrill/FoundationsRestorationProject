@@ -126,11 +126,11 @@ Every page reads from these tables.
 
 ## Phase 6: Home page
 
-- [ ] Hero with a large historical image, headline "Explore the Restoration", and subtitle
-- [ ] Two buttons: Explore the Timeline, Start the Road Trip
-- [ ] Four navigation cards: Road Trip, Timeline, By the Numbers, Trivia
-- [ ] "On This Day in Church History" block (query events matching today's month and day, fall back to a featured event)
-- [ ] Optional featured person or revelation
+- [x] Hero with the headline "Explore the Restoration" and subtitle (photo still to add, see Final review)
+- [x] Two buttons: Explore the Timeline, Start the Road Trip
+- [x] Four navigation cards: Road Trip, Timeline, By the Numbers, Trivia
+- [x] "On This Day in Church History" block (query events matching today's month and day, fall back to a featured event)
+- [x] Optional featured person or revelation
 
 ## Phase 7: Interactive timeline
 
@@ -224,6 +224,7 @@ Content and functionality get reviewed together, once the site is built. Until t
 - [ ] Check every source: title, author and URL
 - [ ] Add chapter or page notes to the citations, which currently cite whole works
 - [ ] Collect images and record a credit and license for each (none yet)
+- [ ] Add a hero photograph at `app/assets/images/hero.jpg`; the home page uses it automatically in place of the green gradient
 - [ ] Decide whether the Twelve's mission to Britain needs a place on the map (it has none)
 - [ ] Decide whether Jefferson City, Hawn's Mill and Kanesville should be road-trip stops (they are on the map but not on the route)
 - [ ] Check the footer wording: it says the site is an independent educational project and not an official Church publication

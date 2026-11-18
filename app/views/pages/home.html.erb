@@ -1,8 +1,18 @@
-<div class="bg-forest-800 text-parchment-100">
-  <div class="page py-20 text-center sm:py-28">
+<% content_for :description, "Explore the people, places, revelations and events of early Latter-day Saint history through an interactive map, timeline, charts and trivia." %>
+
+<%# ---- Hero. Add app/assets/images/hero.jpg and it becomes the background. ---- %>
+<section class="relative isolate overflow-hidden bg-forest-900 text-parchment-100">
+  <% if hero_image? %>
+    <%= image_tag "hero.jpg", alt: "", class: "absolute inset-0 -z-20 h-full w-full object-cover" %>
+    <div class="absolute inset-0 -z-10 bg-forest-900/70"></div>
+  <% else %>
+    <div class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,var(--color-forest-600),var(--color-forest-900)_70%)]"></div>
+  <% end %>
+
+  <div class="page py-20 text-center sm:py-28 lg:py-36">
     <p class="eyebrow text-gold-300">An interactive Church history</p>
-    <h1 class="mt-3 text-5xl font-bold text-parchment-50 sm:text-6xl">Explore the Restoration</h1>
-    <p class="mx-auto mt-5 max-w-2xl text-xl">
+    <h1 class="mt-3 text-5xl font-bold text-parchment-50 sm:text-6xl lg:text-7xl">Explore the Restoration</h1>
+    <p class="mx-auto mt-5 max-w-2xl text-xl sm:text-2xl">
       Discover the people, places, revelations and events of early Church history.
     </p>
     <p class="mt-8 flex flex-wrap justify-center gap-3">
@@ -10,4 +20,88 @@
       <%= link_to "Start the Road Trip", road_trip_path, class: "btn border border-parchment-200 text-parchment-50 hover:bg-forest-700" %>
     </p>
   </div>
-</div>
+</section>
+
+<%# ---- What's in the database ---- %>
+<% if @counts.values.sum.positive? %>
+  <section class="border-b border-parchment-300 bg-parchment-100" aria-label="What is in the historical database">
+    <dl class="page grid grid-cols-2 gap-y-4 py-6 text-center sm:grid-cols-4">
+      <% @counts.each do |label, count| %>
+        <div>
+          <dd class="font-serif text-3xl font-bold text-forest-800"><%= count %></dd>
+          <dt class="text-sm font-semibold uppercase tracking-widest text-brown-700"><%= label %></dt>
+        </div>
+      <% end %>
+    </dl>
+  </section>
+<% end %>
+
+<%# ---- The four experiences ---- %>
+<section class="page py-14" aria-labelledby="experiences-heading">
+  <h2 id="experiences-heading" class="text-center text-3xl font-bold sm:text-4xl">Four ways to explore</h2>
+  <p class="mx-auto mt-3 max-w-2xl text-center text-slate-700">
+    Each one draws on the same connected records, so you can follow a person, place or revelation from one to the next.
+  </p>
+
+  <ul class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    <% home_experiences.each do |experience| %>
+      <li class="flex">
+        <%= link_to experience[:path], class: "card flex w-full flex-col" do %>
+          <span class="flex h-12 w-12 items-center justify-center rounded-full bg-forest-100 text-forest-700" aria-hidden="true">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <%= tag.path d: experience[:icon] %>
+            </svg>
+          </span>
+          <h3 class="mt-4 text-2xl font-bold"><%= experience[:title] %></h3>
+          <p class="mt-2 flex-1 text-base text-slate-700"><%= experience[:text] %></p>
+          <span class="mt-4 text-base font-semibold text-forest-700"><%= experience[:action] %> <span aria-hidden="true">&rarr;</span></span>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</section>
+
+<%# ---- Featured records, different each day ---- %>
+<% if @featured_event || @featured_person || @featured_revelation %>
+  <section class="border-t border-parchment-300 bg-parchment-100" aria-labelledby="featured-heading">
+    <div class="page py-14">
+      <h2 id="featured-heading" class="text-3xl font-bold sm:text-4xl">From the records</h2>
+
+      <div class="mt-8 grid gap-6 lg:grid-cols-3">
+        <% if @featured_event %>
+          <%= link_to event_path(@featured_event), class: "card flex flex-col" do %>
+            <p class="eyebrow"><%= @on_this_day ? "On this day in Church history" : "Featured event" %></p>
+            <h3 class="mt-1 text-2xl font-bold"><%= @featured_event.title %></h3>
+            <p class="mt-1 text-base text-brown-700"><%= [ @featured_event.display_dates, @featured_event.place&.name ].compact.join(" · ") %></p>
+            <p class="mt-3 flex-1 text-base text-slate-700"><%= @featured_event.summary %></p>
+            <span class="mt-4 text-base font-semibold text-forest-700">Read about this event <span aria-hidden="true">&rarr;</span></span>
+          <% end %>
+        <% end %>
+
+        <% if @featured_person %>
+          <%= link_to person_path(@featured_person), class: "card flex flex-col" do %>
+            <p class="eyebrow">Featured person</p>
+            <h3 class="mt-1 text-2xl font-bold"><%= @featured_person.name %></h3>
+            <p class="mt-1 text-base text-brown-700"><%= @featured_person.roles %></p>
+            <p class="mt-3 flex-1 text-base text-slate-700"><%= truncate(@featured_person.biography, length: 180, separator: " ") %></p>
+            <span class="mt-4 text-base font-semibold text-forest-700">Meet <%= @featured_person.name %> <span aria-hidden="true">&rarr;</span></span>
+          <% end %>
+        <% end %>
+
+        <% if @featured_revelation %>
+          <%= link_to revelation_path(@featured_revelation), class: "card flex flex-col" do %>
+            <p class="eyebrow">Featured revelation</p>
+            <h3 class="mt-1 text-2xl font-bold"><%= @featured_revelation.title %></h3>
+            <p class="mt-1 text-base text-brown-700"><%= [ @featured_revelation.display_date, @featured_revelation.place&.name ].compact.join(" · ") %></p>
+            <p class="mt-3 flex-1 text-base text-slate-700"><%= @featured_revelation.summary %></p>
+            <span class="mt-4 text-base font-semibold text-forest-700">Read about <%= @featured_revelation.reference %> <span aria-hidden="true">&rarr;</span></span>
+          <% end %>
+        <% end %>
+      </div>
+
+      <p class="mt-8 text-center">
+        <%= link_to "Explore all the records", explore_path, class: "btn btn-primary" %>
+      </p>
+    </div>
+  </section>
+<% end %>

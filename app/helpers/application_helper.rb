@@ -45,4 +45,27 @@ module ApplicationHelper
   def period_label(value)
     value.to_s.titleize
   end
+
+  # The four navigation cards on the home page.
+  def home_experiences
+    [
+      { title: "Restoration Road Trip", path: road_trip_path, action: "Start the road trip",
+        text: "Travel the map from Palmyra to the Salt Lake Valley and see what happened at each stop.",
+        icon: "M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.800 12 21 12 21z M12 12a2.500 2.500 0 1 0 0-5 2.500 2.500 0 0 0 0 5z" },
+      { title: "Interactive Timeline", path: timeline_path, action: "Explore the timeline",
+        text: "Move through the years 1820 to 1847 and open any event for the full story.",
+        icon: "M3 12h18 M7 8v8 M12 6v12 M17 8v8" },
+      { title: "Restoration by the Numbers", path: numbers_path, action: "See the charts",
+        text: "Charts of membership growth, revelations by place and year, and the spread of the Church.",
+        icon: "M4 20V10 M10 20V4 M16 20v-7 M3 20h18" },
+      { title: "Restoration Trivia", path: trivia_path, action: "Play trivia",
+        text: "Test what you know with quizzes built from the same historical records.",
+        icon: "M9.500 9a2.500 2.500 0 1 1 3.500 2.300c-.700.400-1 1-1 1.700V14 M12 17.500h.010 M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z" }
+    ]
+  end
+
+  # True once a hero photograph has been added at app/assets/images/hero.jpg.
+  def hero_image?
+    Rails.application.assets.load_path.find("hero.jpg").present?
+  end
 end

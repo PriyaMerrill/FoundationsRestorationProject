@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_18_203752) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_18_234436) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -180,6 +180,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_18_203752) do
     t.index ["subject_type", "subject_id"], name: "index_trivia_questions_on_subject"
   end
 
+  create_table "verses", force: :cascade do |t|
+    t.bigint "revelation_id", null: false
+    t.integer "number", null: false
+    t.text "text", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["revelation_id", "number"], name: "index_verses_on_revelation_id_and_number", unique: true
+    t.index ["revelation_id"], name: "index_verses_on_revelation_id"
+  end
+
   add_foreign_key "citations", "sources"
   add_foreign_key "event_participants", "events"
   add_foreign_key "event_participants", "people"
@@ -190,4 +200,5 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_18_203752) do
   add_foreign_key "revelation_people", "people"
   add_foreign_key "revelation_people", "revelations"
   add_foreign_key "revelations", "places"
+  add_foreign_key "verses", "revelations"
 end

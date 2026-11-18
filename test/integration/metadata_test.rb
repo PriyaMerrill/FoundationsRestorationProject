@@ -26,4 +26,11 @@ class MetadataTest < ActionDispatch::IntegrationTest
     end
     assert_match "This page is not in the record", Rails.public_path.join("404.html").read
   end
+
+  test "an ampersand in a title is written once, not escaped twice" do
+    get revelation_path(create_revelation(76))
+
+    assert_includes response.body, "<title>D&amp;C 76 · Foundations of the Restoration</title>"
+    assert_not_includes response.body, "&amp;amp;"
+  end
 end

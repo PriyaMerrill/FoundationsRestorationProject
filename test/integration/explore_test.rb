@@ -40,7 +40,8 @@ class ExploreTest < ActionDispatch::IntegrationTest
     assert_equal "Imprisonment in Liberty Jail", results.fetch("Events").first
     assert_includes results.fetch("Places"), "Liberty"
     assert_includes results.fetch("People"), "Hyrum Smith"
-    assert_equal [ "Doctrine and Covenants 121", "Doctrine and Covenants 122", "Doctrine and Covenants 123" ], results.fetch("Revelations").sort
+    # Verse text is searched too, so other sections that mention a jail may follow these three.
+    [ 121, 122, 123 ].each { |section| assert_includes results.fetch("Revelations"), "Doctrine and Covenants #{section}" }
   end
 
   test "Doctrine and Covenants 76 finds the section, however it is written" do

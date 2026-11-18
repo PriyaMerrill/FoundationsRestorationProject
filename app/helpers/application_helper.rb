@@ -15,7 +15,7 @@ module ApplicationHelper
 
   # Browser tab title: "Kirtland · Foundations of the Restoration".
   def page_title
-    [ content_for(:title).presence, SITE_NAME ].compact.join(" · ")
+    safe_join([ content_for(:title).presence, SITE_NAME ].compact, " · ")
   end
 
   DEFAULT_DESCRIPTION = "Explore the people, places, revelations and events of early Latter-day Saint history through maps, timelines, charts and trivia.".freeze

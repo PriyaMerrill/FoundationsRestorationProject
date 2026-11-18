@@ -16,7 +16,7 @@ class SeedsTest < ActiveSupport::TestCase
   end
 
   test "running the seeds twice changes nothing" do
-    counts = -> { [ Place, Person, Event, Revelation, Source, Citation, EventParticipant, TriviaQuestion ].map(&:count) }
+    counts = -> { [ Place, Person, Event, Revelation, Verse, Source, Citation, EventParticipant, TriviaQuestion ].map(&:count) }
     before = counts.call
     capture_io { Rails.application.load_seed }
     assert_equal before, counts.call
@@ -76,5 +76,14 @@ class SeedsTest < ActiveSupport::TestCase
   test "uncertain dates are shown as uncertain" do
     assert_equal "1820", Event.find_by!(slug: "first-vision").display_date
     assert_equal "c. 1829", Event.find_by!(slug: "melchizedek-priesthood-restored").display_date
+  end
+
+  test "loads the verses of every section" do
+    assert_empty Revelation.where.not(section_number: nil).where.missing(:verses).pluck(:section_number)
+
+    section = Revelation.find_by!(section_number: 76)
+    assert_equal 119, section.verses.size
+    assert_equal (1..119).to_a, section.verses.map(&:number)
+    assert_equal 1, Revelation.find_by!(section_number: 13).verses.size
   end
 end

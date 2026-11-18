@@ -217,6 +217,7 @@ Content and functionality get reviewed together, once the site is built. Until t
 **Content**
 - [ ] Check every event: date, date precision, place, people, summary and context
 - [ ] Check every revelation against its section heading: date, place and people
+- [ ] Spot-check the verse text on a few revelation pages against the official edition (1,053 verses were downloaded from the Open Scripture API)
 - [ ] Check every person: birth and death dates, roles, biography and clues
 - [ ] Check every place: years, summary, and coordinates on a real map (least reliable)
 - [ ] Check every membership figure against the Church Almanac (least reliable)

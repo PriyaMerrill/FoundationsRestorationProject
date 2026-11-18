@@ -99,6 +99,6 @@ class VisitorJourneyTest < ApplicationSystemTestCase
 
     assert_text "results for"
     assert_selector "section#events a.card", text: "Imprisonment in Liberty Jail"
-    assert_selector "section#revelations a.card", count: 3
+    assert_selector "section#revelations a.card", minimum: 3
   end
 end

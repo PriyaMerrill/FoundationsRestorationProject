@@ -41,4 +41,32 @@ class RecordPagesTest < ActionDispatch::IntegrationTest
     get event_path("no-such-event")
     assert_response :not_found
   end
+
+  test "a revelation page shows its verses, the first few open and the rest on request" do
+    8.times { |index| @revelation.verses.create!(number: index + 1, text: "Verse text number #{index + 1}.") }
+
+    get revelation_path(@revelation)
+
+    assert_select "#text-heading", text: "The text"
+    assert_select "section[aria-labelledby=text-heading] > div > ol > li", count: 5
+    assert_select "details summary", text: /Show all 8 verses/
+    assert_select "details ol[start='6'] li", count: 3
+    assert_select "li#verse-7", text: /Verse text number 7\./
+    assert_select "a[href=?]", "https://www.churchofjesuschrist.org/study/scriptures/dc-testament/dc/110?lang=eng"
+    assert_select "a[href=?]", "https://openscriptureapi.org"
+  end
+
+  test "a short revelation shows every verse with nothing to expand" do
+    @revelation.verses.create!(number: 1, text: "The only verse.")
+
+    get revelation_path(@revelation)
+
+    assert_select "li#verse-1", text: /The only verse\./
+    assert_select "details", count: 0
+  end
+
+  test "a revelation without saved verses has no text section" do
+    get revelation_path(@revelation)
+    assert_select "#text-heading", count: 0
+  end
 end

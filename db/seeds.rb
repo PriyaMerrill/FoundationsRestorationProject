@@ -18,6 +18,7 @@ module HistorySeeds
       load_places
       load_people
       load_revelations
+      load_verses
       load_events
       load_membership
       load_trivia
@@ -47,6 +48,21 @@ module HistorySeeds
     sync(Revelation, "revelations", "place" => Place) do |revelation, row|
       revelation.people = lookup_all(Person, row["people"])
       cite(revelation, row["sources"])
+    end
+  end
+
+  # The text of each revelation, from db/seeds/verses.yml (see lib/tasks/verses.rake).
+  def load_verses
+    return unless DIR.join("verses.yml").exist?
+    saved = read("verses")
+
+    Revelation.where.not(section_number: nil).find_each do |revelation|
+      texts = saved[revelation.section_number] || []
+      next if revelation.verses.pluck(:text) == texts
+
+      revelation.verses.delete_all
+      rows = texts.each_with_index.map { |text, index| { revelation_id: revelation.id, number: index + 1, text: text } }
+      Verse.insert_all!(rows) if rows.any?
     end
   end
 
@@ -145,7 +161,7 @@ module HistorySeeds
   end
 
   def report
-    counts = [ Place, Person, Event, Revelation, Source, MembershipEstimate, TriviaQuestion ].map do |model|
+    counts = [ Place, Person, Event, Revelation, Verse, Source, MembershipEstimate, TriviaQuestion ].map do |model|
       "#{model.count} #{model.model_name.human.downcase.pluralize(model.count)}"
     end
     puts "Seeded: #{counts.join(', ')}"

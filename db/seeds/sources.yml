@@ -1,0 +1,51 @@
+# Sources the site cites. Other seed files refer to these by slug.
+#
+# DRAFT: check every title, author and URL before launch.
+
+- slug: joseph-smith-papers
+  title: The Joseph Smith Papers
+  author: The Church Historian's Press
+  url: https://www.josephsmithpapers.org
+  kind: primary
+  citation: The Joseph Smith Papers. The Church Historian's Press. josephsmithpapers.org.
+
+- slug: doctrine-and-covenants
+  title: The Doctrine and Covenants
+  author: The Church of Jesus Christ of Latter-day Saints
+  url: https://www.churchofjesuschrist.org/study/scriptures/dc-testament
+  kind: primary
+  citation: The Doctrine and Covenants of The Church of Jesus Christ of Latter-day Saints, including section headings.
+
+- slug: joseph-smith-history
+  title: Joseph Smith—History
+  author: Joseph Smith
+  url: https://www.churchofjesuschrist.org/study/scriptures/pgp/js-h/1
+  kind: primary
+  citation: Joseph Smith—History, in the Pearl of Great Price.
+
+- slug: saints-volume-1
+  title: "Saints, Volume 1: The Standard of Truth, 1815–1846"
+  author: The Church of Jesus Christ of Latter-day Saints
+  url: https://www.churchofjesuschrist.org/study/history/saints-v1
+  kind: secondary
+  citation: "Saints: The Story of the Church of Jesus Christ in the Latter Days, Volume 1: The Standard of Truth, 1815–1846. Salt Lake City, 2018."
+
+- slug: saints-volume-2
+  title: "Saints, Volume 2: No Unhallowed Hand, 1846–1893"
+  author: The Church of Jesus Christ of Latter-day Saints
+  url: https://www.churchofjesuschrist.org/study/history/saints-v2
+  kind: secondary
+  citation: "Saints: The Story of the Church of Jesus Christ in the Latter Days, Volume 2: No Unhallowed Hand, 1846–1893. Salt Lake City, 2020."
+
+- slug: church-history-topics
+  title: Church History Topics
+  author: Church History Department
+  url: https://www.churchofjesuschrist.org/study/history/topics
+  kind: secondary
+  citation: Church History Topics. Church History Department, The Church of Jesus Christ of Latter-day Saints.
+
+- slug: church-almanac
+  title: Deseret News Church Almanac
+  author: Deseret News
+  kind: secondary
+  citation: Deseret News Church Almanac, historical year-end membership statistics.

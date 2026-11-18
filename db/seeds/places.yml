@@ -1,0 +1,166 @@
+# Places on the Restoration Road Trip map.
+#
+# kinds: any of temple, revelation_site, settlement, landmark
+# trail_order: the stop number in road-trip mode (leave out to keep a place off the route)
+#
+# DRAFT: coordinates are approximate and point at the main historic site.
+# Check each one on a map, and check the years, before launch.
+
+- slug: palmyra
+  name: Palmyra and Manchester
+  modern_name: Palmyra
+  state: New York
+  latitude: 43.0409
+  longitude: -77.2400
+  kinds: [revelation_site, landmark]
+  start_year: 1816
+  end_year: 1830
+  trail_order: 1
+  summary: The Smith family farm, the Sacred Grove, the Hill Cumorah, and the print shop where the Book of Mormon was published.
+  significance: The Restoration began here with Joseph Smith's First Vision in 1820, followed by the visits of the angel Moroni and the publication of the Book of Mormon in 1830.
+  sources: [joseph-smith-history, saints-volume-1]
+
+- slug: harmony
+  name: Harmony
+  modern_name: Oakland Township
+  state: Pennsylvania
+  latitude: 41.9517
+  longitude: -75.6385
+  kinds: [revelation_site, landmark]
+  start_year: 1827
+  end_year: 1830
+  trail_order: 2
+  summary: Home of Emma Hale's family, where Joseph and Emma Smith lived beside the Susquehanna River.
+  significance: Most of the Book of Mormon was translated here, and the Aaronic Priesthood was restored on the riverbank in May 1829.
+  sources: [joseph-smith-history, saints-volume-1]
+
+- slug: fayette
+  name: Fayette
+  modern_name: Fayette (near Waterloo)
+  state: New York
+  latitude: 42.8667
+  longitude: -76.8683
+  kinds: [revelation_site, landmark]
+  start_year: 1829
+  end_year: 1831
+  trail_order: 3
+  summary: The farm of Peter Whitmer Sr., who gave Joseph Smith a place to finish the translation.
+  significance: The Book of Mormon translation was completed here, the Three Witnesses saw the plates nearby, and the Church was formally organized here on April 6, 1830.
+  sources: [saints-volume-1]
+
+- slug: kirtland
+  name: Kirtland
+  state: Ohio
+  latitude: 41.6253
+  longitude: -81.3622
+  kinds: [temple, revelation_site, settlement]
+  start_year: 1831
+  end_year: 1838
+  trail_order: 4
+  summary: Headquarters of the Church through most of the 1830s and site of its first temple.
+  significance: Many revelations in the Doctrine and Covenants were received here. The School of the Prophets met here, the Quorum of the Twelve was organized here, and the Kirtland Temple was dedicated in 1836.
+  sources: [saints-volume-1, doctrine-and-covenants]
+
+- slug: hiram
+  name: Hiram
+  state: Ohio
+  latitude: 41.3100
+  longitude: -81.1500
+  kinds: [revelation_site, landmark]
+  start_year: 1831
+  end_year: 1832
+  trail_order: 5
+  summary: The John Johnson farm, where Joseph and Emma Smith lived for about a year.
+  significance: Joseph Smith and Sidney Rigdon received the vision of the degrees of glory here in February 1832. A mob attacked both men here the following month.
+  sources: [saints-volume-1, doctrine-and-covenants]
+
+- slug: independence
+  name: Independence
+  state: Missouri
+  latitude: 39.0911
+  longitude: -94.4275
+  kinds: [temple, revelation_site, settlement]
+  start_year: 1831
+  end_year: 1833
+  trail_order: 6
+  summary: Seat of Jackson County, on what was then the western edge of the United States.
+  significance: A revelation in July 1831 named Independence the center place of Zion and identified a site for a temple. The Saints were driven from the county in 1833.
+  sources: [saints-volume-1, doctrine-and-covenants]
+
+- slug: liberty
+  name: Liberty
+  state: Missouri
+  latitude: 39.2470
+  longitude: -94.4177
+  kinds: [revelation_site, landmark]
+  start_year: 1838
+  end_year: 1839
+  trail_order: 7
+  summary: Seat of Clay County and site of the jail where Joseph Smith and his companions were held.
+  significance: Joseph Smith spent the winter of 1838–39 in Liberty Jail. A letter he wrote there in March 1839 is the source of Doctrine and Covenants 121, 122 and 123.
+  sources: [saints-volume-1, doctrine-and-covenants]
+
+- slug: far-west
+  name: Far West
+  state: Missouri
+  latitude: 39.6767
+  longitude: -94.1330
+  kinds: [temple, revelation_site, settlement]
+  start_year: 1836
+  end_year: 1839
+  trail_order: 8
+  summary: The main Latter-day Saint settlement in Caldwell County and headquarters of the Church in 1838.
+  significance: The full name of the Church was revealed here and a temple site was dedicated. The city surrendered to the state militia in the autumn of 1838.
+  sources: [saints-volume-1, doctrine-and-covenants]
+
+- slug: nauvoo
+  name: Nauvoo
+  state: Illinois
+  latitude: 40.5505
+  longitude: -91.3846
+  kinds: [temple, revelation_site, settlement]
+  start_year: 1839
+  end_year: 1846
+  trail_order: 9
+  summary: A city the Saints built on a bend of the Mississippi River after leaving Missouri.
+  significance: The Relief Society was organized here, the Nauvoo Temple was built, and temple ordinances were introduced. The Saints began leaving for the West in 1846.
+  sources: [saints-volume-1]
+
+- slug: carthage
+  name: Carthage
+  state: Illinois
+  latitude: 40.4136
+  longitude: -91.1390
+  kinds: [landmark]
+  start_year: 1844
+  end_year: 1844
+  trail_order: 10
+  summary: Seat of Hancock County and site of Carthage Jail.
+  significance: Joseph and Hyrum Smith were killed by a mob at Carthage Jail on June 27, 1844.
+  sources: [saints-volume-1, doctrine-and-covenants]
+
+- slug: winter-quarters
+  name: Winter Quarters
+  modern_name: Florence, Omaha
+  state: Nebraska
+  latitude: 41.3344
+  longitude: -95.9652
+  kinds: [revelation_site, settlement]
+  start_year: 1846
+  end_year: 1848
+  trail_order: 11
+  summary: A temporary settlement on the west bank of the Missouri River.
+  significance: Thousands of Saints wintered here in 1846–47. Brigham Young received Doctrine and Covenants 136 here, and the first pioneer company set out from here in 1847.
+  sources: [saints-volume-2, doctrine-and-covenants]
+
+- slug: salt-lake-city
+  name: Salt Lake City
+  state: Utah
+  latitude: 40.7705
+  longitude: -111.8919
+  kinds: [temple, settlement]
+  start_year: 1847
+  trail_order: 12
+  summary: The settlement the pioneers founded in the Salt Lake Valley.
+  significance: The first pioneer company arrived in July 1847. Brigham Young chose the site for a temple a few days later, and the city became the headquarters of the Church.
+  sources: [saints-volume-2]

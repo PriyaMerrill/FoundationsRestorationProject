@@ -110,17 +110,19 @@ This is the heart of the project. Every page reads from these tables.
 
 ## Phase 4: Research and load the content
 
-- [ ] Create `db/seeds/` with one YAML file per type: `places.yml`, `people.yml`, `events.yml`, `revelations.yml`, `sources.yml`, `membership.yml`, `trivia.yml`
-- [ ] Write `db/seeds.rb` to load them with `find_or_initialize_by(slug:)` so it is safe to rerun on every deploy
-- [ ] Enter the 10 places with coordinates: Palmyra/Manchester, Harmony, Fayette, Kirtland, Independence, Liberty, Far West, Nauvoo, Winter Quarters, Salt Lake City
-- [ ] Enter 15 to 20 people
-- [ ] Enter 30 to 50 events, including the seven milestones (1820, 1823, 1829, 1830, 1836, 1844, 1847)
-- [ ] Enter selected Doctrine and Covenants sections with date and place (include 76, 110, 121 to 123)
-- [ ] Enter sources: Joseph Smith Papers, Church History Department, Doctrine and Covenants, *Saints*
-- [ ] Attach at least one citation to every event, revelation and membership figure
+- [x] Create `db/seeds/` with one YAML file per type: `places.yml`, `people.yml`, `events.yml`, `revelations.yml`, `sources.yml`, `membership.yml`, `trivia.yml`
+- [x] Write `db/seeds.rb` to load them with `find_or_initialize_by(slug:)` so it is safe to rerun on every deploy
+- [x] Enter the 10 places with coordinates: Palmyra/Manchester, Harmony, Fayette, Kirtland, Independence, Liberty, Far West, Nauvoo, Winter Quarters, Salt Lake City
+- [x] Enter 15 to 20 people
+- [x] Enter 30 to 50 events, including the seven milestones (1820, 1823, 1829, 1830, 1836, 1844, 1847)
+- [x] Enter selected Doctrine and Covenants sections with date and place (include 76, 110, 121 to 123)
+- [x] Enter sources: Joseph Smith Papers, Church History Department, Doctrine and Covenants, *Saints*
+- [x] Attach at least one citation to every event, revelation and membership figure
 - [ ] Collect images and record the credit and license for each (public domain or properly licensed only)
-- [ ] Run `bin/rails db:seed` and spot-check in the console
-- [ ] Verify the spec's worked examples exist: Kirtland (1831, 1833, March 27 1836, April 3 1836 / D&C 110), Liberty Jail (D&C 121 to 123), D&C 76 (Feb 16 1832, Hiram, Joseph Smith and Sidney Rigdon)
+- [ ] Verify the drafted content against the sources: every date, place, coordinate, membership figure and trivia answer, then remove the DRAFT note at the top of each file in `db/seeds/`
+- [ ] Add chapter or page notes to the citations
+- [x] Run `bin/rails db:seed` and spot-check in the console
+- [x] Verify the spec's worked examples exist: Kirtland (1831, 1833, March 27 1836, April 3 1836 / D&C 110), Liberty Jail (D&C 121 to 123), D&C 76 (Feb 16 1832, Hiram, Joseph Smith and Sidney Rigdon)
 
 **Done when:** a fresh `db:reset` rebuilds the full dataset with no errors. This phase takes the most time; it can run in parallel with Phases 5 to 9.
 

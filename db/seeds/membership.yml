@@ -1,0 +1,28 @@
+# Church membership at the end of each year, for the growth chart.
+#
+# DRAFT: these are the commonly reproduced year-end totals, entered from
+# memory. Check every figure against the Church Almanac before launch.
+# Early totals were compiled later from incomplete records, so all are
+# marked approximate.
+
+- { year: 1830, members: 280 }
+- { year: 1831, members: 680 }
+- { year: 1832, members: 2661 }
+- { year: 1833, members: 3140 }
+- { year: 1834, members: 4372 }
+- { year: 1835, members: 8835 }
+- { year: 1836, members: 13293 }
+- { year: 1837, members: 16282 }
+- { year: 1838, members: 17881 }
+- { year: 1839, members: 16460, note: Membership fell after the expulsion from Missouri. }
+- { year: 1840, members: 16865 }
+- { year: 1841, members: 19856 }
+- { year: 1842, members: 23564 }
+- { year: 1843, members: 25980 }
+- { year: 1844, members: 26146 }
+- { year: 1845, members: 30332 }
+- { year: 1846, members: 33993 }
+- { year: 1847, members: 34694 }
+- { year: 1848, members: 40477 }
+- { year: 1849, members: 48160 }
+- { year: 1850, members: 51839 }

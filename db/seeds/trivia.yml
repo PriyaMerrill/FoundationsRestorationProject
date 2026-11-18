@@ -1,0 +1,116 @@
+# General Restoration Trivia questions (multiple choice).
+#
+# The other game modes build their questions from events, places, people
+# and revelations, so they need no entries here.
+#
+# difficulty: easy, medium or hard
+# answer: must match one of the choices exactly
+# subject: the record the question is about, as type/slug, so the feedback
+#   can link to it (event/..., place/..., person/..., revelation/...)
+#
+# DRAFT: check each answer and explanation before launch.
+
+- difficulty: easy
+  prompt: Where was the Church formally organized on April 6, 1830?
+  choices: ["Palmyra, New York", "Fayette, New York", "Kirtland, Ohio", "Harmony, Pennsylvania"]
+  answer: Fayette, New York
+  explanation: The Church was organized at the home of Peter Whitmer Sr. in Fayette, New York.
+  subject: event/church-organized
+
+- difficulty: easy
+  prompt: In what year did Joseph Smith say the First Vision took place?
+  choices: ["1815", "1820", "1823", "1830"]
+  answer: "1820"
+  explanation: Joseph Smith placed the First Vision in the spring of 1820, when he was fourteen.
+  subject: event/first-vision
+
+- difficulty: easy
+  prompt: Which angel told Joseph Smith about the gold plates?
+  choices: [Moroni, Gabriel, John the Baptist, Elijah]
+  answer: Moroni
+  explanation: Moroni first appeared to Joseph Smith on the night of September 21, 1823.
+  subject: event/moroni-visits
+
+- difficulty: easy
+  prompt: Who led the first pioneer company into the Salt Lake Valley in 1847?
+  choices: [Brigham Young, Joseph Smith, Sidney Rigdon, Oliver Cowdery]
+  answer: Brigham Young
+  explanation: Brigham Young entered the valley on July 24, 1847.
+  subject: event/arrival-in-salt-lake-valley
+
+- difficulty: easy
+  prompt: Where was the first temple of the Restoration dedicated?
+  choices: ["Kirtland, Ohio", "Nauvoo, Illinois", "Independence, Missouri", "Salt Lake City, Utah"]
+  answer: Kirtland, Ohio
+  explanation: The Kirtland Temple was dedicated on March 27, 1836.
+  subject: event/kirtland-temple-dedication
+
+- difficulty: medium
+  prompt: Who was Joseph Smith's main scribe for the Book of Mormon translation?
+  choices: [Oliver Cowdery, Sidney Rigdon, Brigham Young, Hyrum Smith]
+  answer: Oliver Cowdery
+  explanation: Oliver Cowdery began writing for Joseph Smith in April 1829, and most of the book was translated in the next three months.
+  subject: person/oliver-cowdery
+
+- difficulty: medium
+  prompt: Who conferred the Aaronic Priesthood on Joseph Smith and Oliver Cowdery?
+  choices: [John the Baptist, Moroni, "Peter, James and John", Elijah]
+  answer: John the Baptist
+  explanation: John the Baptist appeared near the Susquehanna River on May 15, 1829. His words are recorded in Doctrine and Covenants 13.
+  subject: event/aaronic-priesthood-restored
+
+- difficulty: medium
+  prompt: Which section of the Doctrine and Covenants is known as the Word of Wisdom?
+  choices: [Section 76, Section 89, Section 110, Section 136]
+  answer: Section 89
+  explanation: Section 89 was received in Kirtland on February 27, 1833.
+  subject: revelation/dc-89
+
+- difficulty: medium
+  prompt: Who was the first president of the Relief Society?
+  choices: [Emma Smith, Eliza R. Snow, Lucy Mack Smith, Mary Fielding Smith]
+  answer: Emma Smith
+  explanation: Emma Smith was chosen as president when the Relief Society was organized in Nauvoo on March 17, 1842.
+  subject: event/relief-society-organized
+
+- difficulty: medium
+  prompt: Where were Joseph and Hyrum Smith killed on June 27, 1844?
+  choices: [Carthage Jail, Liberty Jail, Nauvoo, Far West]
+  answer: Carthage Jail
+  explanation: A mob attacked the jail at Carthage, Illinois, where the brothers were being held.
+  subject: event/martyrdom
+
+- difficulty: medium
+  prompt: Which revelation names Independence, Missouri, as the center place of Zion?
+  choices: [Section 20, Section 42, Section 57, Section 84]
+  answer: Section 57
+  explanation: Section 57 was received in Jackson County, Missouri, on July 20, 1831.
+  subject: revelation/dc-57
+
+- difficulty: hard
+  prompt: Who saw the vision of the degrees of glory together with Joseph Smith?
+  choices: [Sidney Rigdon, Oliver Cowdery, Hyrum Smith, Martin Harris]
+  answer: Sidney Rigdon
+  explanation: Joseph Smith and Sidney Rigdon received the vision at Hiram, Ohio, on February 16, 1832. It is recorded in Doctrine and Covenants 76.
+  subject: revelation/dc-76
+
+- difficulty: hard
+  prompt: Which sections of the Doctrine and Covenants come from a letter written in Liberty Jail?
+  choices: [Sections 121 to 123, Sections 109 and 110, Sections 127 and 128, Sections 135 and 136]
+  answer: Sections 121 to 123
+  explanation: The sections are taken from a letter Joseph Smith wrote to the Church from Liberty Jail in March 1839.
+  subject: event/liberty-jail
+
+- difficulty: hard
+  prompt: Where was Brigham Young when he received Doctrine and Covenants 136?
+  choices: [Winter Quarters, Nauvoo, Salt Lake City, Kirtland]
+  answer: Winter Quarters
+  explanation: The revelation on organizing the pioneer companies was received at Winter Quarters on January 14, 1847.
+  subject: revelation/dc-136
+
+- difficulty: hard
+  prompt: At which settlement was the full name of the Church revealed in 1838?
+  choices: [Far West, Kirtland, Nauvoo, Independence]
+  answer: Far West
+  explanation: Doctrine and Covenants 115, received at Far West, Missouri, on April 26, 1838, gives the name The Church of Jesus Christ of Latter-day Saints.
+  subject: revelation/dc-115

@@ -1,0 +1,253 @@
+# Selected sections of the Doctrine and Covenants.
+#
+# date_precision: exact, month, year or approximate (how exactly received_on is known)
+# place and people refer to slugs in places.yml and people.yml.
+#
+# DRAFT: check each date and place against the section heading and the
+# Joseph Smith Papers before launch.
+
+- slug: dc-3
+  section_number: 3
+  title: Doctrine and Covenants 3
+  received_on: 1828-07-01
+  date_precision: month
+  place: harmony
+  people: [joseph-smith, martin-harris]
+  subjects: Lost manuscript, repentance, the purposes of God
+  summary: A rebuke and reassurance given to Joseph Smith after the first 116 pages of the Book of Mormon manuscript were lost.
+  context: Martin Harris had borrowed the pages to show his family, and they disappeared. The revelation teaches that the work of God cannot be frustrated.
+  sources: [{ source: doctrine-and-covenants, note: Section heading }]
+
+- slug: dc-13
+  section_number: 13
+  title: Doctrine and Covenants 13
+  received_on: 1829-05-15
+  place: harmony
+  people: [joseph-smith, oliver-cowdery]
+  subjects: Aaronic Priesthood, baptism
+  summary: The words of John the Baptist as he conferred the Aaronic Priesthood on Joseph Smith and Oliver Cowdery.
+  context: The two men had gone to pray about baptism while translating the Book of Mormon. They baptized each other in the Susquehanna River afterward.
+  sources: [{ source: doctrine-and-covenants, note: Section heading }, joseph-smith-history]
+
+- slug: dc-20
+  section_number: 20
+  title: Doctrine and Covenants 20
+  received_on: 1830-04-01
+  date_precision: month
+  place: fayette
+  people: [joseph-smith, oliver-cowdery]
+  subjects: Church organization, duties of members, baptism, the sacrament
+  summary: A founding statement of the Church's beliefs, offices and practices.
+  context: Known in the early Church as the Articles and Covenants, it was read aloud at early conferences. Parts of it may have been written before April 1830.
+  sources: [{ source: doctrine-and-covenants, note: Section heading }]
+
+- slug: dc-21
+  section_number: 21
+  title: Doctrine and Covenants 21
+  received_on: 1830-04-06
+  place: fayette
+  people: [joseph-smith]
+  subjects: Prophets, record keeping
+  summary: A revelation given at the meeting where the Church was organized, calling Joseph Smith a seer, translator, prophet and apostle.
+  context: Given in the home of Peter Whitmer Sr. on the day the Church was organized.
+  sources: [{ source: doctrine-and-covenants, note: Section heading }]
+
+- slug: dc-25
+  section_number: 25
+  title: Doctrine and Covenants 25
+  received_on: 1830-07-01
+  date_precision: month
+  place: harmony
+  people: [emma-smith, joseph-smith]
+  subjects: Emma Smith, sacred music, discipleship
+  summary: A revelation addressed to Emma Smith, calling her an elect lady and asking her to make a selection of hymns.
+  context: Given soon after Emma's baptism, during a time of opposition in New York and Pennsylvania.
+  sources: [{ source: doctrine-and-covenants, note: Section heading }]
+
+- slug: dc-37
+  section_number: 37
+  title: Doctrine and Covenants 37
+  received_on: 1830-12-01
+  date_precision: month
+  place: fayette
+  people: [joseph-smith, sidney-rigdon]
+  subjects: Gathering to Ohio
+  summary: The first commandment for the Church to gather, directing the Saints to move to Ohio.
+  context: Missionaries had recently baptized many people near Kirtland, Ohio, and Sidney Rigdon had travelled to New York to meet Joseph Smith.
+  sources: [{ source: doctrine-and-covenants, note: Section heading }]
+
+- slug: dc-42
+  section_number: 42
+  title: Doctrine and Covenants 42
+  received_on: 1831-02-09
+  place: kirtland
+  people: [joseph-smith]
+  subjects: The law of the Church, consecration, teaching
+  summary: A revelation the early Saints called "the law," setting out commandments and the principles of consecration.
+  context: Given in two parts, on February 9 and February 23, 1831, shortly after Joseph Smith arrived in Kirtland.
+  sources: [{ source: doctrine-and-covenants, note: Section heading }]
+
+- slug: dc-57
+  section_number: 57
+  title: Doctrine and Covenants 57
+  received_on: 1831-07-20
+  place: independence
+  people: [joseph-smith, edward-partridge]
+  subjects: Zion, the temple site, gathering
+  summary: A revelation naming Independence, Missouri, as the center place of Zion and pointing out the spot for a temple.
+  context: Joseph Smith and other elders had just arrived in Jackson County after travelling from Ohio.
+  sources: [{ source: doctrine-and-covenants, note: Section heading }]
+
+- slug: dc-76
+  section_number: 76
+  title: Doctrine and Covenants 76
+  received_on: 1832-02-16
+  place: hiram
+  people: [joseph-smith, sidney-rigdon]
+  subjects: Resurrection, judgment, degrees of glory
+  summary: A vision of the Savior and of the kingdoms of glory that follow the resurrection.
+  context: Joseph Smith and Sidney Rigdon were working on the inspired translation of the Bible at the John Johnson home when the vision opened to them both. Early Saints simply called it "the Vision."
+  sources: [{ source: doctrine-and-covenants, note: Section heading }, joseph-smith-papers]
+
+- slug: dc-84
+  section_number: 84
+  title: Doctrine and Covenants 84
+  received_on: 1832-09-22
+  place: kirtland
+  people: [joseph-smith]
+  subjects: Priesthood, temples, missionary work
+  summary: A revelation on the priesthood, its history, and the oath and covenant that belong to it.
+  context: Given over two days, September 22 and 23, 1832, as missionaries returned to Kirtland and reported on their work.
+  sources: [{ source: doctrine-and-covenants, note: Section heading }]
+
+- slug: dc-88
+  section_number: 88
+  title: Doctrine and Covenants 88
+  received_on: 1832-12-27
+  place: kirtland
+  people: [joseph-smith]
+  subjects: Light of Christ, learning, the School of the Prophets, building a temple
+  summary: A revelation Joseph Smith called the "olive leaf," which commanded the Saints to build a house of God and to organize a school.
+  context: Received on December 27 and 28, 1832, with a further portion on January 3, 1833. It led to the School of the Prophets and the Kirtland Temple.
+  sources: [{ source: doctrine-and-covenants, note: Section heading }]
+
+- slug: dc-89
+  section_number: 89
+  title: Doctrine and Covenants 89
+  received_on: 1833-02-27
+  place: kirtland
+  people: [joseph-smith]
+  subjects: The Word of Wisdom, health
+  summary: A revelation on health known as the Word of Wisdom.
+  context: Given during the School of the Prophets, which met in a room above Newel K. Whitney's store.
+  sources: [{ source: doctrine-and-covenants, note: Section heading }]
+
+- slug: dc-109
+  section_number: 109
+  title: Doctrine and Covenants 109
+  received_on: 1836-03-27
+  place: kirtland
+  people: [joseph-smith]
+  subjects: Temple dedication, prayer
+  summary: The prayer offered at the dedication of the Kirtland Temple.
+  context: Joseph Smith read the prayer during the dedication service on March 27, 1836.
+  sources: [{ source: doctrine-and-covenants, note: Section heading }]
+
+- slug: dc-110
+  section_number: 110
+  title: Doctrine and Covenants 110
+  received_on: 1836-04-03
+  place: kirtland
+  people: [joseph-smith, oliver-cowdery]
+  subjects: Visions, priesthood keys, the gathering of Israel, sealing
+  summary: An account of visions in the Kirtland Temple in which the Savior accepted the temple, and Moses, Elias and Elijah committed priesthood keys.
+  context: The visions came to Joseph Smith and Oliver Cowdery as they prayed in the temple one week after its dedication.
+  sources: [{ source: doctrine-and-covenants, note: Section heading }, joseph-smith-papers]
+
+- slug: dc-115
+  section_number: 115
+  title: Doctrine and Covenants 115
+  received_on: 1838-04-26
+  place: far-west
+  people: [joseph-smith]
+  subjects: Name of the Church, Far West temple
+  summary: A revelation giving the full name of the Church and commanding the Saints to build a temple at Far West.
+  context: Given soon after Joseph Smith moved from Kirtland to Far West.
+  sources: [{ source: doctrine-and-covenants, note: Section heading }]
+
+- slug: dc-121
+  section_number: 121
+  title: Doctrine and Covenants 121
+  received_on: 1839-03-20
+  place: liberty
+  people: [joseph-smith]
+  subjects: Suffering, priesthood, righteous leadership
+  summary: A prayer and the Lord's answer, with counsel on how priesthood authority should be used.
+  context: Taken from a letter Joseph Smith wrote to the Church from Liberty Jail, dated March 20, 1839, after months of imprisonment.
+  sources: [{ source: doctrine-and-covenants, note: Section heading }, joseph-smith-papers]
+
+- slug: dc-122
+  section_number: 122
+  title: Doctrine and Covenants 122
+  received_on: 1839-03-20
+  place: liberty
+  people: [joseph-smith]
+  subjects: Adversity, the example of Christ
+  summary: Words of comfort to Joseph Smith, teaching that hardship can give experience and be for his good.
+  context: From the same Liberty Jail letter as section 121.
+  sources: [{ source: doctrine-and-covenants, note: Section heading }, joseph-smith-papers]
+
+- slug: dc-123
+  section_number: 123
+  title: Doctrine and Covenants 123
+  received_on: 1839-03-20
+  place: liberty
+  people: [joseph-smith]
+  subjects: Recording persecution, perseverance
+  summary: Counsel that the Saints should gather and publish accounts of what they suffered in Missouri.
+  context: From the same Liberty Jail letter as sections 121 and 122.
+  sources: [{ source: doctrine-and-covenants, note: Section heading }, joseph-smith-papers]
+
+- slug: dc-124
+  section_number: 124
+  title: Doctrine and Covenants 124
+  received_on: 1841-01-19
+  place: nauvoo
+  people: [joseph-smith, hyrum-smith]
+  subjects: Nauvoo Temple, baptism for the dead, Church officers
+  summary: A revelation commanding the Saints to build a temple in Nauvoo and naming the leaders of the Church.
+  context: Given as the Saints were establishing Nauvoo after their expulsion from Missouri.
+  sources: [{ source: doctrine-and-covenants, note: Section heading }]
+
+- slug: dc-128
+  section_number: 128
+  title: Doctrine and Covenants 128
+  received_on: 1842-09-06
+  place: nauvoo
+  people: [joseph-smith]
+  subjects: Baptism for the dead, record keeping
+  summary: A letter from Joseph Smith to the Church with further direction on baptism for the dead.
+  context: Written while Joseph Smith was in hiding from officers seeking to return him to Missouri.
+  sources: [{ source: doctrine-and-covenants, note: Section heading }]
+
+- slug: dc-135
+  section_number: 135
+  title: Doctrine and Covenants 135
+  received_on: 1844-06-27
+  date_precision: year
+  people: [joseph-smith, hyrum-smith, john-taylor, willard-richards]
+  subjects: The martyrdom of Joseph and Hyrum Smith
+  summary: An announcement of the deaths of Joseph and Hyrum Smith at Carthage Jail and a tribute to their lives.
+  context: Written after the martyrdom of June 27, 1844, and first published in the 1844 edition of the Doctrine and Covenants. The date and place of writing are not given here.
+  sources: [{ source: doctrine-and-covenants, note: Section heading }]
+
+- slug: dc-136
+  section_number: 136
+  title: Doctrine and Covenants 136
+  received_on: 1847-01-14
+  place: winter-quarters
+  people: [brigham-young]
+  subjects: Organizing the pioneer companies
+  summary: Known as "The Word and Will of the Lord," it sets out how the Saints should organize for the journey west.
+  context: Given through Brigham Young at Winter Quarters a few months before the first pioneer company set out.
+  sources: [{ source: doctrine-and-covenants, note: Section heading }]

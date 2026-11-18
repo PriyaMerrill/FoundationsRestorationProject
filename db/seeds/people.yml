@@ -1,0 +1,233 @@
+# People in the historical database.
+#
+# clues: used by the "Who Am I?" trivia game, from hardest to easiest.
+#
+# DRAFT: check every date and statement against the sources before launch.
+
+- slug: joseph-smith
+  name: Joseph Smith
+  birth_date: 1805-12-23
+  death_date: 1844-06-27
+  roles: Prophet and first President of the Church
+  biography: Born in Sharon, Vermont, Joseph Smith reported a vision of God the Father and Jesus Christ as a youth, translated the Book of Mormon, and organized the Church in 1830. He led the Saints in New York, Ohio, Missouri and Illinois until he was killed at Carthage Jail.
+  clues:
+    - I was born in Vermont in 1805.
+    - I translated a book of scripture from ancient plates.
+    - I organized the Church on April 6, 1830.
+  sources: [joseph-smith-papers, joseph-smith-history]
+
+- slug: emma-smith
+  name: Emma Smith
+  birth_date: 1804-07-10
+  death_date: 1879-04-30
+  roles: First president of the Relief Society
+  biography: Emma Hale grew up in Harmony, Pennsylvania, and married Joseph Smith in 1827. She served as a scribe during the Book of Mormon translation, compiled the Church's first hymnbook, and was the first president of the Relief Society in Nauvoo.
+  clues:
+    - I grew up in Harmony, Pennsylvania.
+    - A revelation asked me to select hymns for the Church.
+    - I was the first president of the Relief Society.
+  sources: [saints-volume-1, doctrine-and-covenants]
+
+- slug: hyrum-smith
+  name: Hyrum Smith
+  birth_date: 1800-02-09
+  death_date: 1844-06-27
+  roles: Patriarch to the Church and Assistant President
+  biography: Joseph Smith's older brother, Hyrum was one of the Eight Witnesses of the Book of Mormon and one of the first members of the Church. He was imprisoned with Joseph in Liberty Jail and died with him at Carthage.
+  clues:
+    - I was one of the Eight Witnesses of the Book of Mormon.
+    - I spent the winter of 1838–39 in Liberty Jail.
+    - I died beside my younger brother at Carthage Jail.
+  sources: [saints-volume-1]
+
+- slug: lucy-mack-smith
+  name: Lucy Mack Smith
+  birth_date: 1775-07-08
+  death_date: 1856-05-14
+  roles: Mother of Joseph Smith
+  biography: Lucy Mack Smith raised her family in Vermont and New York and supported her son's work from the beginning. Her dictated history is an important source for the early years of the Restoration.
+  clues:
+    - I led a group of Saints from New York to Ohio.
+    - I dictated a history of my family.
+    - I was the mother of the Prophet Joseph Smith.
+  sources: [saints-volume-1]
+
+- slug: joseph-smith-sr
+  name: Joseph Smith Sr.
+  birth_date: 1771-07-12
+  death_date: 1840-09-14
+  roles: First Patriarch to the Church
+  biography: Father of Joseph Smith, he believed his son's account of his visions, was one of the Eight Witnesses of the Book of Mormon, and served as the Church's first patriarch.
+  clues:
+    - I was one of the Eight Witnesses of the Book of Mormon.
+    - I was the first Patriarch to the Church.
+    - My son and I shared the same name.
+  sources: [saints-volume-1]
+
+- slug: oliver-cowdery
+  name: Oliver Cowdery
+  birth_date: 1806-10-03
+  death_date: 1850-03-03
+  roles: Scribe, one of the Three Witnesses, Second Elder of the Church
+  biography: A schoolteacher who became Joseph Smith's principal scribe for the Book of Mormon. He was with Joseph when the priesthood was restored and during the visions in the Kirtland Temple in 1836.
+  clues:
+    - I was a schoolteacher before I met Joseph Smith.
+    - I wrote most of the Book of Mormon translation as Joseph dictated it.
+    - I was with Joseph Smith when John the Baptist restored the Aaronic Priesthood.
+  sources: [joseph-smith-papers, saints-volume-1]
+
+- slug: martin-harris
+  name: Martin Harris
+  birth_date: 1783-05-18
+  death_date: 1875-07-10
+  roles: One of the Three Witnesses
+  biography: A prosperous Palmyra farmer who served as an early scribe, lost the first 116 pages of the Book of Mormon manuscript, and later mortgaged his farm to pay for the book's printing.
+  clues:
+    - I was a farmer in Palmyra, New York.
+    - I borrowed the first manuscript pages of the Book of Mormon, and they were lost.
+    - I mortgaged my farm to pay for printing the Book of Mormon.
+  sources: [saints-volume-1]
+
+- slug: david-whitmer
+  name: David Whitmer
+  birth_date: 1805-01-07
+  death_date: 1888-01-25
+  roles: One of the Three Witnesses
+  biography: A son of Peter Whitmer Sr., David brought Joseph Smith and Oliver Cowdery to his family's farm in Fayette, where the translation was completed and the Church was organized.
+  clues:
+    - I drove a wagon to Pennsylvania to bring Joseph Smith to my father's farm.
+    - The Church was organized in my family's home.
+    - I was one of the Three Witnesses of the Book of Mormon.
+  sources: [saints-volume-1]
+
+- slug: sidney-rigdon
+  name: Sidney Rigdon
+  birth_date: 1793-02-19
+  death_date: 1876-07-14
+  roles: Counselor in the First Presidency
+  biography: A minister in Ohio who joined the Church in 1830, Sidney Rigdon became a counselor to Joseph Smith. He shared in the vision recorded in Doctrine and Covenants 76.
+  clues:
+    - I was a minister near Kirtland before I joined the Church.
+    - I saw the vision of the degrees of glory with Joseph Smith.
+    - I served as a counselor in the First Presidency.
+  sources: [saints-volume-1, doctrine-and-covenants]
+
+- slug: brigham-young
+  name: Brigham Young
+  birth_date: 1801-06-01
+  death_date: 1877-08-29
+  roles: Apostle and second President of the Church
+  biography: Baptized in 1832, Brigham Young was one of the original members of the Quorum of the Twelve. He led the Saints out of Missouri and later out of Nauvoo, and brought the first pioneer company into the Salt Lake Valley in 1847.
+  clues:
+    - I was born in Vermont in 1801.
+    - I was one of the original members of the Quorum of the Twelve Apostles.
+    - I led the first pioneer company to the Salt Lake Valley.
+  sources: [saints-volume-1, saints-volume-2]
+
+- slug: heber-c-kimball
+  name: Heber C. Kimball
+  birth_date: 1801-06-14
+  death_date: 1868-06-22
+  roles: Apostle and counselor in the First Presidency
+  biography: One of the original members of the Quorum of the Twelve, Heber C. Kimball led the first mission to England in 1837 and later served as a counselor to Brigham Young.
+  clues:
+    - I was a potter by trade.
+    - I led the first missionaries to England in 1837.
+    - I was Brigham Young's first counselor.
+  sources: [saints-volume-1, saints-volume-2]
+
+- slug: parley-p-pratt
+  name: Parley P. Pratt
+  birth_date: 1807-04-12
+  death_date: 1857-05-13
+  roles: Apostle, missionary and writer
+  biography: Converted after reading the Book of Mormon in 1830, Parley P. Pratt served many missions, wrote influential pamphlets and hymns, and was one of the original members of the Quorum of the Twelve.
+  clues:
+    - I joined the Church in 1830 after reading the Book of Mormon.
+    - I was one of the missionaries sent west in the autumn of 1830.
+    - My brother Orson and I were both apostles.
+  sources: [saints-volume-1]
+
+- slug: edward-partridge
+  name: Edward Partridge
+  birth_date: 1793-08-27
+  death_date: 1840-05-27
+  roles: First bishop of the Church
+  biography: A hatter from Painesville, Ohio, Edward Partridge was called as the Church's first bishop in 1831 and oversaw the settlement of the Saints in Missouri.
+  clues:
+    - I was a hatter in Ohio.
+    - I was tarred and feathered in Independence, Missouri.
+    - I was the first bishop of the Church.
+  sources: [saints-volume-1]
+
+- slug: newel-k-whitney
+  name: Newel K. Whitney
+  birth_date: 1795-02-05
+  death_date: 1850-09-23
+  roles: Bishop in Kirtland
+  biography: A Kirtland merchant whose store became a meeting place for the early Church. The School of the Prophets first met in a room above it.
+  clues:
+    - I was a merchant in Kirtland, Ohio.
+    - The School of the Prophets met in a room above my store.
+    - I served as a bishop in Kirtland.
+  sources: [saints-volume-1]
+
+- slug: john-taylor
+  name: John Taylor
+  birth_date: 1808-11-01
+  death_date: 1887-07-25
+  roles: Apostle and third President of the Church
+  biography: Born in England and converted in Canada, John Taylor became an apostle in 1838. He was severely wounded in Carthage Jail when Joseph and Hyrum Smith were killed.
+  clues:
+    - I was born in England.
+    - I was wounded in Carthage Jail.
+    - I became the third President of the Church.
+  sources: [saints-volume-1, saints-volume-2]
+
+- slug: wilford-woodruff
+  name: Wilford Woodruff
+  birth_date: 1807-03-01
+  death_date: 1898-09-02
+  roles: Apostle and fourth President of the Church
+  biography: A missionary and apostle whose detailed journals are one of the richest records of early Church history. He entered the Salt Lake Valley with the first pioneer company.
+  clues:
+    - My journals record decades of Church history.
+    - I baptized many converts in England in 1840.
+    - I became the fourth President of the Church.
+  sources: [saints-volume-1, saints-volume-2]
+
+- slug: willard-richards
+  name: Willard Richards
+  birth_date: 1804-06-24
+  death_date: 1854-03-11
+  roles: Apostle, Church historian and counselor in the First Presidency
+  biography: A physician who joined the Church in 1836, Willard Richards kept Joseph Smith's journal in Nauvoo and was in Carthage Jail at the martyrdom.
+  clues:
+    - I was a physician.
+    - I kept Joseph Smith's journal in Nauvoo.
+    - I was in Carthage Jail at the martyrdom and was not seriously hurt.
+  sources: [saints-volume-1]
+
+- slug: eliza-r-snow
+  name: Eliza R. Snow
+  birth_date: 1804-01-21
+  death_date: 1887-12-05
+  roles: Poet, secretary of the Nauvoo Relief Society, later Relief Society General President
+  biography: A poet baptized in 1835, Eliza R. Snow kept the minutes of the Relief Society in Nauvoo and carried them west. She later led the Relief Society in Utah.
+  clues:
+    - I was known as a poet.
+    - I kept the minutes of the Relief Society in Nauvoo.
+    - I later served as Relief Society General President in Utah.
+  sources: [saints-volume-1, saints-volume-2]
+
+- slug: mary-fielding-smith
+  name: Mary Fielding Smith
+  birth_date: 1801-07-21
+  death_date: 1852-09-21
+  roles: Pioneer
+  biography: Born in England, Mary Fielding joined the Church in Canada and married Hyrum Smith in 1837. After his death she brought her family across the plains to the Salt Lake Valley.
+  clues:
+    - I was born in England and joined the Church in Canada.
+    - I married Hyrum Smith.
+    - As a widow I led my family across the plains to Utah.
+  sources: [saints-volume-1, saints-volume-2]

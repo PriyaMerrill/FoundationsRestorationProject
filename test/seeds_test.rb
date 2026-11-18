@@ -1,0 +1,80 @@
+require "test_helper"
+
+# Loads the real seed files and checks the content hangs together.
+class SeedsTest < ActiveSupport::TestCase
+  setup do
+    capture_io { Rails.application.load_seed }
+  end
+
+  test "loads a first version of the dataset" do
+    assert_operator Place.count, :>=, 10
+    assert_operator Person.count, :>=, 15
+    assert_operator Event.count, :>=, 30
+    assert_operator Revelation.count, :>=, 15
+    assert_operator TriviaQuestion.count, :>=, 10
+    assert MembershipEstimate.exists?(year: 1830)
+  end
+
+  test "running the seeds twice changes nothing" do
+    counts = -> { [ Place, Person, Event, Revelation, Source, Citation, EventParticipant, TriviaQuestion ].map(&:count) }
+    before = counts.call
+    capture_io { Rails.application.load_seed }
+    assert_equal before, counts.call
+  end
+
+  test "every event, revelation, place and person cites a source" do
+    [ Event, Revelation, Place, Person ].each do |model|
+      uncited = model.where.missing(:citations).pluck(:slug)
+      assert_empty uncited, "#{model.name} records without a source"
+    end
+    assert_empty MembershipEstimate.where(source: nil).pluck(:year)
+  end
+
+  test "every place is on the map" do
+    assert_equal Place.count, Place.mapped.count
+  end
+
+  test "includes the seven milestone years" do
+    years = Event.pluck(:start_date).map(&:year)
+    [ 1820, 1823, 1829, 1830, 1836, 1844, 1847 ].each { |year| assert_includes years, year }
+  end
+
+  test "Kirtland tells its story" do
+    kirtland = Place.find_by!(slug: "kirtland")
+    dates = kirtland.events.map(&:display_date)
+
+    assert_includes dates, "February 1831"
+    assert_includes dates, "1833"
+    assert_includes dates, "March 27, 1836"
+    assert_includes dates, "April 3, 1836"
+    assert_includes kirtland.revelations.map(&:section_number), 110
+  end
+
+  test "Liberty Jail connects to its people, revelations and place" do
+    event = Event.find_by!(slug: "liberty-jail")
+
+    assert_equal "liberty", event.place.slug
+    assert_includes event.people.map(&:name), "Joseph Smith"
+    assert_equal [ 121, 122, 123 ], event.revelations.map(&:section_number).sort
+  end
+
+  test "Doctrine and Covenants 76 has its date, place and people" do
+    section = Revelation.find_by!(section_number: 76)
+
+    assert_equal "February 16, 1832", section.display_date
+    assert_equal "Hiram", section.place.name
+    assert_equal [ "Joseph Smith", "Sidney Rigdon" ], section.people.map(&:name).sort
+  end
+
+  test "the Fayette trivia question accepts the right answer" do
+    question = TriviaQuestion.find_by!(prompt: "Where was the Church formally organized on April 6, 1830?")
+
+    assert question.correct?("Fayette, New York")
+    assert_equal "church-organized", question.subject.slug
+  end
+
+  test "uncertain dates are shown as uncertain" do
+    assert_equal "1820", Event.find_by!(slug: "first-vision").display_date
+    assert_equal "c. 1829", Event.find_by!(slug: "melchizedek-priesthood-restored").display_date
+  end
+end

@@ -1,0 +1,626 @@
+# Events on the timeline, in rough date order.
+#
+# date_precision: exact (default), month, year or approximate.
+#   For anything other than exact, only the known part of start_date is shown.
+# category: revelations, leadership, temples, migration, missionary_work,
+#   persecution or scripture_translation
+# period: new_york, ohio, missouri, nauvoo or westward_migration
+# place, people and revelations refer to slugs in the other seed files.
+# A person can be given a role:   - joseph-smith: Offered the dedicatory prayer
+#
+# DRAFT: check every date, place and statement against the sources before
+# launch, and add chapter or page notes to the citations.
+
+# ---------------------------------------------------------------- New York
+
+- slug: first-vision
+  title: The First Vision
+  start_date: 1820-03-01
+  date_precision: year
+  category: revelations
+  period: new_york
+  place: palmyra
+  people: [joseph-smith]
+  summary: Joseph Smith prayed in a grove near his family's farm and saw God the Father and Jesus Christ.
+  context: Joseph, then fourteen, wanted to know which church to join. He placed the vision in the spring of 1820; the exact day is not recorded. He left several accounts of it.
+  sources: [joseph-smith-history, joseph-smith-papers, saints-volume-1]
+
+- slug: moroni-visits
+  title: Moroni's visits
+  start_date: 1823-09-21
+  category: revelations
+  period: new_york
+  place: palmyra
+  people: [joseph-smith]
+  summary: The angel Moroni appeared to Joseph Smith during the night and told him of an ancient record buried in a nearby hill.
+  context: Moroni returned several times through the night of September 21–22, 1823. Joseph saw the plates the next day and returned to the hill each year for four years.
+  sources: [joseph-smith-history, saints-volume-1]
+
+- slug: joseph-receives-the-plates
+  title: Joseph Smith receives the plates
+  start_date: 1827-09-22
+  category: scripture_translation
+  period: new_york
+  place: palmyra
+  people: [joseph-smith, emma-smith]
+  summary: Joseph Smith received the gold plates from Moroni at the hill later known as Cumorah.
+  context: Emma Smith went with him and waited with the wagon. Attempts to steal the plates soon led the couple to move to Harmony, Pennsylvania.
+  sources: [joseph-smith-history, saints-volume-1]
+
+- slug: lost-manuscript
+  title: The first manuscript pages are lost
+  start_date: 1828-06-01
+  date_precision: month
+  category: scripture_translation
+  period: new_york
+  place: harmony
+  people:
+    - joseph-smith
+    - martin-harris: Borrowed the manuscript
+  revelations: [dc-3]
+  summary: Martin Harris took the first 116 pages of the Book of Mormon manuscript to show his family, and they were lost.
+  context: Joseph Smith lost the ability to translate for a time. The lost pages were never recovered or retranslated.
+  sources: [saints-volume-1, doctrine-and-covenants]
+
+- slug: translation-with-oliver-cowdery
+  title: Translation resumes with Oliver Cowdery as scribe
+  start_date: 1829-04-07
+  category: scripture_translation
+  period: new_york
+  place: harmony
+  people:
+    - joseph-smith: Translator
+    - oliver-cowdery: Scribe
+  summary: Oliver Cowdery arrived in Harmony and began writing as Joseph Smith dictated the Book of Mormon.
+  context: Nearly all of the Book of Mormon as published was translated between April and June 1829.
+  sources: [joseph-smith-history, saints-volume-1]
+
+- slug: aaronic-priesthood-restored
+  title: Restoration of the Aaronic Priesthood
+  start_date: 1829-05-15
+  category: leadership
+  period: new_york
+  place: harmony
+  people: [joseph-smith, oliver-cowdery]
+  revelations: [dc-13]
+  summary: John the Baptist appeared to Joseph Smith and Oliver Cowdery near the Susquehanna River and conferred the Aaronic Priesthood.
+  context: The two then baptized each other in the river.
+  sources: [joseph-smith-history, doctrine-and-covenants, saints-volume-1]
+
+- slug: melchizedek-priesthood-restored
+  title: Restoration of the Melchizedek Priesthood
+  start_date: 1829-06-01
+  date_precision: approximate
+  category: leadership
+  period: new_york
+  place: harmony
+  people: [joseph-smith, oliver-cowdery]
+  summary: Peter, James and John appeared to Joseph Smith and Oliver Cowdery and conferred the Melchizedek Priesthood.
+  context: No account gives the date. It followed the restoration of the Aaronic Priesthood, and the place is described as along the Susquehanna River between Harmony, Pennsylvania, and Colesville, New York.
+  sources: [doctrine-and-covenants, church-history-topics]
+
+- slug: translation-completed
+  title: Book of Mormon translation completed
+  start_date: 1829-06-01
+  date_precision: month
+  category: scripture_translation
+  period: new_york
+  place: fayette
+  people: [joseph-smith, oliver-cowdery, david-whitmer]
+  summary: Joseph Smith finished translating the Book of Mormon at the Whitmer farm in Fayette.
+  context: Joseph and Oliver had moved to the Whitmer home at the beginning of June 1829 to escape growing opposition in Harmony.
+  sources: [saints-volume-1]
+
+- slug: three-witnesses
+  title: The Three Witnesses see the plates
+  start_date: 1829-06-01
+  date_precision: month
+  category: scripture_translation
+  period: new_york
+  place: fayette
+  people: [joseph-smith, oliver-cowdery, david-whitmer, martin-harris]
+  summary: Oliver Cowdery, David Whitmer and Martin Harris were shown the plates by an angel near the Whitmer farm.
+  context: Their signed testimony has been printed in every edition of the Book of Mormon. Eight more witnesses saw the plates soon afterward.
+  sources: [saints-volume-1]
+
+- slug: book-of-mormon-published
+  title: The Book of Mormon is published
+  start_date: 1830-03-26
+  category: scripture_translation
+  period: new_york
+  place: palmyra
+  people:
+    - joseph-smith
+    - martin-harris: Paid for the printing
+  summary: The first copies of the Book of Mormon went on sale at E. B. Grandin's bookstore in Palmyra.
+  context: Five thousand copies were printed. Martin Harris mortgaged his farm to guarantee payment.
+  sources: [saints-volume-1, joseph-smith-papers]
+
+- slug: church-organized
+  title: Formal organization of the Church
+  start_date: 1830-04-06
+  category: leadership
+  period: new_york
+  place: fayette
+  people: [joseph-smith, oliver-cowdery, hyrum-smith, david-whitmer]
+  revelations: [dc-20, dc-21]
+  summary: Joseph Smith organized the Church of Christ at the home of Peter Whitmer Sr.
+  context: Joseph Smith and Oliver Cowdery were sustained as the first and second elders, the sacrament was administered, and several people were baptized that day.
+  sources: [joseph-smith-papers, doctrine-and-covenants, saints-volume-1]
+
+- slug: mission-to-the-west
+  title: Missionaries sent to the western frontier
+  start_date: 1830-10-01
+  date_precision: month
+  category: missionary_work
+  period: new_york
+  place: fayette
+  people: [oliver-cowdery, parley-p-pratt]
+  summary: Oliver Cowdery, Parley P. Pratt and two companions left New York to preach to American Indian nations on the western frontier.
+  context: On the way they stopped near Kirtland, Ohio, where Sidney Rigdon and many of his congregation were baptized.
+  sources: [saints-volume-1]
+
+- slug: command-to-gather-to-ohio
+  title: The Saints are commanded to gather to Ohio
+  start_date: 1830-12-01
+  date_precision: month
+  category: migration
+  period: new_york
+  place: fayette
+  people: [joseph-smith, sidney-rigdon]
+  revelations: [dc-37]
+  summary: A revelation directed the Church to leave New York and gather in Ohio.
+  context: Most New York members made the move in the first half of 1831.
+  sources: [doctrine-and-covenants, saints-volume-1]
+
+# -------------------------------------------------------------------- Ohio
+
+- slug: joseph-arrives-in-kirtland
+  title: Joseph Smith arrives in Kirtland
+  start_date: 1831-02-01
+  date_precision: month
+  category: migration
+  period: ohio
+  place: kirtland
+  people: [joseph-smith, emma-smith, sidney-rigdon, edward-partridge, newel-k-whitney]
+  summary: Joseph and Emma Smith arrived in Kirtland, which became the headquarters of the Church.
+  context: They stayed at first with the family of Newel K. Whitney.
+  sources: [saints-volume-1]
+
+- slug: law-of-the-church
+  title: The law of the Church is revealed
+  start_date: 1831-02-09
+  category: revelations
+  period: ohio
+  place: kirtland
+  people: [joseph-smith, edward-partridge]
+  revelations: [dc-42]
+  summary: Joseph Smith received the revelation the Saints called "the law," including the principles of consecration.
+  context: An earlier revelation had promised that the law would be given once the Saints gathered in Ohio.
+  sources: [doctrine-and-covenants, saints-volume-1]
+
+- slug: zion-identified
+  title: Independence named the center place of Zion
+  start_date: 1831-07-20
+  category: revelations
+  period: ohio
+  place: independence
+  people: [joseph-smith, edward-partridge]
+  revelations: [dc-57]
+  summary: A revelation identified Independence, Missouri, as the place for the city of Zion.
+  context: For the next several years the Church had two centers, one in Ohio and one in Missouri.
+  sources: [doctrine-and-covenants, saints-volume-1]
+
+- slug: independence-temple-site-dedicated
+  title: Temple site dedicated in Independence
+  start_date: 1831-08-03
+  category: temples
+  period: ohio
+  place: independence
+  people: [joseph-smith, sidney-rigdon, edward-partridge]
+  summary: Joseph Smith dedicated a site for a temple in Independence.
+  context: The temple was not built; the Saints were forced out of Jackson County two years later.
+  sources: [saints-volume-1]
+
+- slug: the-vision
+  title: The vision of the degrees of glory
+  start_date: 1832-02-16
+  category: revelations
+  period: ohio
+  place: hiram
+  people: [joseph-smith, sidney-rigdon]
+  revelations: [dc-76]
+  summary: Joseph Smith and Sidney Rigdon saw a vision of the Savior and of the kingdoms of glory.
+  context: The vision came while they were working on the inspired translation of the Bible at the John Johnson home.
+  sources: [doctrine-and-covenants, joseph-smith-papers, saints-volume-1]
+
+- slug: mob-attack-at-hiram
+  title: Joseph Smith and Sidney Rigdon attacked by a mob
+  start_date: 1832-03-24
+  category: persecution
+  period: ohio
+  place: hiram
+  people: [joseph-smith, sidney-rigdon, emma-smith]
+  summary: A mob dragged Joseph Smith and Sidney Rigdon from their homes at night, beat them, and covered them with tar and feathers.
+  context: Joseph preached the next morning. An infant the Smiths had adopted, already ill, died a few days later.
+  sources: [saints-volume-1]
+
+- slug: school-of-the-prophets
+  title: The School of the Prophets begins
+  start_date: 1833-01-01
+  date_precision: month
+  category: leadership
+  period: ohio
+  place: kirtland
+  people: [joseph-smith, newel-k-whitney]
+  revelations: [dc-88]
+  summary: A school for the elders of the Church began meeting in a room above Newel K. Whitney's store.
+  context: The school was commanded in the revelation known as the "olive leaf" and prepared missionaries to preach.
+  sources: [doctrine-and-covenants, saints-volume-1]
+
+- slug: word-of-wisdom
+  title: The Word of Wisdom is revealed
+  start_date: 1833-02-27
+  category: revelations
+  period: ohio
+  place: kirtland
+  people: [joseph-smith, emma-smith]
+  revelations: [dc-89]
+  summary: Joseph Smith received the revelation on health known as the Word of Wisdom.
+  context: It was received during the School of the Prophets.
+  sources: [doctrine-and-covenants, saints-volume-1]
+
+- slug: kirtland-temple-construction-begins
+  title: Construction of the Kirtland Temple begins
+  start_date: 1833-06-01
+  date_precision: year
+  category: temples
+  period: ohio
+  place: kirtland
+  people: [joseph-smith, hyrum-smith]
+  revelations: [dc-88]
+  summary: The Saints began building a temple in Kirtland.
+  context: Work started in the summer of 1833 and took nearly three years, at great sacrifice for a small and poor community.
+  sources: [saints-volume-1]
+
+- slug: expulsion-from-jackson-county
+  title: The Saints are driven from Jackson County
+  start_date: 1833-11-01
+  date_precision: month
+  category: persecution
+  period: missouri
+  place: independence
+  people: [edward-partridge]
+  summary: Armed mobs forced the Latter-day Saints out of Jackson County, Missouri.
+  context: Violence had begun in July 1833, when the Church's printing office was destroyed. Most of the refugees crossed the Missouri River into Clay County.
+  sources: [saints-volume-1]
+
+- slug: zions-camp
+  title: Zion's Camp marches to Missouri
+  start_date: 1834-05-01
+  date_precision: month
+  category: migration
+  period: ohio
+  place: kirtland
+  people: [joseph-smith, brigham-young, heber-c-kimball, hyrum-smith, parley-p-pratt]
+  summary: Joseph Smith led a company of volunteers from Ohio to Missouri to help the Saints driven from Jackson County.
+  context: The company was disbanded without recovering the Saints' lands. Many later leaders of the Church were among its members.
+  sources: [saints-volume-1]
+
+- slug: quorum-of-the-twelve-organized
+  title: The Quorum of the Twelve Apostles is organized
+  start_date: 1835-02-14
+  category: leadership
+  period: ohio
+  place: kirtland
+  people: [joseph-smith, oliver-cowdery, david-whitmer, martin-harris, brigham-young, heber-c-kimball, parley-p-pratt]
+  summary: The first Quorum of the Twelve Apostles in this dispensation was called in Kirtland.
+  context: The Three Witnesses chose the Twelve. Brigham Young, Heber C. Kimball and Parley P. Pratt were among them.
+  sources: [saints-volume-1, joseph-smith-papers]
+
+- slug: kirtland-temple-dedication
+  title: Kirtland Temple dedication
+  start_date: 1836-03-27
+  category: temples
+  period: ohio
+  place: kirtland
+  people:
+    - joseph-smith: Offered the dedicatory prayer
+    - sidney-rigdon: Preached at the service
+    - oliver-cowdery
+  revelations: [dc-109]
+  summary: The Kirtland Temple, the first temple of the Restoration, was dedicated.
+  context: Many who attended recorded spiritual experiences during the dedication and in the days around it.
+  sources: [doctrine-and-covenants, joseph-smith-papers, saints-volume-1]
+
+- slug: kirtland-temple-visions
+  title: Visions in the Kirtland Temple
+  start_date: 1836-04-03
+  category: revelations
+  period: ohio
+  place: kirtland
+  people: [joseph-smith, oliver-cowdery]
+  revelations: [dc-110]
+  summary: Jesus Christ appeared to Joseph Smith and Oliver Cowdery in the Kirtland Temple, followed by Moses, Elias and Elijah.
+  context: The visions took place one week after the dedication. The messengers committed priesthood keys for gathering Israel and for sealing.
+  sources: [doctrine-and-covenants, joseph-smith-papers, saints-volume-1]
+
+- slug: first-mission-to-england
+  title: The first mission to England
+  start_date: 1837-06-01
+  date_precision: month
+  category: missionary_work
+  period: ohio
+  place: kirtland
+  people:
+    - heber-c-kimball: Led the mission
+    - willard-richards
+  summary: Heber C. Kimball and his companions left Kirtland to open missionary work in England.
+  context: They began preaching in Preston, Lancashire, that summer. Thousands of British converts later emigrated to join the Saints.
+  sources: [saints-volume-1]
+
+- slug: joseph-leaves-kirtland
+  title: Joseph Smith leaves Kirtland
+  start_date: 1838-01-12
+  category: migration
+  period: ohio
+  place: kirtland
+  people: [joseph-smith, sidney-rigdon]
+  summary: Facing threats and lawsuits, Joseph Smith and Sidney Rigdon left Kirtland for Missouri.
+  context: The failure of the Kirtland Safety Society in 1837 had divided the Church in Ohio. Most faithful members followed to Missouri during 1838.
+  sources: [saints-volume-1]
+
+# ---------------------------------------------------------------- Missouri
+
+- slug: name-of-the-church-revealed
+  title: The name of the Church is revealed
+  start_date: 1838-04-26
+  category: revelations
+  period: missouri
+  place: far-west
+  people: [joseph-smith]
+  revelations: [dc-115]
+  summary: A revelation at Far West gave the name The Church of Jesus Christ of Latter-day Saints.
+  context: The same revelation commanded the Saints to build a temple at Far West.
+  sources: [doctrine-and-covenants, saints-volume-1]
+
+- slug: extermination-order
+  title: The extermination order
+  start_date: 1838-10-27
+  category: persecution
+  period: missouri
+  summary: Missouri governor Lilburn W. Boggs ordered that the Latter-day Saints be driven from the state or exterminated.
+  context: The order followed months of conflict between the Saints and their neighbors in northern Missouri. It was formally rescinded in 1976.
+  sources: [saints-volume-1, church-history-topics]
+
+- slug: hawns-mill
+  title: Attack at Hawn's Mill
+  start_date: 1838-10-30
+  category: persecution
+  period: missouri
+  summary: A militia force attacked the Latter-day Saint settlement at Hawn's Mill, killing seventeen men and boys.
+  context: The attack came three days after the extermination order.
+  sources: [saints-volume-1, church-history-topics]
+
+- slug: far-west-surrenders
+  title: Far West surrenders and Church leaders are arrested
+  start_date: 1838-10-31
+  category: persecution
+  period: missouri
+  place: far-west
+  people: [joseph-smith, hyrum-smith, sidney-rigdon, parley-p-pratt]
+  summary: Joseph Smith and other leaders were taken prisoner by the state militia outside Far West.
+  context: The city surrendered the next day. The prisoners were taken to Independence and Richmond, and then to jail.
+  sources: [saints-volume-1]
+
+- slug: liberty-jail
+  title: Imprisonment in Liberty Jail
+  start_date: 1838-12-01
+  end_date: 1839-04-06
+  category: persecution
+  period: missouri
+  place: liberty
+  people: [joseph-smith, hyrum-smith, sidney-rigdon]
+  revelations: [dc-121, dc-122, dc-123]
+  summary: Joseph Smith and several companions were held through the winter in the cold, cramped jail at Liberty, Missouri.
+  context: In March 1839 Joseph wrote a long letter to the Church from the jail. Parts of it became Doctrine and Covenants 121, 122 and 123. The prisoners were allowed to escape while being moved in April 1839.
+  sources: [doctrine-and-covenants, joseph-smith-papers, saints-volume-1]
+
+- slug: exodus-from-missouri
+  title: The Saints leave Missouri
+  start_date: 1839-02-01
+  date_precision: month
+  category: migration
+  period: missouri
+  place: far-west
+  people: [brigham-young, heber-c-kimball, emma-smith]
+  summary: Thousands of Latter-day Saints left Missouri during the winter and found refuge across the Mississippi River in and around Quincy, Illinois.
+  context: With Joseph Smith in jail, Brigham Young and other members of the Twelve organized the removal of the poor.
+  sources: [saints-volume-1]
+
+# ------------------------------------------------------------------ Nauvoo
+
+- slug: nauvoo-settled
+  title: The Saints settle at Nauvoo
+  start_date: 1839-05-01
+  date_precision: month
+  category: migration
+  period: nauvoo
+  place: nauvoo
+  people: [joseph-smith, emma-smith]
+  summary: Joseph Smith moved to Commerce, Illinois, and the Saints began building the city he renamed Nauvoo.
+  context: The site was swampy and many fell ill in the first summer. Within a few years Nauvoo was one of the largest cities in Illinois.
+  sources: [saints-volume-1]
+
+- slug: mission-of-the-twelve-to-britain
+  title: The Twelve's mission to Britain
+  start_date: 1840-01-01
+  date_precision: year
+  category: missionary_work
+  period: nauvoo
+  people: [brigham-young, heber-c-kimball, parley-p-pratt, john-taylor, wilford-woodruff, willard-richards]
+  summary: Members of the Quorum of the Twelve served together in Great Britain, where thousands were baptized.
+  context: The apostles arrived in early 1840 and most returned in 1841. Emigration from Britain strengthened the Church in Nauvoo.
+  sources: [saints-volume-1]
+
+- slug: nauvoo-temple-commanded
+  title: The Saints are commanded to build the Nauvoo Temple
+  start_date: 1841-01-19
+  category: temples
+  period: nauvoo
+  place: nauvoo
+  people: [joseph-smith]
+  revelations: [dc-124]
+  summary: A revelation commanded the Saints to build a temple in Nauvoo.
+  context: The cornerstones were laid on April 6, 1841.
+  sources: [doctrine-and-covenants, saints-volume-1]
+
+- slug: relief-society-organized
+  title: The Relief Society is organized
+  start_date: 1842-03-17
+  category: leadership
+  period: nauvoo
+  place: nauvoo
+  people:
+    - emma-smith: President
+    - eliza-r-snow: Secretary
+    - joseph-smith
+  summary: The Female Relief Society of Nauvoo was organized, with Emma Smith as its president.
+  context: The meeting was held in the upper room of Joseph Smith's red brick store. Eliza R. Snow's minutes preserve his teachings to the women.
+  sources: [saints-volume-1, church-history-topics]
+
+- slug: epistle-on-baptism-for-the-dead
+  title: Joseph Smith's letter on baptism for the dead
+  start_date: 1842-09-06
+  category: revelations
+  period: nauvoo
+  place: nauvoo
+  people: [joseph-smith]
+  revelations: [dc-128]
+  summary: Joseph Smith wrote to the Church with instructions on baptism for the dead and the records that must be kept.
+  context: Baptisms for the dead had been performed in Nauvoo since 1840.
+  sources: [doctrine-and-covenants, saints-volume-1]
+
+- slug: martyrdom
+  title: Martyrdom of Joseph and Hyrum Smith
+  start_date: 1844-06-27
+  category: persecution
+  period: nauvoo
+  place: carthage
+  people:
+    - joseph-smith: Killed
+    - hyrum-smith: Killed
+    - john-taylor: Wounded
+    - willard-richards
+  revelations: [dc-135]
+  summary: A mob stormed Carthage Jail and killed Joseph Smith and his brother Hyrum.
+  context: The brothers had gone to Carthage to answer charges after the destruction of the Nauvoo Expositor press. John Taylor was badly wounded; Willard Richards was nearly unharmed.
+  sources: [doctrine-and-covenants, joseph-smith-papers, saints-volume-1]
+
+- slug: twelve-sustained-to-lead
+  title: The Twelve are sustained to lead the Church
+  start_date: 1844-08-08
+  category: leadership
+  period: nauvoo
+  place: nauvoo
+  people: [brigham-young, sidney-rigdon]
+  summary: At a meeting in Nauvoo, the Saints voted to sustain the Quorum of the Twelve, led by Brigham Young, as leaders of the Church.
+  context: Sidney Rigdon had proposed that he act as guardian of the Church. Most of the Saints followed the Twelve.
+  sources: [saints-volume-1]
+
+- slug: nauvoo-temple-ordinances
+  title: Temple ordinances begin in the Nauvoo Temple
+  start_date: 1845-12-01
+  date_precision: month
+  category: temples
+  period: nauvoo
+  place: nauvoo
+  people: [brigham-young, heber-c-kimball]
+  summary: The Saints began receiving temple ordinances in the nearly finished Nauvoo Temple.
+  context: Thousands received their temple blessings in the weeks before the exodus, with the temple in use day and night.
+  sources: [saints-volume-1]
+
+# ------------------------------------------------------- Westward migration
+
+- slug: exodus-from-nauvoo
+  title: The exodus from Nauvoo begins
+  start_date: 1846-02-04
+  category: migration
+  period: westward_migration
+  place: nauvoo
+  people: [brigham-young]
+  summary: The first wagons left Nauvoo and crossed the Mississippi River into Iowa.
+  context: Most of the Saints left during 1846. The crossing of Iowa took months of mud and hardship.
+  sources: [saints-volume-1, saints-volume-2]
+
+- slug: winter-quarters-established
+  title: Winter Quarters is established
+  start_date: 1846-09-01
+  date_precision: month
+  category: migration
+  period: westward_migration
+  place: winter-quarters
+  people: [brigham-young, mary-fielding-smith, eliza-r-snow]
+  summary: The Saints built a temporary settlement on the west bank of the Missouri River.
+  context: Hundreds died there and in nearby camps during the winter of 1846–47.
+  sources: [saints-volume-2]
+
+- slug: word-and-will-of-the-lord
+  title: The Word and Will of the Lord
+  start_date: 1847-01-14
+  category: revelations
+  period: westward_migration
+  place: winter-quarters
+  people: [brigham-young]
+  revelations: [dc-136]
+  summary: Brigham Young received a revelation on organizing the Saints into companies for the journey west.
+  context: The pattern of companies with captains was used throughout the pioneer migration.
+  sources: [doctrine-and-covenants, saints-volume-2]
+
+- slug: pioneer-company-departs
+  title: The first pioneer company sets out
+  start_date: 1847-04-01
+  date_precision: month
+  category: migration
+  period: westward_migration
+  place: winter-quarters
+  people: [brigham-young, heber-c-kimball, wilford-woodruff]
+  summary: A vanguard company led by Brigham Young left Winter Quarters for the Rocky Mountains.
+  context: The company travelled more than a thousand miles in a little over three months.
+  sources: [saints-volume-2]
+
+- slug: arrival-in-salt-lake-valley
+  title: Pioneer arrival in the Salt Lake Valley
+  start_date: 1847-07-24
+  category: migration
+  period: westward_migration
+  place: salt-lake-city
+  people: [brigham-young, wilford-woodruff, heber-c-kimball]
+  summary: Brigham Young entered the Salt Lake Valley with the last part of the first pioneer company.
+  context: Advance members of the company had entered the valley a few days earlier and begun planting. July 24 is celebrated in Utah as Pioneer Day.
+  sources: [saints-volume-2]
+
+- slug: salt-lake-temple-site-chosen
+  title: Site chosen for the Salt Lake Temple
+  start_date: 1847-07-28
+  category: temples
+  period: westward_migration
+  place: salt-lake-city
+  people: [brigham-young]
+  summary: Brigham Young marked the spot where the Salt Lake Temple would be built.
+  context: Construction began in 1853 and the temple was dedicated in 1893.
+  sources: [saints-volume-2]
+
+- slug: first-presidency-reorganized
+  title: The First Presidency is reorganized
+  start_date: 1847-12-01
+  date_precision: month
+  category: leadership
+  period: westward_migration
+  people:
+    - brigham-young: President
+    - heber-c-kimball: First counselor
+    - willard-richards: Second counselor
+  summary: Brigham Young was sustained as President of the Church, with Heber C. Kimball and Willard Richards as counselors.
+  context: The Twelve had led the Church since 1844. The new First Presidency was sustained by the Saints gathered near Council Bluffs, Iowa.
+  sources: [saints-volume-2]

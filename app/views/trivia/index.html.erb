@@ -1,0 +1,38 @@
+<% content_for :title, "Restoration Trivia" %>
+<% content_for :description, "Five trivia games on early Church history: general trivia, guess the location, the Doctrine and Covenants challenge, who am I, and chronology." %>
+
+<%= render "shared/page_header", eyebrow: "Test your knowledge", title: "Restoration Trivia",
+      lead: "Five games built from the same records as the timeline and map. Every answer links back to the history behind it." %>
+
+<div class="page py-8" data-controller="scores">
+  <%= form_with url: trivia_play_path, method: :get do |form| %>
+    <fieldset>
+      <legend class="text-2xl font-bold font-serif text-forest-900">1. Choose a difficulty</legend>
+      <div class="mt-3 flex flex-wrap gap-3">
+        <% TriviaGame::DIFFICULTIES.each do |difficulty| %>
+          <label class="quiz-option">
+            <%= form.radio_button :difficulty, difficulty, checked: difficulty == "medium", class: "accent-forest-700", data: { scores_target: "difficulty", action: "scores#render" } %>
+            <span class="font-semibold"><%= difficulty.capitalize %></span>
+          </label>
+        <% end %>
+      </div>
+      <p class="mt-2 text-base text-slate-600">Harder games give you more answers to choose from, or more events to put in order.</p>
+    </fieldset>
+
+    <h2 class="mt-10 text-2xl font-bold">2. Choose a game</h2>
+    <ul class="mt-4 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <% TriviaGame::MODES.each do |mode, details| %>
+        <li class="flex">
+          <div class="card flex w-full flex-col">
+            <h3 class="text-2xl font-bold"><%= details[:title] %></h3>
+            <p class="mt-2 flex-1 text-base text-slate-700"><%= details[:description] %></p>
+            <p class="mt-3 text-sm font-semibold text-brown-700" data-scores-target="best" data-mode="<%= mode %>"></p>
+            <p class="mt-3">
+              <%= form.button "Play", name: :mode, value: mode, class: "btn btn-primary cursor-pointer", aria: { label: "Play #{details[:title]}" } %>
+            </p>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>

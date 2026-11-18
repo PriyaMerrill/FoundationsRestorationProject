@@ -1,0 +1,67 @@
+<% content_for :title, @game.title %>
+
+<%= render "shared/page_header", eyebrow: "Restoration Trivia · #{@game.difficulty.capitalize}", title: @game.title %>
+
+<div class="page-narrow py-8"
+     data-controller="quiz"
+     data-quiz-url-value="<%= trivia_questions_path(mode: @game.mode, difficulty: @game.difficulty) %>"
+     data-quiz-mode-value="<%= @game.mode %>"
+     data-quiz-difficulty-value="<%= @game.difficulty %>">
+
+  <p class="text-lg" data-quiz-target="loading" role="status">Loading questions…</p>
+  <noscript><p class="card">The trivia games need JavaScript. You can still <%= link_to "explore the records", explore_path, class: "text-link" %>.</p></noscript>
+
+  <%# ---- A question ---- %>
+  <section data-quiz-target="game" hidden>
+    <div class="flex items-baseline justify-between gap-4 text-base font-semibold text-brown-700">
+      <p data-quiz-target="counter"></p>
+      <p data-quiz-target="score"></p>
+    </div>
+    <div class="mt-2 h-2 overflow-hidden rounded-full bg-parchment-300" role="progressbar" aria-label="Progress through the round"
+         aria-valuemin="0" data-quiz-target="progress">
+      <div class="h-full rounded-full bg-forest-600 transition-[width] duration-300" data-quiz-target="bar"></div>
+    </div>
+
+    <h2 class="mt-8 text-3xl font-bold" tabindex="-1" data-quiz-target="prompt"></h2>
+    <p class="mt-3 text-xl" data-quiz-target="stem" hidden></p>
+
+    <div data-quiz-target="clueBox" hidden>
+      <ol class="mt-3 list-decimal space-y-2 pl-6 text-xl" data-quiz-target="clues"></ol>
+      <button type="button" class="btn btn-outline mt-4" data-quiz-target="clueButton" data-action="quiz#revealClue">Give me another clue</button>
+    </div>
+
+    <ul class="mt-6 grid gap-3" data-quiz-target="choices"></ul>
+
+    <div data-quiz-target="orderBox" hidden>
+      <p class="mt-2 text-base text-slate-600">Drag the events, or use the arrow buttons, then check your order.</p>
+      <ol class="mt-4 space-y-3" data-quiz-target="orderList"></ol>
+      <button type="button" class="btn btn-primary mt-5" data-quiz-target="checkButton" data-action="quiz#checkOrder">Check my order</button>
+    </div>
+
+    <div class="mt-6" data-quiz-target="feedback" role="status" hidden></div>
+    <button type="button" class="btn btn-primary mt-5" data-quiz-target="nextButton" data-action="quiz#next" hidden></button>
+  </section>
+
+  <%# ---- The end of the round ---- %>
+  <section data-quiz-target="results" hidden>
+    <div class="card text-center">
+      <p class="eyebrow">Round complete</p>
+      <h2 class="mt-2 text-4xl font-bold" tabindex="-1" data-quiz-target="resultHeading"></h2>
+      <p class="mt-3 text-xl" data-quiz-target="resultMessage"></p>
+      <p class="mt-2 text-base font-semibold text-brown-700" data-quiz-target="resultBest"></p>
+      <p class="mt-6 flex flex-wrap justify-center gap-3">
+        <button type="button" class="btn btn-primary" data-action="quiz#restart">Play again</button>
+        <%= link_to "Choose another game", trivia_path, class: "btn btn-outline" %>
+      </p>
+    </div>
+
+    <div class="mt-8" data-quiz-target="reviewBox" hidden>
+      <h3 class="text-2xl font-bold">Review what you missed</h3>
+      <ul class="mt-3 space-y-3" data-quiz-target="review"></ul>
+    </div>
+  </section>
+
+  <p class="card" data-quiz-target="empty" hidden>
+    There are not enough records for this game yet. <%= link_to "Choose another game", trivia_path, class: "text-link" %>.
+  </p>
+</div>

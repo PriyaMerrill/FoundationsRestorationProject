@@ -174,18 +174,18 @@ Every page reads from these tables.
 
 ## Phase 10: Restoration Trivia
 
-- [ ] Trivia landing page with mode and difficulty selection
-- [ ] `/trivia/questions.json?mode=...&difficulty=...` returning a shuffled set
-- [ ] A `quiz` Stimulus controller: question counter, progress bar, clickable answers, instant right/wrong feedback, explanation, link to the related timeline entry
-- [ ] Final results screen with score and Play Again
-- [ ] Modes, in this order:
-  - [ ] General Restoration Trivia (multiple choice from `TriviaQuestion`)
-  - [ ] Guess the Location (generated from events and their places)
-  - [ ] Doctrine and Covenants Challenge (generated from revelations)
-  - [ ] Who Am I? (reveals person clues one at a time)
-  - [ ] Chronology Challenge (drag events into order; use SortableJS)
-- [ ] Save best scores per mode in local storage
-- [ ] Test: "Where was the Church formally organized on April 6, 1830?" accepts Fayette, New York
+- [x] Trivia landing page with mode and difficulty selection
+- [x] `/trivia/questions.json?mode=...&difficulty=...` returning a shuffled set
+- [x] A `quiz` Stimulus controller: question counter, progress bar, clickable answers, instant right/wrong feedback, explanation, link to the related timeline entry
+- [x] Final results screen with score and Play Again
+- [x] Modes, in this order:
+  - [x] General Restoration Trivia (multiple choice from `TriviaQuestion`)
+  - [x] Guess the Location (generated from events and their places)
+  - [x] Doctrine and Covenants Challenge (generated from revelations)
+  - [x] Who Am I? (reveals person clues one at a time)
+  - [x] Chronology Challenge (drag events into order; use SortableJS)
+- [x] Save best scores per mode in local storage, plus a review of missed questions at the end of a round
+- [x] Test: "Where was the Church formally organized on April 6, 1830?" accepts Fayette, New York
 
 ## Phase 11: Explore History (search) and Sources page
 
@@ -221,6 +221,7 @@ Content and functionality get reviewed together, once the site is built. Until t
 - [ ] Check every place: years, summary, and coordinates on a real map (least reliable)
 - [ ] Check every membership figure against the Church Almanac (least reliable)
 - [ ] Check every trivia answer and explanation
+- [ ] Play each trivia game and check the generated questions read well (four of the five games write their questions from the records)
 - [ ] Check every source: title, author and URL
 - [ ] Add chapter or page notes to the citations, which currently cite whole works
 - [ ] Collect images and record a credit and license for each (none yet)

@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   get "road-trip", to: "road_trip#show", as: :road_trip
   get "timeline", to: "timeline#show", as: :timeline
   get "numbers", to: "numbers#show", as: :numbers
-  get "trivia", to: "sections#trivia", as: :trivia
+  get "trivia", to: "trivia#index", as: :trivia
+  get "trivia/play", to: "trivia#play", as: :trivia_play
+  get "trivia/questions", to: "trivia#questions", as: :trivia_questions, defaults: { format: :json }
   get "explore", to: "explore#show", as: :explore
   get "sources", to: "sources#index", as: :sources
 

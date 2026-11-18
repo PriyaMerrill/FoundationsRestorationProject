@@ -158,6 +158,58 @@
     font-family: var(--font-sans);
   }
 
+  /* ---- Trivia ---- */
+
+  /* A radio button with its label, shown as a pill. */
+  .quiz-option {
+    @apply inline-flex cursor-pointer items-center gap-2 rounded-full border border-parchment-300 bg-white px-4 py-2 text-base text-forest-900 has-[:checked]:border-forest-700 has-[:checked]:bg-forest-50 has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-gold-500;
+  }
+
+  .quiz-choice {
+    @apply flex w-full cursor-pointer flex-wrap items-center justify-between gap-2 rounded-lg border-2 border-parchment-300 bg-white px-5 py-3 text-left text-lg font-semibold text-forest-900 transition-colors hover:border-gold-500 disabled:cursor-default disabled:hover:border-parchment-300;
+  }
+
+  /* Right and wrong are marked with a symbol and words as well as colour. */
+  .quiz-choice-correct, .quiz-choice-correct:disabled:hover {
+    @apply border-green-700 bg-green-50 text-green-900;
+  }
+
+  .quiz-choice-wrong, .quiz-choice-wrong:disabled:hover {
+    @apply border-red-700 bg-red-50 text-red-900;
+  }
+
+  .quiz-choice-note {
+    @apply text-sm font-bold;
+  }
+
+  .quiz-feedback {
+    @apply rounded-lg border-l-4 p-5 text-lg;
+  }
+
+  .quiz-feedback-correct {
+    @apply border-green-700 bg-green-50 text-green-950;
+  }
+
+  .quiz-feedback-wrong {
+    @apply border-red-700 bg-red-50 text-red-950;
+  }
+
+  .quiz-order-item {
+    @apply flex cursor-grab items-center gap-2 rounded-lg border-2 border-parchment-300 bg-white px-4 py-3 text-lg text-forest-900;
+  }
+
+  .quiz-order-correct {
+    @apply cursor-default border-green-700 bg-green-50;
+  }
+
+  .quiz-order-wrong {
+    @apply cursor-default border-red-700 bg-red-50;
+  }
+
+  .quiz-move {
+    @apply flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-md border border-parchment-300 bg-parchment-100 text-lg font-bold text-forest-800 hover:border-gold-500 disabled:cursor-default disabled:opacity-40;
+  }
+
   .nav-link {
     @apply rounded-md px-3 py-2 text-base font-semibold text-parchment-100 transition-colors hover:bg-forest-700 hover:text-white;
   }

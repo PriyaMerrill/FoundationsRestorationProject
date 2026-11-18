@@ -112,7 +112,7 @@ This is the heart of the project. Every page reads from these tables.
 
 - [x] Create `db/seeds/` with one YAML file per type: `places.yml`, `people.yml`, `events.yml`, `revelations.yml`, `sources.yml`, `membership.yml`, `trivia.yml`
 - [x] Write `db/seeds.rb` to load them with `find_or_initialize_by(slug:)` so it is safe to rerun on every deploy
-- [x] Enter the 10 places with coordinates: Palmyra/Manchester, Harmony, Fayette, Kirtland, Independence, Liberty, Far West, Nauvoo, Winter Quarters, Salt Lake City
+- [x] Enter the places with coordinates (15 so far): Palmyra/Manchester, Harmony, Fayette, Kirtland, Independence, Liberty, Far West, Nauvoo, Winter Quarters, Salt Lake City
 - [x] Enter 15 to 20 people
 - [x] Enter 30 to 50 events, including the seven milestones (1820, 1823, 1829, 1830, 1836, 1844, 1847)
 - [x] Enter selected Doctrine and Covenants sections with date and place (include 76, 110, 121 to 123)
@@ -222,6 +222,27 @@ Only do this if time allows; local storage already covers the essentials.
 - [ ] Add a sign-up page (the generator only creates sign-in)
 - [ ] `VisitedPlace` and `TriviaScore` models belonging to a user
 - [ ] Sync local storage progress to the account on sign-in
+
+## Final review (saved for the end)
+
+Content and functionality get reviewed together, once the site is built. Until then the content in `db/seeds/` is a draft written from memory.
+
+**Content**
+- [ ] Check every event: date, date precision, place, people, summary and context
+- [ ] Check every revelation against its section heading: date, place and people
+- [ ] Check every person: birth and death dates, roles, biography and clues
+- [ ] Check every place: years, summary, and coordinates on a real map (least reliable)
+- [ ] Check every membership figure against the Church Almanac (least reliable)
+- [ ] Check every trivia answer and explanation
+- [ ] Check every source: title, author and URL
+- [ ] Add chapter or page notes to the citations, which currently cite whole works
+- [ ] Collect images and record a credit and license for each (none yet)
+- [ ] Decide whether the Twelve's mission to Britain needs a place on the map (it has none)
+- [ ] Decide whether Jefferson City, Hawn's Mill and Kanesville should be road-trip stops (they are on the map but not on the route)
+- [ ] Remove the DRAFT note at the top of each file in `db/seeds/` once that file is checked
+
+**Functionality**
+- [ ] Everything in Phase 13 below
 
 ## Phase 13: Polish and test
 

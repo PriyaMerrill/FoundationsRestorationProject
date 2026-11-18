@@ -164,3 +164,44 @@
   summary: The settlement the pioneers founded in the Salt Lake Valley.
   significance: The first pioneer company arrived in July 1847. Brigham Young chose the site for a temple a few days later, and the city became the headquarters of the Church.
   sources: [saints-volume-2]
+
+# The places below are on the map but not stops on the road-trip route
+# (they have no trail_order).
+
+- slug: jefferson-city
+  name: Jefferson City
+  state: Missouri
+  latitude: 38.5792
+  longitude: -92.1729
+  kinds: [landmark]
+  start_year: 1838
+  end_year: 1838
+  summary: The capital of Missouri.
+  significance: Governor Lilburn W. Boggs issued the extermination order against the Latter-day Saints from here in October 1838.
+  sources: [saints-volume-1, church-history-topics]
+
+- slug: hawns-mill
+  name: Hawn's Mill
+  modern_name: Caldwell County (near Braymer)
+  state: Missouri
+  latitude: 39.6680
+  longitude: -93.8380
+  kinds: [settlement, landmark]
+  start_year: 1835
+  end_year: 1838
+  summary: A small Latter-day Saint settlement around Jacob Hawn's mill on Shoal Creek.
+  significance: A militia force attacked the settlement on October 30, 1838, killing seventeen men and boys.
+  sources: [saints-volume-1, church-history-topics]
+
+- slug: kanesville
+  name: Kanesville
+  modern_name: Council Bluffs
+  state: Iowa
+  latitude: 41.2619
+  longitude: -95.8608
+  kinds: [settlement]
+  start_year: 1846
+  end_year: 1852
+  summary: A Latter-day Saint settlement on the east bank of the Missouri River, across from Winter Quarters.
+  significance: Brigham Young was sustained here as President of the Church in December 1847, and it served for years as an outfitting point for companies heading west.
+  sources: [saints-volume-2]

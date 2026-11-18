@@ -389,6 +389,7 @@
   start_date: 1838-10-27
   category: persecution
   period: missouri
+  place: jefferson-city
   summary: Missouri governor Lilburn W. Boggs ordered that the Latter-day Saints be driven from the state or exterminated.
   context: The order followed months of conflict between the Saints and their neighbors in northern Missouri. It was formally rescinded in 1976.
   sources: [saints-volume-1, church-history-topics]
@@ -398,6 +399,7 @@
   start_date: 1838-10-30
   category: persecution
   period: missouri
+  place: hawns-mill
   summary: A militia force attacked the Latter-day Saint settlement at Hawn's Mill, killing seventeen men and boys.
   context: The attack came three days after the extermination order.
   sources: [saints-volume-1, church-history-topics]
@@ -617,10 +619,11 @@
   date_precision: month
   category: leadership
   period: westward_migration
+  place: kanesville
   people:
     - brigham-young: President
     - heber-c-kimball: First counselor
     - willard-richards: Second counselor
   summary: Brigham Young was sustained as President of the Church, with Heber C. Kimball and Willard Richards as counselors.
-  context: The Twelve had led the Church since 1844. The new First Presidency was sustained by the Saints gathered near Council Bluffs, Iowa.
+  context: The Twelve had led the Church since 1844. The new First Presidency was sustained by the Saints gathered at Kanesville, Iowa.
   sources: [saints-volume-2]

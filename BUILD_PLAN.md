@@ -29,7 +29,7 @@ No Node build step, no separate API, no background jobs.
 - [x] Install Rails: `gem install rails`
 - [x] Install PostgreSQL: `brew install postgresql@17` then `brew services start postgresql@17`
 - [x] Confirm all three: `ruby -v`, `rails -v`, `psql --version`
-- [ ] Create a free GitHub account (if needed) and a free Render account
+- [x] Create a free GitHub account (if needed) and a free Render account
 
 **Done when:** all three version commands print a version.
 
@@ -60,17 +60,17 @@ Deploying before there is anything to break makes every later deploy routine.
 - [x] In `config/database.yml`, set production to `url: <%= ENV["DATABASE_URL"] %>`
 - [x] Add the Linux platform to the lockfile: `bundle lock --add-platform x86_64-linux`
 - [x] Commit and push
-- [ ] On Render: **New > PostgreSQL**, name it `restoration-db`
-- [ ] On Render: **New > Web Service**, connect the GitHub repo
-  - [ ] Build command: `./bin/render-build.sh`
-  - [ ] Start command: `bundle exec puma -C config/puma.rb`
-  - [ ] Health check path: `/up`
-- [ ] Add environment variables on the web service:
-  - [ ] `DATABASE_URL` = the database's *Internal Database URL*
-  - [ ] `RAILS_MASTER_KEY` = contents of `config/master.key` (never commit this file)
-  - [ ] `WEB_CONCURRENCY` = `2`
-- [ ] Deploy and open the `onrender.com` URL
-- [ ] Confirm auto-deploy is on, so every push to `main` redeploys
+- [x] On Render: **New > PostgreSQL**, name it `restoration-db`
+- [x] On Render: **New > Web Service**, connect the GitHub repo
+  - [x] Build command: `./bin/render-build.sh`
+  - [x] Start command: `bundle exec puma -C config/puma.rb`
+  - [x] Health check path: `/up`
+- [x] Add environment variables on the web service:
+  - [x] `DATABASE_URL` = the database's *Internal Database URL*
+  - [x] `RAILS_MASTER_KEY` = contents of `config/master.key` (never commit this file)
+  - [x] `WEB_CONCURRENCY` = `2`
+- [x] Deploy and open the `onrender.com` URL
+- [x] Confirm auto-deploy is on, so every push to `main` redeploys
 
 **Done when:** the live URL responds. Check Render's current pricing before choosing plans: free web services sleep when idle and free databases expire, so a small paid plan is the safe choice for anything you will present.
 
@@ -79,32 +79,32 @@ Deploying before there is anything to break makes every later deploy routine.
 This is the heart of the project. Every page reads from these tables.
 
 **Core models**
-- [ ] `Place`: name, slug, modern_name, state, latitude, longitude, kind (temple, revelation site, settlement, landmark), summary, significance, start_year, end_year, trail_order
-- [ ] `Person`: name, slug, birth_date, death_date, roles, biography, clues (for "Who Am I?")
-- [ ] `Event`: title, slug, start_date, end_date, date_precision (exact, month, year, approximate), category, period, summary, context, `place_id`
-- [ ] `Revelation`: section_number, title, slug, received_on, date_precision, summary, subjects, context, `place_id`
-- [ ] `Source`: title, author, published_on, url, citation, kind (primary, secondary)
+- [x] `Place`: name, slug, modern_name, state, latitude, longitude, kinds (a list: temple, revelation site, settlement, landmark), summary, significance, start_year, end_year, trail_order
+- [x] `Person`: name, slug, birth_date, death_date, roles, biography, clues (for "Who Am I?")
+- [x] `Event`: title, slug, start_date, end_date, date_precision (exact, month, year, approximate), category, period, summary, context, `place_id`
+- [x] `Revelation`: section_number, title, slug, received_on, date_precision, summary, subjects, context, `place_id`
+- [x] `Source`: title, author, published_on, url, citation, kind (primary, secondary)
 
 **Linking models**
-- [ ] `EventParticipant`: joins Event and Person, with a role
-- [ ] `RevelationPerson`: joins Revelation and Person
-- [ ] `EventRevelation`: joins Event and Revelation
-- [ ] `Citation`: polymorphic, joins a Source to any record, with a note and page
-- [ ] `Image`: polymorphic, file name, caption, credit, license, year, is_modern (for then-and-now views)
+- [x] `EventParticipant`: joins Event and Person, with a role
+- [x] `RevelationPerson`: joins Revelation and Person
+- [x] `EventRevelation`: joins Event and Revelation
+- [x] `Citation`: polymorphic, joins a Source to any record, with a note and page
+- [x] `Image`: polymorphic, file name, caption, credit, license, year, is_modern (for then-and-now views)
 
 **Supporting models**
-- [ ] `MembershipEstimate`: year, count, is_approximate, note, `source_id`
-- [ ] `TriviaQuestion`: mode, difficulty, prompt, choices (JSON), answer, explanation, polymorphic link to the related record
+- [x] `MembershipEstimate`: year, members, is_approximate, note, `source_id`
+- [x] `TriviaQuestion`: mode, difficulty, prompt, choices (JSON), answer, explanation, polymorphic link to the related record
 
 **Steps**
-- [ ] Generate each model with `bin/rails g model ...` and run `bin/rails db:migrate`
-- [ ] Add `has_many` / `belongs_to` / `has_many :through` associations
-- [ ] Add validations: presence of names and titles, unique slugs
-- [ ] Add enums for `kind`, `category`, `period`, `date_precision`
+- [x] Generate each model with `bin/rails g model ...` and run `bin/rails db:migrate`
+- [x] Add `has_many` / `belongs_to` / `has_many :through` associations
+- [x] Add validations: presence of names and titles, unique slugs
+- [x] Add enums for `category`, `period`, `date_precision`
   - Categories: revelations, leadership, temples, migration, missionary work, persecution, scripture translation
   - Periods: New York, Ohio, Missouri, Nauvoo, Westward Migration
-- [ ] Add a `display_date` helper that respects precision (shows "c. 1829" instead of a false exact date)
-- [ ] Write a model test for each association
+- [x] Add a `display_date` helper that respects precision (shows "c. 1829" instead of a false exact date)
+- [x] Write a model test for each association
 
 **Done when:** in `bin/rails console` you can create an event and reach its place, people, revelations and sources.
 

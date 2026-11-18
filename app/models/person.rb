@@ -1,5 +1,8 @@
 class Person < ApplicationRecord
   include Sluggable, Citable, Illustrated
+  include Searchable
+
+  searchable against: { name: "A", roles: "B", biography: "C" }
 
   has_many :event_participants, dependent: :destroy
   has_many :events, through: :event_participants

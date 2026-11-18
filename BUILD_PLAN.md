@@ -193,13 +193,13 @@ Every page reads from these tables.
 - [x] Show pages for places, people, events and revelations with the full entry format: title, dates, location, summary, people, context, related revelations, sources, related records (built early, in Phase 5)
 
 **Search**
-- [ ] Add `pg_search`, enable multisearch on all four record types, rebuild the index in seeds
-- [ ] `/explore` with a search box and results grouped by type
-- [ ] Test the spec's example searches: Joseph Smith, Emma Smith, Liberty Jail, Doctrine and Covenants 76, Book of Mormon translation, Nauvoo Temple
+- [x] Add `pg_search` and make all four record types searchable (searched directly, so there is no index to rebuild)
+- [x] `/explore` with a search box and results grouped by type
+- [x] Test the spec's example searches: Joseph Smith, Emma Smith, Liberty Jail, Doctrine and Covenants 76, Book of Mormon translation, Nauvoo Temple
 
 **Sources and Methodology**
-- [ ] Bibliography generated from the `Source` table, grouped by primary and secondary
-- [ ] Written sections: how research was done, how uncertain dates and figures are handled, how conflicting accounts are treated, image credits
+- [x] Bibliography generated from the `Source` table, grouped by primary and secondary
+- [x] Written sections: how research was done, how uncertain dates and figures are handled, how conflicting accounts are treated, image credits
 
 ## Phase 12 (optional): Accounts and saved progress
 
@@ -223,6 +223,7 @@ Content and functionality get reviewed together, once the site is built. Until t
 - [ ] Check every trivia answer and explanation
 - [ ] Play each trivia game and check the generated questions read well (four of the five games write their questions from the records)
 - [ ] Check every source: title, author and URL
+- [ ] Read the Sources and Methodology page and make sure every statement matches how the content was actually researched and checked
 - [ ] Add chapter or page notes to the citations, which currently cite whole works
 - [ ] Collect images and record a credit and license for each (none yet)
 - [ ] Add a hero photograph at `app/assets/images/hero.jpg`; the home page uses it automatically in place of the green gradient

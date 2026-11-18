@@ -1,24 +1,182 @@
 <% content_for :title, "Sources and Methodology" %>
+<% content_for :description, "How Foundations of the Restoration is researched: its sources, how uncertain dates and estimates are shown, and how conflicting accounts are handled." %>
 
 <%= render "shared/page_header", eyebrow: "How we know", title: "Sources and Methodology",
-      lead: "The works this site draws on. Each historical entry lists the sources that support it." %>
+      lead: "Where the history on this site comes from, how sure we can be of it, and how the site shows the difference." %>
 
-<div class="page-narrow space-y-10 py-10">
-  <% { "Primary sources" => @primary, "Secondary sources" => @secondary }.each do |heading, sources| %>
-    <section>
-      <h2 class="text-3xl font-bold"><%= heading %></h2>
-      <ul class="mt-4 space-y-4">
-        <% sources.each do |source| %>
-          <li class="card">
-            <h3 class="text-xl font-bold"><%= source.title %></h3>
-            <% if source.author.present? %><p class="text-base text-brown-700"><%= source.author %></p><% end %>
-            <% if source.citation.present? %><p class="mt-2 text-base"><%= source.citation %></p><% end %>
-            <% if source.url.present? %>
-              <p class="mt-2 text-base"><%= link_to "Visit source", source.url, class: "text-link", rel: "noopener" %></p>
-            <% end %>
-          </li>
-        <% end %>
-      </ul>
+<div class="page grid gap-10 py-10 lg:grid-cols-4">
+  <nav class="lg:col-span-1" aria-label="On this page">
+    <p class="eyebrow">On this page</p>
+    <ul class="mt-2 space-y-1 text-base lg:sticky lg:top-6">
+      <% { "approach" => "Our approach", "dates" => "Dates", "figures" => "Figures and estimates", "accounts" => "Facts and interpretation",
+           "scope" => "What is included", "images" => "Images", "bibliography" => "Bibliography" }.each do |anchor, label| %>
+        <li><%= link_to label, "##{anchor}", class: "text-link font-normal" %></li>
+      <% end %>
+    </ul>
+  </nav>
+
+  <div class="space-y-12 lg:col-span-3">
+    <section id="approach" class="scroll-mt-6">
+      <h2 class="text-3xl font-bold">Our approach</h2>
+      <div class="mt-4 space-y-4">
+        <p>
+          This site is built on one connected set of records: people, places, events, revelations and the sources behind them.
+          The map, the timeline, the charts and the trivia games all read from those same records, so a fact is written once and
+          appears the same way everywhere.
+        </p>
+        <p>
+          Every event, place, person and revelation lists the sources that support it at the bottom of its page. Where a source
+          is available online, the entry links to it so you can read it yourself.
+        </p>
+        <p>
+          Primary sources, written by the people involved or close to the time, are preferred for what happened and when.
+          Secondary sources, written later by historians, are used for context and for drawing the story together.
+        </p>
+      </div>
     </section>
-  <% end %>
+
+    <section id="dates" class="scroll-mt-6">
+      <h2 class="text-3xl font-bold">Dates</h2>
+      <div class="mt-4 space-y-4">
+        <p>
+          Not every date in early Church history is known to the day. Rather than invent a day or month, each event and
+          revelation records how exactly its date is known, and the site shows only what is known.
+        </p>
+        <table class="w-full text-left text-base">
+          <thead>
+            <tr class="border-b-2 border-parchment-300 text-sm text-slate-600">
+              <th scope="col" class="py-2 pr-4 font-semibold">How well the date is known</th>
+              <th scope="col" class="py-2 pr-4 font-semibold">How it is shown</th>
+              <th scope="col" class="py-2 font-semibold">Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% example = Event.date_precision_exact.chronological.first %>
+            <tr class="border-b border-parchment-300 align-top">
+              <th scope="row" class="py-2 pr-4 font-semibold">To the day</th>
+              <td class="py-2 pr-4">The full date</td>
+              <td class="py-2"><% if example %><%= example.display_date %>: <%= link_to example.title, event_path(example), class: "text-link font-normal" %><% end %></td>
+            </tr>
+            <% { "month" => [ "To the month", "Month and year" ], "year" => [ "To the year", "The year alone" ],
+                 "approximate" => [ "Roughly", "The year, marked “c.” (about)" ] }.each do |precision, (label, shown)| %>
+              <% example = @date_examples[precision] %>
+              <tr class="border-b border-parchment-300 align-top">
+                <th scope="row" class="py-2 pr-4 font-semibold"><%= label %></th>
+                <td class="py-2 pr-4"><%= shown %></td>
+                <td class="py-2"><% if example %><%= example.display_date %>: <%= link_to example.title, event_path(example), class: "text-link font-normal" %><% end %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <p>
+          Events with uncertain dates are still placed on the timeline in their most likely order. “On this day” on the home
+          page only uses events dated to the day.
+        </p>
+      </div>
+    </section>
+
+    <section id="figures" class="scroll-mt-6">
+      <h2 class="text-3xl font-bold">Figures and estimates</h2>
+      <div class="mt-4 space-y-4">
+        <p>
+          <strong>Membership.</strong> Early membership totals were compiled long afterward from incomplete records. Every
+          membership figure on this site is an estimate and is labelled as approximate. They are best read for the overall
+          shape of growth, not as exact counts.
+        </p>
+        <p>
+          <strong>Counts in charts.</strong> The charts on <%= link_to "Restoration by the Numbers", numbers_path, class: "text-link" %>
+          count the records in this site’s database. A chart of revelations by place counts the sections included here, not every
+          section of the Doctrine and Covenants. Each chart states what it counts.
+        </p>
+        <p>
+          <strong>Distances.</strong> Distances on the <%= link_to "Road Trip", road_trip_path, class: "text-link" %> are
+          straight lines between places. Roads, then and now, are longer.
+        </p>
+      </div>
+    </section>
+
+    <section id="accounts" class="scroll-mt-6">
+      <h2 class="text-3xl font-bold">Facts and interpretation</h2>
+      <div class="mt-4 space-y-4">
+        <p>
+          Each entry keeps two things apart. Its summary says what happened, as the sources record it. Its historical context
+          explains why it mattered and how it connects to other events, which involves more judgment.
+        </p>
+        <p>
+          Some events are known from more than one account, written at different times and for different readers, and the
+          accounts do not always agree in every detail. Where that affects an entry, its context says so instead of choosing
+          one version silently.
+        </p>
+        <% if @uncertain_event %>
+          <p>
+            Where the sources leave a question open, the entry says that too. For example, no account gives the date of
+            <%= link_to @uncertain_event.title, event_path(@uncertain_event), class: "text-link" %>, so it is shown as
+            “<%= @uncertain_event.display_date %>” and its entry explains what is and is not known.
+          </p>
+        <% end %>
+      </div>
+    </section>
+
+    <section id="scope" class="scroll-mt-6">
+      <h2 class="text-3xl font-bold">What is included</h2>
+      <div class="mt-4 space-y-4">
+        <p>
+          The site covers the early Restoration, from the First Vision in 1820 to the arrival of the pioneers in the Salt Lake
+          Valley in 1847. It currently holds <%= pluralize(@counts[:events], "event") %>, <%= pluralize(@counts[:places], "place") %>,
+          <%= pluralize(@counts[:people], "person") %> and <%= pluralize(@counts[:revelations], "revelation") %>.
+        </p>
+        <p>
+          This is a selection, chosen to tell the main story, and not a complete record. Leaving something out is not a
+          judgment that it was unimportant.
+        </p>
+        <p><%= link_to "Browse or search everything in the database", explore_path, class: "text-link" %>.</p>
+      </div>
+    </section>
+
+    <section id="images" class="scroll-mt-6">
+      <h2 class="text-3xl font-bold">Images</h2>
+      <div class="mt-4 space-y-4">
+        <p>
+          Historical photographs, documents and maps are used only when they are in the public domain or licensed for reuse.
+          Each image is credited where it appears and listed here.
+        </p>
+        <% if @images.any? %>
+          <ul class="space-y-2 text-base">
+            <% @images.each do |image| %>
+              <li>
+                <strong><%= image.caption.presence || image.file_name %></strong>
+                <%= [ image.year, image.credit, image.license ].compact_blank.join(" · ") %>
+                (<%= link_to record_label(image.imageable), polymorphic_path(image.imageable), class: "text-link font-normal" %>)
+              </li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p class="text-slate-600">No images have been added yet.</p>
+        <% end %>
+      </div>
+    </section>
+
+    <section id="bibliography" class="scroll-mt-6">
+      <h2 class="text-3xl font-bold">Bibliography</h2>
+      <% { "Primary sources" => @primary, "Secondary sources" => @secondary }.each do |heading, sources| %>
+        <% next if sources.empty? %>
+        <h3 class="mt-6 text-2xl font-bold"><%= heading %></h3>
+        <ul class="mt-3 space-y-4">
+          <% sources.each do |source| %>
+            <li class="card p-5">
+              <h4 class="font-serif text-xl font-bold text-forest-900"><%= source.title %></h4>
+              <% if source.author.present? %><p class="text-base text-brown-700"><%= source.author %></p><% end %>
+              <% if source.citation.present? %><p class="mt-2 text-base"><%= source.citation %></p><% end %>
+              <p class="mt-2 text-base">
+                <% if source.url.present? %>
+                  <%= link_to "Visit source", source.url, class: "text-link", rel: "noopener" %> ·
+                <% end %>
+                <span class="text-slate-600">Cited by <%= pluralize(source.citations.size, "entry") %></span>
+              </p>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    </section>
+  </div>
 </div>

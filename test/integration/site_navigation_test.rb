@@ -31,7 +31,7 @@ class SiteNavigationTest < ActionDispatch::IntegrationTest
     create_source("Journal", kind: "primary")
     create_source("Saints")
     get sources_path
-    assert_select "h3", text: "Journal"
-    assert_select "h3", text: "Saints"
+    assert_select "h4", text: "Journal"
+    assert_select "h4", text: "Saints"
   end
 end

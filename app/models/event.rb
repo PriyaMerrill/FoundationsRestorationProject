@@ -4,6 +4,11 @@ class Event < ApplicationRecord
   slug_from :title
   precise_date :start_date
 
+  include Searchable
+
+  searchable against: { title: "A", summary: "B", context: "C" },
+    associated: { place: :name, people: :name, revelations: :title }
+
   CATEGORIES = %w[revelations leadership temples migration missionary_work persecution scripture_translation].freeze
   PERIODS = %w[new_york ohio missouri nauvoo westward_migration].freeze
 
@@ -27,23 +32,8 @@ class Event < ApplicationRecord
     "#{display_date} – #{end_date.strftime('%B %-d, %Y')}"
   end
 
-  # Finds events by their own text or by a connected person, place or
-  # revelation. "D&C 76" and "section 76" match that section.
-  scope :search, ->(query) {
-    query = query.to_s.strip
-    next all if query.blank?
-
-    pattern = "%#{sanitize_sql_like(query)}%"
-    section = query[/\A(?:d&c|dc|d and c|section|doctrine and covenants)\s*(\d+)\z/i, 1]
-
-    matches = left_joins(:place, :people, :revelations).where(
-      "events.title ILIKE :q OR events.summary ILIKE :q OR places.name ILIKE :q OR people.name ILIKE :q OR revelations.title ILIKE :q",
-      q: pattern
-    )
-    matches = matches.or(left_joins(:place, :people, :revelations).where(revelations: { section_number: section })) if section
-
-    where(id: matches.select(:id))
-  }
+  # The timeline's search: the events that match, without changing their order.
+  scope :search, ->(query) { query.to_s.strip.blank? ? all : where(id: matching(query).reorder(nil).pluck(:id)) }
 
   scope :chronological, -> { order(:start_date, :id) }
   scope :on_this_day, ->(date = Date.current) {

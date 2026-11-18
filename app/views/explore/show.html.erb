@@ -1,23 +1,81 @@
-<% content_for :title, "Explore History" %>
+<% content_for :title, @query.present? ? "Search: #{@query}" : "Explore History" %>
+<% content_for :description, "Search every person, place, event and revelation in the Foundations of the Restoration database." %>
 
-<%= render "shared/page_header", eyebrow: "Historical database", title: "Explore History",
-      lead: "Every person, place, event and revelation on this site, with the sources behind each one." %>
-
-<div class="page space-y-12 py-10">
-  <% { "Events" => @events, "Places" => @places, "People" => @people, "Revelations" => @revelations }.each do |heading, records| %>
-    <section aria-labelledby="<%= heading.downcase %>-heading">
-      <h2 id="<%= heading.downcase %>-heading" class="text-3xl font-bold">
-        <%= heading %> <span class="font-sans text-lg font-normal text-slate-600">(<%= records.size %>)</span>
-      </h2>
-      <% if records.any? %>
-        <ul class="mt-4 flex flex-wrap gap-2">
-          <% records.each do |record| %>
-            <li><%= render "shared/record_link", record: record, note: (record.display_date if record.respond_to?(:display_date)) %></li>
-          <% end %>
-        </ul>
-      <% else %>
-        <p class="mt-3 text-slate-600">Nothing here yet.</p>
-      <% end %>
-    </section>
+<%= render layout: "shared/page_header", locals: { eyebrow: "Historical database", title: "Explore History",
+      lead: "Search every person, place, event and revelation on this site, with the sources behind each one." } do %>
+  <%= form_with url: explore_path, method: :get, class: "mt-6 flex max-w-2xl flex-wrap items-end gap-3", role: "search" do |form| %>
+    <div class="min-w-0 flex-1">
+      <%= form.label :q, "Search the records", class: "block text-sm font-semibold text-slate-700" %>
+      <%= form.search_field :q, value: @query, placeholder: "Try Emma Smith, Liberty Jail or D&C 76",
+            class: "mt-1 w-full rounded-md border border-slate-400 bg-white px-3 py-2.5 text-lg" %>
+    </div>
+    <%= form.submit "Search", class: "btn btn-primary cursor-pointer" %>
   <% end %>
+<% end %>
+
+<div class="page py-8">
+  <%# ---- Summary and jumps to each type ---- %>
+  <div class="flex flex-wrap items-center justify-between gap-3">
+    <p class="text-lg" role="status">
+      <% if @query.present? %>
+        <%= pluralize(@total, "result") %> for <strong>“<%= @query %>”</strong> · <%= link_to "Show everything", explore_path, class: "text-link" %>
+      <% else %>
+        <%= pluralize(@total, "record") %> in the database.
+      <% end %>
+    </p>
+    <nav aria-label="Jump to a type of record">
+      <ul class="flex flex-wrap gap-x-4 gap-y-1 text-base">
+        <% @groups.each do |heading, records| %>
+          <% next if records.empty? %>
+          <li><%= link_to "#{heading} (#{records.size})", "##{heading.downcase}", class: "text-link" %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+
+  <% if @total.zero? %>
+    <div class="card mx-auto mt-10 max-w-xl text-center">
+      <p class="text-xl">Nothing matches “<%= @query %>”.</p>
+      <p class="mt-2 text-base text-slate-700">Try a name, a place, a year’s event, or a section such as “D&C 76”.</p>
+      <p class="mt-4"><%= link_to "Show everything", explore_path, class: "btn btn-primary" %></p>
+    </div>
+  <% end %>
+
+  <%# ---- Results, grouped by type ---- %>
+  <div class="mt-8 space-y-12">
+    <% @groups.each do |heading, records| %>
+      <% next if records.empty? %>
+      <section id="<%= heading.downcase %>" class="scroll-mt-6" aria-labelledby="<%= heading.downcase %>-heading">
+        <h2 id="<%= heading.downcase %>-heading" class="text-3xl font-bold">
+          <%= heading %> <span class="font-sans text-lg font-normal text-slate-600">(<%= records.size %>)</span>
+        </h2>
+
+        <% if @query.present? %>
+          <%# A search shows each match with its details. %>
+          <ul class="mt-4 grid gap-4 md:grid-cols-2">
+            <% records.each do |record| %>
+              <li class="flex">
+                <%= link_to polymorphic_path(record), class: "card flex w-full flex-col p-4" do %>
+                  <span class="font-serif text-xl font-bold leading-snug text-forest-900">
+                    <%= record.is_a?(Revelation) ? record.title : record_label(record) %>
+                  </span>
+                  <% if record_facts(record).present? %>
+                    <span class="mt-1 text-base text-brown-700"><%= record_facts(record) %></span>
+                  <% end %>
+                  <span class="mt-2 text-base text-slate-700"><%= record_excerpt(record) %></span>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        <% else %>
+          <%# Without a search, the whole database is listed compactly. %>
+          <ul class="mt-4 flex flex-wrap gap-2">
+            <% records.each do |record| %>
+              <li><%= render "shared/record_link", record: record, note: (record.display_date if record.respond_to?(:display_date)) %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </section>
+    <% end %>
+  </div>
 </div>

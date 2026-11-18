@@ -84,4 +84,22 @@ module ApplicationHelper
         records: point.records.map { |record| { label: record_label(record), type: record_type_label(record), url: polymorphic_path(record) } } }
     end.to_json
   end
+
+  # The line of facts shown under a record in search results.
+  def record_facts(record)
+    facts =
+      case record
+      when Event then [ record.display_dates, record.place&.name ]
+      when Revelation then [ record.display_date, record.place&.name ]
+      when Place then [ record.state, record.years ]
+      when Person then [ [ record.birth_date&.year, record.death_date&.year ].compact.join("–"), record.roles ]
+      end
+    facts.compact_blank.join(" · ")
+  end
+
+  # A sentence or two describing a record, for search results.
+  def record_excerpt(record)
+    text = record.is_a?(Person) ? record.biography : record.summary
+    truncate(text.to_s, length: 170, separator: " ")
+  end
 end

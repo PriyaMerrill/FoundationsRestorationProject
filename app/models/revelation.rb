@@ -4,6 +4,11 @@ class Revelation < ApplicationRecord
   slug_from :title
   precise_date :received_on
 
+  include Searchable
+
+  searchable against: { title: "A", subjects: "B", summary: "B", context: "C" },
+    associated: { place: :name, people: :name }
+
   belongs_to :place, optional: true
   has_many :revelation_people, dependent: :destroy
   has_many :people, through: :revelation_people

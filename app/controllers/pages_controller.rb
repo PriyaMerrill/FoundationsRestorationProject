@@ -2,12 +2,12 @@ class PagesController < ApplicationController
   def home
     today = Date.current
 
+    # Shown only on days when something in the database happened.
     @on_this_day = Event.on_this_day(today).chronological.first
-    @featured_event = @on_this_day || pick_for(today, Event.chronological)
-    @featured_person = pick_for(today, Person.order(:name))
-    @featured_revelation = pick_for(today, Revelation.order(:section_number))
 
-    @counts = { "events" => Event.count, "places" => Place.count, "people" => Person.count, "revelations" => Revelation.count }
+    @featured_place = pick_for(today, Place.mapped.order(:name))
+    @featured_person = pick_for(today, Person.order(:name))
+    @featured_revelation = pick_for(today, Revelation.where.not(section_number: nil).order(:section_number))
   end
 
   private

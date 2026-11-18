@@ -5,7 +5,7 @@ require "application_system_test_case"
 class VisitorJourneyTest < ApplicationSystemTestCase
   test "a visitor follows Liberty Jail across the whole site" do
     visit root_path
-    click_on "Explore the Timeline"
+    click_on "Interactive Timeline"
 
     # Timeline: choose Liberty Jail and read it in the panel.
     assert_selector "h1", text: "Interactive Timeline"

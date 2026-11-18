@@ -1,9 +1,9 @@
 <%# Site header. A row of links on desktop; a button that opens a menu on mobile. %>
 <header class="bg-forest-900 text-parchment-100" data-controller="menu" data-action="keydown.esc@window->menu#close">
   <div class="page flex items-center justify-between py-3">
-    <%= link_to root_path, class: "flex items-center gap-3 rounded-md py-1 pr-2" do %>
-      <span class="flex h-9 w-9 items-center justify-center rounded-full border border-gold-400 font-serif text-lg font-bold text-gold-300" aria-hidden="true">R</span>
-      <span class="font-serif text-xl font-bold leading-tight text-parchment-50">Foundations <span class="font-medium text-gold-300">of the</span> Restoration</span>
+    <%= link_to root_path, class: "flex items-center gap-3 rounded-md py-1 pr-2 text-gold-300" do %>
+      <%= render "shared/temple_logo" %>
+      <span class="font-serif text-xl font-bold leading-tight">Foundations <span class="font-medium">of the</span> Restoration</span>
     <% end %>
 
     <nav class="hidden items-center gap-1 lg:flex" aria-label="Main">

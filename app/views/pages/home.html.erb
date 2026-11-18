@@ -9,39 +9,29 @@
     <div class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,var(--color-forest-600),var(--color-forest-900)_70%)]"></div>
   <% end %>
 
-  <div class="page py-20 text-center sm:py-28 lg:py-36">
+  <div class="page py-12 text-center sm:py-16">
     <p class="eyebrow text-gold-300">An interactive Church history</p>
-    <h1 class="mt-3 text-5xl font-bold text-parchment-50 sm:text-6xl lg:text-7xl">Explore the Restoration</h1>
-    <p class="mx-auto mt-5 max-w-2xl text-xl sm:text-2xl">
+    <h1 class="mt-3 text-4xl font-bold text-parchment-50 sm:text-5xl">Explore the Restoration</h1>
+    <p class="mx-auto mt-4 max-w-2xl text-lg sm:text-xl">
       Discover the people, places, revelations and events of early Church history.
-    </p>
-    <p class="mt-8 flex flex-wrap justify-center gap-3">
-      <%= link_to "Explore the Timeline", timeline_path, class: "btn btn-gold" %>
-      <%= link_to "Start the Road Trip", road_trip_path, class: "btn border border-parchment-200 text-parchment-50 hover:bg-forest-700" %>
     </p>
   </div>
 </section>
 
-<%# ---- What's in the database ---- %>
-<% if @counts.values.sum.positive? %>
-  <section class="border-b border-parchment-300 bg-parchment-100" aria-label="What is in the historical database">
-    <dl class="page grid grid-cols-2 gap-y-4 py-6 text-center sm:grid-cols-4">
-      <% @counts.each do |label, count| %>
-        <div>
-          <dd class="font-serif text-3xl font-bold text-forest-800"><%= count %></dd>
-          <dt class="text-sm font-semibold uppercase tracking-widest text-brown-700"><%= label %></dt>
-        </div>
-      <% end %>
-    </dl>
+<%# ---- On this day: only appears when an event in the database shares today's date ---- %>
+<% if @on_this_day %>
+  <section class="border-b border-gold-300 bg-gold-200" aria-label="On this day in Church history">
+    <%= link_to event_path(@on_this_day), class: "page flex flex-wrap items-baseline gap-x-3 gap-y-1 py-3 text-brown-900 hover:underline" do %>
+      <span class="text-sm font-bold uppercase tracking-widest">On this day in Church history</span>
+      <span class="font-serif text-lg font-bold"><%= @on_this_day.display_dates %>: <%= @on_this_day.title %></span>
+      <span aria-hidden="true">&rarr;</span>
+    <% end %>
   </section>
 <% end %>
 
 <%# ---- The four experiences ---- %>
 <section class="page py-14" aria-labelledby="experiences-heading">
   <h2 id="experiences-heading" class="text-center text-3xl font-bold sm:text-4xl">Four ways to explore</h2>
-  <p class="mx-auto mt-3 max-w-2xl text-center text-slate-700">
-    Each one draws on the same connected records, so you can follow a person, place or revelation from one to the next.
-  </p>
 
   <ul class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
     <% home_experiences.each do |experience| %>
@@ -61,45 +51,80 @@
   </ul>
 </section>
 
-<%# ---- Featured records, different each day ---- %>
-<% if @featured_event || @featured_person || @featured_revelation %>
+<%# ---- From the records: a place, a person and a revelation, different each day.
+     Each is dressed as the kind of thing it is: a map, a portrait, a page of scripture. ---- %>
+<% if @featured_place || @featured_person || @featured_revelation %>
   <section class="border-t border-parchment-300 bg-parchment-100" aria-labelledby="featured-heading">
     <div class="page py-14">
-      <h2 id="featured-heading" class="text-3xl font-bold sm:text-4xl">From the records</h2>
+      <h2 id="featured-heading" class="text-center text-3xl font-bold sm:text-4xl">From the records</h2>
+      <p class="mt-2 text-center text-base text-brown-700">A place, a person and a revelation. New ones every day.</p>
 
-      <div class="mt-8 grid gap-6 lg:grid-cols-3">
-        <% if @featured_event %>
-          <%= link_to event_path(@featured_event), class: "card flex flex-col" do %>
-            <p class="eyebrow"><%= @on_this_day ? "On this day in Church history" : "Featured event" %></p>
-            <h3 class="mt-1 text-2xl font-bold"><%= @featured_event.title %></h3>
-            <p class="mt-1 text-base text-brown-700"><%= [ @featured_event.display_dates, @featured_event.place&.name ].compact.join(" · ") %></p>
-            <p class="mt-3 flex-1 text-base text-slate-700"><%= @featured_event.summary %></p>
-            <span class="mt-4 text-base font-semibold text-forest-700">Read about this event <span aria-hidden="true">&rarr;</span></span>
-          <% end %>
+      <div class="mt-10 grid gap-8 lg:grid-cols-3">
+        <%# -- A place, as a pinned map -- %>
+        <% if @featured_place %>
+          <article class="group relative flex flex-col overflow-hidden rounded-lg border-2 border-forest-700 bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl">
+            <div class="isolate h-44 bg-forest-100" aria-hidden="true" inert
+                 data-controller="minimap" data-minimap-lat-value="<%= @featured_place.latitude.to_f %>" data-minimap-lng-value="<%= @featured_place.longitude.to_f %>"></div>
+            <div class="flex flex-1 flex-col p-5">
+              <p class="eyebrow">A place to visit</p>
+              <h3 class="mt-1 text-2xl font-bold">
+                <%= link_to @featured_place.name, road_trip_path(place: @featured_place.slug), class: "after:absolute after:inset-0" %>
+              </h3>
+              <p class="mt-1 text-base text-brown-700"><%= [ @featured_place.state, @featured_place.years ].compact_blank.join(" · ") %></p>
+              <p class="mt-3 flex-1 text-base text-slate-700"><%= @featured_place.summary %></p>
+              <p class="mt-4 flex items-center justify-between gap-3 border-t border-dashed border-forest-300 pt-3 text-sm font-semibold text-forest-800">
+                <span><%= @featured_place.trail_order ? "Stop #{@featured_place.trail_order} on the road trip" : "On the map" %></span>
+                <span class="font-mono text-xs font-normal text-slate-600">
+                  <%= number_with_precision(@featured_place.latitude.abs, precision: 2) %>° <%= @featured_place.latitude.negative? ? "S" : "N" %>,
+                  <%= number_with_precision(@featured_place.longitude.abs, precision: 2) %>° <%= @featured_place.longitude.negative? ? "W" : "E" %>
+                </span>
+              </p>
+            </div>
+          </article>
         <% end %>
 
+        <%# -- A person, as a framed portrait -- %>
         <% if @featured_person %>
-          <%= link_to person_path(@featured_person), class: "card flex flex-col" do %>
-            <p class="eyebrow">Featured person</p>
-            <h3 class="mt-1 text-2xl font-bold"><%= @featured_person.name %></h3>
-            <p class="mt-1 text-base text-brown-700"><%= @featured_person.roles %></p>
-            <p class="mt-3 flex-1 text-base text-slate-700"><%= truncate(@featured_person.biography, length: 180, separator: " ") %></p>
-            <span class="mt-4 text-base font-semibold text-forest-700">Meet <%= @featured_person.name %> <span aria-hidden="true">&rarr;</span></span>
-          <% end %>
+          <article class="group relative flex flex-col items-center rounded-lg bg-brown-900 p-6 text-center text-parchment-100 shadow-md transition hover:-translate-y-1 hover:shadow-xl">
+            <div class="flex h-36 w-28 items-center justify-center rounded-[50%] border-4 border-gold-400 bg-brown-700 shadow-inner ring-2 ring-gold-600 ring-offset-4 ring-offset-brown-900" aria-hidden="true">
+              <span class="font-serif text-5xl font-bold text-gold-300"><%= @featured_person.name.split.reject { |word| word.end_with?(".") }.values_at(0, -1).uniq.map(&:first).join %></span>
+            </div>
+            <p class="eyebrow mt-5 text-gold-300">A person to meet</p>
+            <h3 class="mt-1 text-2xl font-bold text-parchment-50">
+              <%= link_to @featured_person.name, person_path(@featured_person), class: "after:absolute after:inset-0" %>
+            </h3>
+            <p class="text-base text-gold-200"><%= [ @featured_person.birth_date&.year, @featured_person.death_date&.year ].compact.join("–") %></p>
+            <% if @featured_person.clues.present? %>
+              <blockquote class="mt-4 flex-1 font-serif text-xl italic leading-snug text-parchment-50">
+                “<%= @featured_person.clues.first %>”
+              </blockquote>
+            <% end %>
+            <p class="mt-4 border-t border-brown-600 pt-3 text-sm text-parchment-200"><%= @featured_person.roles %></p>
+          </article>
         <% end %>
 
+        <%# -- A revelation, as a page of scripture -- %>
         <% if @featured_revelation %>
-          <%= link_to revelation_path(@featured_revelation), class: "card flex flex-col" do %>
-            <p class="eyebrow">Featured revelation</p>
-            <h3 class="mt-1 text-2xl font-bold"><%= @featured_revelation.title %></h3>
-            <p class="mt-1 text-base text-brown-700"><%= [ @featured_revelation.display_date, @featured_revelation.place&.name ].compact.join(" · ") %></p>
-            <p class="mt-3 flex-1 text-base text-slate-700"><%= @featured_revelation.summary %></p>
-            <span class="mt-4 text-base font-semibold text-forest-700">Read about <%= @featured_revelation.reference %> <span aria-hidden="true">&rarr;</span></span>
-          <% end %>
+          <article class="group relative flex flex-col rounded-sm border border-gold-500 bg-parchment-50 p-6 pl-10 shadow-md outline outline-1 outline-offset-4 outline-gold-400 transition hover:-translate-y-1 hover:shadow-xl
+                          bg-[linear-gradient(to_right,transparent_1.5rem,var(--color-gold-400)_1.5rem,var(--color-gold-400)_calc(1.5rem+1px),transparent_calc(1.5rem+1px))]">
+            <p class="eyebrow">Doctrine and Covenants</p>
+            <h3 class="font-serif text-7xl font-bold leading-none text-gold-700">
+              <%= link_to revelation_path(@featured_revelation), class: "after:absolute after:inset-0" do %>
+                <span class="sr-only">Section </span><%= @featured_revelation.section_number %>
+              <% end %>
+            </h3>
+            <p class="mt-2 text-base text-brown-700"><%= [ @featured_revelation.display_date, @featured_revelation.place&.name ].compact.join(" · ") %></p>
+            <p class="mt-4 flex-1 font-serif text-xl italic leading-relaxed text-brown-900 first-letter:float-left first-letter:mr-2 first-letter:font-serif first-letter:text-5xl first-letter:font-bold first-letter:not-italic first-letter:leading-[0.9] first-letter:text-forest-800">
+              <%= @featured_revelation.summary %>
+            </p>
+            <% if @featured_revelation.subjects.present? %>
+              <p class="mt-4 border-t border-gold-300 pt-3 text-sm text-brown-700"><%= @featured_revelation.subjects %></p>
+            <% end %>
+          </article>
         <% end %>
       </div>
 
-      <p class="mt-8 text-center">
+      <p class="mt-10 text-center">
         <%= link_to "Explore all the records", explore_path, class: "btn btn-primary" %>
       </p>
     </div>

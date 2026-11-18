@@ -1,0 +1,30 @@
+<%# The site logo: a simple drawing of the east towers of the Salt Lake Temple.
+    It takes the colour of the text around it; the windows take the colour
+    given in `cutout` (the background the logo sits on).
+    locals: class (optional), cutout (optional) %>
+<svg class="<%= local_assigns.fetch(:class, "h-10 w-10") %>" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+  <g fill="currentColor">
+    <!-- body and the three east towers -->
+    <path d="M9 26h30v19H9z"/>
+    <path d="M9 22h9v8H9z M19 17h10v12H19z M30 22h9v8h-9z"/>
+    <!-- upper tiers -->
+    <path d="M10.500 18h6v4h-6z M20.500 12.500h7V17h-7z M31.500 18h6v4h-6z"/>
+    <!-- spires -->
+    <path d="M10.500 18l3-12 3 12z M20.500 12.500L24 2.500l3.500 10z M31.500 18l3-12 3 12z"/>
+    <!-- corner pinnacles -->
+    <path d="M9 22l.800-3.200.800 3.200z M16.400 22l.800-3.200.800 3.200z M19 17l.900-3.600.900 3.600z M27.200 17l.900-3.600.900 3.600z M30 22l.800-3.200.800 3.200z M37.400 22l.800-3.200.800 3.200z"/>
+    <!-- finials -->
+    <circle cx="13.500" cy="5.600" r="1"/><circle cx="34.500" cy="5.600" r="1"/><circle cx="24" cy="2.300" r="1.150"/>
+    <path d="M23.650 0h.700v2h-.700z"/>
+    <!-- ground -->
+    <path d="M5 45h38v2H5z"/>
+  </g>
+  <g class="<%= local_assigns.fetch(:cutout, "fill-forest-900") %>">
+    <!-- windows and door, in the colour behind the logo -->
+    <circle cx="13.500" cy="26" r="1.200"/><circle cx="24" cy="21.500" r="1.400"/><circle cx="34.500" cy="26" r="1.200"/>
+    <path d="M12.300 36v-5.300a1.200 1.200 0 0 1 2.400 0V36z M33.300 36v-5.300a1.200 1.200 0 0 1 2.400 0V36z M22.600 33v-6.500a1.400 1.400 0 0 1 2.800 0V33z"/>
+    <path d="M12.300 43v-4.300a1.200 1.200 0 0 1 2.400 0V43z M33.300 43v-4.300a1.200 1.200 0 0 1 2.400 0V43z"/>
+    <path d="M22 45v-6.500a2 2 0 0 1 4 0V45z"/>
+    <path d="M18.200 30h.600v15h-.600z M29.200 30h.600v15h-.600z"/>
+  </g>
+</svg>

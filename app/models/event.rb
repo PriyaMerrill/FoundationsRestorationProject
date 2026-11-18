@@ -36,7 +36,4 @@ class Event < ApplicationRecord
   scope :search, ->(query) { query.to_s.strip.blank? ? all : where(id: matching(query).reorder(nil).pluck(:id)) }
 
   scope :chronological, -> { order(:start_date, :id) }
-  scope :on_this_day, ->(date = Date.current) {
-    date_precision_exact.where("EXTRACT(MONTH FROM start_date) = ? AND EXTRACT(DAY FROM start_date) = ?", date.month, date.day)
-  }
 end

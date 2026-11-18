@@ -129,7 +129,7 @@ Every page reads from these tables.
 - [x] Hero with the headline "Explore the Restoration" and subtitle (photo still to add, see Final review)
 - [x] Two buttons: Explore the Timeline, Start the Road Trip
 - [x] Four navigation cards: Road Trip, Timeline, By the Numbers, Trivia
-- [x] "On This Day in Church History" block (query events matching today's month and day, fall back to a featured event)
+- [x] Featured event, different each day ("On This Day" was built, then removed in review)
 - [x] Optional featured person or revelation
 
 ## Phase 7: Interactive timeline

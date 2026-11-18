@@ -48,12 +48,6 @@ class EventTest < ActiveSupport::TestCase
     assert_equal [ earlier, later ], Event.chronological.to_a
   end
 
-  test "on this day only matches exact dates" do
-    dedication = create_event
-    create_event("Vague event", start_date: Date.new(1833, 3, 27), date_precision: "year")
-    assert_equal [ dedication ], Event.on_this_day(Date.new(2026, 3, 27)).to_a
-  end
-
   test "display date respects how exactly the date is known" do
     date = Date.new(1836, 3, 27)
     assert_equal "March 27, 1836", Event.new(start_date: date, date_precision: "exact").display_date

@@ -24,39 +24,18 @@ class HomePageTest < ActionDispatch::IntegrationTest
     assert_select "#featured-heading", count: 0
   end
 
-  test "shows a banner for an event that happened on this day" do
-    create_event
-    create_event("First Vision", start_date: Date.new(1820, 3, 1), date_precision: "year", category: "revelations", period: "new_york")
-
-    travel_to Time.zone.local(2026, 3, 27, 12) do
-      get root_path
-    end
-
-    assert_select "section[aria-label='On this day in Church history'] a[href=?]", event_path("kirtland-temple-dedication"),
-      text: /March 27, 1836: Kirtland Temple dedication/
-  end
-
-  test "shows no banner on other days" do
-    create_event
-
-    travel_to Time.zone.local(2026, 11, 18, 12) do
-      get root_path
-    end
-
-    assert_select "section[aria-label='On this day in Church history']", count: 0
-  end
-
-  test "features a place as a map, a person as a portrait and a revelation as a page" do
-    create_place(state: "Ohio", latitude: 41.6253, longitude: -81.3622, trail_order: 4, summary: "Site of the first temple.")
-    create_place("Unmapped")
+  test "features an event as a calendar page, a person as a portrait and a revelation as a page" do
+    create_event(place: create_place, summary: "The first temple was dedicated.")
     create_person(clues: [ "I was born in Vermont in 1805." ], roles: "Prophet")
     create_revelation(76, received_on: Date.new(1832, 2, 16), summary: "A vision of the kingdoms of glory.")
 
     get root_path
 
-    assert_select "article a[href=?]", road_trip_path(place: "kirtland"), text: "Kirtland"
-    assert_select "[data-controller=minimap][data-minimap-lat-value='41.6253'][data-minimap-lng-value='-81.3622']"
-    assert_select "article span", text: "Stop 4 on the road trip"
+    assert_select "article a[href=?]", timeline_path(event: "kirtland-temple-dedication"), text: "Kirtland Temple dedication"
+    assert_select "article p", text: "March"
+    assert_select "article p", text: "27"
+    assert_select "article p", text: "1836"
+    assert_select "article span", text: "Ohio period"
 
     assert_select "article a[href=?]", person_path("joseph-smith"), text: "Joseph Smith"
     assert_select "article blockquote", text: /I was born in Vermont in 1805/
@@ -64,6 +43,24 @@ class HomePageTest < ActionDispatch::IntegrationTest
 
     assert_select "article a[href=?]", revelation_path("doctrine-and-covenants-76"), text: /Section\s+76/
     assert_select "article p", text: "A vision of the kingdoms of glory."
+  end
+
+  test "an event known only to the year shows the year, not a made-up day" do
+    create_event("The First Vision", start_date: Date.new(1820, 3, 1), date_precision: "year", category: "revelations", period: "new_york")
+
+    get root_path
+
+    assert_select "article p", text: "The year"
+    assert_select "article p", text: "1820"
+    assert_select "article p", text: "March", count: 0
+  end
+
+  test "shows nothing about this day in history" do
+    create_event
+    travel_to Time.zone.local(2026, 3, 27, 12) do
+      get root_path
+    end
+    assert_select "body", text: /On this day/, count: 0
   end
 
   test "no longer shows record counts" do

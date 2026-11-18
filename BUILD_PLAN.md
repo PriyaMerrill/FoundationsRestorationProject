@@ -4,8 +4,6 @@ A step-by-step checklist to build and host the site in Ruby on Rails. Work top t
 
 ## The stack (decided up front)
 
-The spec suggests React, Express and Vercel. Since you want Rails, here is the Rails equivalent of each piece:
-
 | Need | Spec suggested | This plan uses |
 |---|---|---|
 | App + pages | React + React Router | Rails 8 views + Hotwire (Turbo and Stimulus) |
@@ -21,17 +19,13 @@ No Node build step, no separate API, no background jobs.
 
 ---
 
-## Phase 0: Set up your Mac
+## Phase 0: Set up Mac
 
-- [x] Install Homebrew if missing (`brew --version` to check)
 - [x] Install a Ruby version manager: `brew install mise`
 - [x] Install Ruby: `mise use --global ruby@3.4`
 - [x] Install Rails: `gem install rails`
 - [x] Install PostgreSQL: `brew install postgresql@17` then `brew services start postgresql@17`
 - [x] Confirm all three: `ruby -v`, `rails -v`, `psql --version`
-- [x] Create a free GitHub account (if needed) and a free Render account
-
-**Done when:** all three version commands print a version.
 
 ## Phase 1: Create the app
 
@@ -40,13 +34,8 @@ No Node build step, no separate API, no background jobs.
 - [x] `cd restoration` then `bin/rails db:create`
 - [x] Start it: `bin/dev` and open `http://localhost:3000`
 - [x] `git add -A && git commit -m "New Rails app"`
-- [x] Create an empty GitHub repo and push to it
 
-**Done when:** the Rails welcome page loads locally and the code is on GitHub.
-
-## Phase 2: Deploy the empty app (do this early)
-
-Deploying before there is anything to break makes every later deploy routine.
+## Phase 2: Deploy the empty app
 
 - [x] Add `bin/render-build.sh` and make it executable (`chmod +x`):
   ```bash
@@ -72,11 +61,11 @@ Deploying before there is anything to break makes every later deploy routine.
 - [x] Deploy and open the `onrender.com` URL
 - [x] Confirm auto-deploy is on, so every push to `main` redeploys
 
-**Done when:** the live URL responds. Check Render's current pricing before choosing plans: free web services sleep when idle and free databases expire, so a small paid plan is the safe choice for anything you will present.
+**Done when:** the live URL responds. 
 
 ## Phase 3: Build the shared historical database
 
-This is the heart of the project. Every page reads from these tables.
+Every page reads from these tables.
 
 **Core models**
 - [x] `Place`: name, slug, modern_name, state, latitude, longitude, kinds (a list: temple, revelation site, settlement, landmark), summary, significance, start_year, end_year, trail_order
@@ -106,7 +95,6 @@ This is the heart of the project. Every page reads from these tables.
 - [x] Add a `display_date` helper that respects precision (shows "c. 1829" instead of a false exact date)
 - [x] Write a model test for each association
 
-**Done when:** in `bin/rails console` you can create an event and reach its place, people, revelations and sources.
 
 ## Phase 4: Research and load the content
 
@@ -123,8 +111,6 @@ This is the heart of the project. Every page reads from these tables.
 - [ ] Add chapter or page notes to the citations
 - [x] Run `bin/rails db:seed` and spot-check in the console
 - [x] Verify the spec's worked examples exist: Kirtland (1831, 1833, March 27 1836, April 3 1836 / D&C 110), Liberty Jail (D&C 121 to 123), D&C 76 (Feb 16 1832, Hiram, Joseph Smith and Sidney Rigdon)
-
-**Done when:** a fresh `db:reset` rebuilds the full dataset with no errors. This phase takes the most time; it can run in parallel with Phases 5 to 9.
 
 ## Phase 5: Design system and layout
 
@@ -269,15 +255,3 @@ Content and functionality get reviewed together, once the site is built. Until t
 - [ ] Add error tracking (Honeybadger or Sentry free tier) and an uptime check on `/up`
 - [ ] Click through every page once on the live site
 
-**Done when:** the site is live on your domain and the visitor journey works there.
-
----
-
-## Suggested order if time is short
-
-1. Phases 0 to 3 (foundation, live URL, database)
-2. Phase 4 with a small dataset (10 places, 15 events), expanded as you go
-3. Phases 5, 6, 7, 8 (layout, home, timeline, map)
-4. Phases 9, 10, 11 (charts, trivia, search and sources)
-5. Phases 13 and 14
-6. Phase 12 and the stretch items last

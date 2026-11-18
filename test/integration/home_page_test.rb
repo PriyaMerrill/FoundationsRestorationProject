@@ -26,7 +26,7 @@ class HomePageTest < ActionDispatch::IntegrationTest
 
   test "features an event as a calendar page, a person as a portrait and a revelation as a page" do
     create_event(place: create_place, summary: "The first temple was dedicated.")
-    create_person(clues: [ "I was born in Vermont in 1805." ], roles: "Prophet")
+    create_person(clues: [ "I was born in Vermont in 1805." ], roles: "Prophet", biography: "He organized the Church in 1830.")
     create_revelation(76, received_on: Date.new(1832, 2, 16), summary: "A vision of the kingdoms of glory.")
 
     get root_path
@@ -38,7 +38,9 @@ class HomePageTest < ActionDispatch::IntegrationTest
     assert_select "article span", text: "Ohio period"
 
     assert_select "article a[href=?]", person_path("joseph-smith"), text: "Joseph Smith"
-    assert_select "article blockquote", text: /I was born in Vermont in 1805/
+    assert_select "article p", text: "He organized the Church in 1830."
+    assert_select "article blockquote", count: 0
+    assert_select "article", text: /I was born in Vermont/, count: 0
     assert_select "article span", text: "JS"
 
     assert_select "article a[href=?]", revelation_path("doctrine-and-covenants-76"), text: /Section\s+76/

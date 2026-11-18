@@ -94,10 +94,8 @@
               <%= link_to @featured_person.name, person_path(@featured_person), class: "after:absolute after:inset-0" %>
             </h3>
             <p class="text-base text-gold-200"><%= [ @featured_person.birth_date&.year, @featured_person.death_date&.year ].compact.join("–") %></p>
-            <% if @featured_person.clues.present? %>
-              <blockquote class="mt-4 flex-1 font-serif text-xl italic leading-snug text-parchment-50">
-                “<%= @featured_person.clues.first %>”
-              </blockquote>
+            <% if @featured_person.biography.present? %>
+              <p class="mt-4 flex-1 text-base leading-relaxed text-parchment-100"><%= truncate(@featured_person.biography, length: 150, separator: " ") %></p>
             <% end %>
             <p class="mt-4 border-t border-brown-600 pt-3 text-sm text-parchment-200"><%= @featured_person.roles %></p>
           </article>
@@ -114,7 +112,7 @@
               <% end %>
             </h3>
             <p class="mt-2 text-base text-brown-700"><%= [ @featured_revelation.display_date, @featured_revelation.place&.name ].compact.join(" · ") %></p>
-            <p class="mt-4 flex-1 font-serif text-xl italic leading-relaxed text-brown-900 first-letter:float-left first-letter:mr-2 first-letter:font-serif first-letter:text-5xl first-letter:font-bold first-letter:not-italic first-letter:leading-[0.9] first-letter:text-forest-800">
+            <p class="mt-4 flex-1 font-serif text-xl leading-relaxed text-brown-900">
               <%= @featured_revelation.summary %>
             </p>
             <% if @featured_revelation.subjects.present? %>

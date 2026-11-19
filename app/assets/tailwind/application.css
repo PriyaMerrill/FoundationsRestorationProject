@@ -153,6 +153,66 @@
     @apply ring-4 ring-gold-400;
   }
 
+  /* ---- Road trip ---- */
+
+  /* A place in the list, drawn as a travel ticket. */
+  .trip-ticket {
+    @apply flex overflow-hidden rounded-lg border border-brown-500/40 bg-parchment-100 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md;
+  }
+
+  .trip-ticket-stub {
+    @apply flex w-16 shrink-0 flex-col items-center justify-center gap-1 bg-forest-800 py-3 text-gold-300;
+    border-right: 2px dotted var(--color-parchment-100);
+  }
+
+  .trip-ticket-body {
+    @apply relative min-w-0 flex-1 px-4 py-3;
+  }
+
+  /* The rubber stamp on an explored place. */
+  .trip-stamp {
+    @apply absolute bottom-2 right-2 rounded border-2 border-gold-600 px-1.5 py-0.5 text-[0.625rem] font-bold uppercase tracking-[0.15em] text-gold-700;
+    rotate: 8deg;
+  }
+
+  .is-visited .trip-ticket-stub {
+    @apply bg-gold-500 text-forest-900;
+  }
+
+  .is-active .trip-ticket {
+    @apply border-gold-500 ring-2 ring-gold-400;
+  }
+
+  /* The panel that describes the current stop during a trip. */
+  .trip-bar {
+    @apply rounded-lg border-2 border-gold-500 bg-forest-900 p-4 text-parchment-100 shadow-md sm:p-5;
+  }
+
+  .trip-bar-number {
+    @apply flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-2 border-gold-400 font-serif text-2xl font-bold text-gold-300;
+  }
+
+  .trip-status {
+    @apply rounded-full border border-parchment-300/60 px-3 py-1 text-sm font-semibold text-parchment-100;
+  }
+
+  .trip-status-explored {
+    @apply border-gold-400 bg-gold-400 text-forest-900;
+  }
+
+  .trip-button {
+    @apply inline-flex cursor-pointer items-center gap-2 rounded-md border border-parchment-300/60 px-4 py-2 text-base font-semibold text-parchment-50 transition-colors hover:bg-forest-700 disabled:cursor-default disabled:opacity-40 disabled:hover:bg-transparent;
+  }
+
+  .trip-button-main {
+    @apply border-gold-400 bg-gold-400 text-forest-900 hover:bg-gold-300;
+  }
+
+  /* The reset button under the map's zoom buttons, sized to match them. */
+  .leaflet-bar .map-reset {
+    @apply flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-[2px] bg-white text-slate-800 hover:bg-slate-100;
+  }
+
   /* Leaflet sets its own font and link colours; bring them in line with the site. */
   .leaflet-container {
     font-family: var(--font-sans);

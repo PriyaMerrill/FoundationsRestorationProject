@@ -25,7 +25,7 @@ class VisitorJourneyTest < ApplicationSystemTestCase
     click_on "View Liberty on the map"
 
     assert_selector "h1", text: "Road Trip"
-    assert_selector ".leaflet-marker-icon", minimum: 10
+    assert_selector ".leaflet-marker-icon", count: 15, visible: :all # some sit outside the zoomed-in view
     within "aside[role=dialog]" do
       assert_selector "h2", text: "Liberty"
       assert_text "Imprisonment in Liberty Jail"
@@ -111,5 +111,45 @@ class VisitorJourneyTest < ApplicationSystemTestCase
 
     assert_selector "#period-ohio button.timeline-dot[aria-current=true]", count: 1
     assert_operator track.evaluate_script("this.scrollLeft"), :>, 0
+  end
+
+  test "a visitor takes the road trip one stop at a time" do
+    visit road_trip_path
+    assert_no_selector "section[aria-label='Road trip']"
+
+    click_on "Start the road trip"
+
+    within "section[aria-label='Road trip']" do
+      assert_text "STOP 1 OF 15"
+      assert_selector "h2", text: "Palmyra and Manchester"
+      assert_text "The journey begins here."
+      assert_text "Not explored yet"
+      assert_button "Back", disabled: true
+
+      click_on "Mark as explored"
+      assert_text "✓ Explored"
+
+      click_on "Next stop: Harmony"
+      assert_text "STOP 2 OF 15"
+      assert_selector "h2", text: "Harmony"
+      assert_text(/About \d+ miles from Palmyra and Manchester/)
+      assert_text "Not explored yet"
+    end
+
+    assert_text "1 of 15 explored"
+    assert_selector "li[data-slug=palmyra].is-visited .trip-stamp", text: "EXPLORED"
+    assert_selector "li[data-slug=harmony].is-active"
+    assert_selector ".leaflet-overlay-pane path"
+
+    click_on "End the road trip"
+    assert_no_selector "section[aria-label='Road trip']"
+    assert_button "Start the road trip"
+  end
+
+  test "the map has a reset button under the zoom buttons" do
+    visit road_trip_path
+    assert_selector ".leaflet-top.leaflet-left .leaflet-bar button[aria-label='Reset map view']"
+    find("button[aria-label='Reset map view']").click
+    assert_selector ".leaflet-marker-icon", count: 15
   end
 end

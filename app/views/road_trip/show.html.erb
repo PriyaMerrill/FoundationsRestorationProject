@@ -26,30 +26,45 @@
       </ul>
     </div>
 
-    <div class="flex flex-wrap gap-2">
-      <button type="button" class="map-filter" aria-pressed="false" data-map-target="routeButton" data-action="map#toggleRoute">
-        Road-trip route
-      </button>
-      <button type="button" class="map-filter" data-action="map#resetView">
-        <svg class="mr-2 h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M3 12a9 9 0 1 0 3-6.700" /><path d="M3 4v5h5" />
-        </svg>
-        Reset map view
-      </button>
-    </div>
+    <button type="button" class="btn btn-primary" aria-pressed="false" data-map-target="routeButton" data-action="map#toggleTrip">
+      Start the road trip
+    </button>
   </div>
 
   <div class="mt-5 grid gap-6 lg:grid-cols-3">
     <%# ---- The map ---- %>
     <div class="lg:col-span-2">
+      <%# ---- The road trip: one stop at a time. Shown while a trip is under way. ---- %>
+      <section class="trip-bar mb-4" aria-label="Road trip" data-map-target="trip" hidden>
+        <div class="flex flex-wrap items-start gap-4">
+          <p class="trip-bar-number" aria-hidden="true" data-map-target="tripNumber"></p>
+          <div class="min-w-[12rem] flex-1">
+            <p class="text-sm font-bold uppercase tracking-widest text-gold-300" data-map-target="tripCount"></p>
+            <h2 class="font-serif text-2xl font-bold leading-tight text-parchment-50" tabindex="-1" data-map-target="tripName"></h2>
+            <p class="text-base text-parchment-200" data-map-target="tripFacts"></p>
+            <p class="mt-1 text-sm text-parchment-200" data-map-target="tripLeg"></p>
+          </div>
+          <p class="trip-status" data-map-target="tripStatus"></p>
+        </div>
+
+        <div class="mt-4 flex flex-wrap items-center gap-2">
+          <button type="button" class="trip-button" data-map-target="tripPrevious" data-action="map#previousStop">
+            <span aria-hidden="true">&larr;</span> Back
+          </button>
+          <button type="button" class="trip-button trip-button-main" data-map-target="tripNext" data-action="map#nextStop"></button>
+          <span class="flex-1"></span>
+          <button type="button" class="trip-button" data-map-target="tripExplore" data-action="map#toggleStopExplored"></button>
+          <button type="button" class="trip-button" data-action="map#readAboutStop">Read about this place</button>
+        </div>
+        <p class="mt-3 text-sm text-parchment-200">
+          <%= @stops.size %> stops · about <%= number_with_delimiter(@route_miles) %> miles in straight lines
+        </p>
+      </section>
+
       <div class="isolate h-[26rem] overflow-hidden rounded-lg border border-parchment-300 bg-parchment-200 lg:h-[38rem]"
            data-map-target="canvas" role="region" aria-label="Map of Church history places">
         <noscript><p class="p-6">The map needs JavaScript. Every place is listed beside it.</p></noscript>
       </div>
-      <p class="mt-2 text-sm text-slate-600" data-map-target="routeNote" hidden>
-        The route joins the <%= @stops.size %> stops in historical order: about <%= number_with_delimiter(@route_miles) %> miles
-        in straight lines.
-      </p>
     </div>
 
     <%# ---- The same places as a list ---- %>
@@ -59,19 +74,28 @@
         <p class="text-sm font-semibold text-brown-700" role="status" data-map-target="progress"></p>
       </div>
 
-      <ol class="mt-3 space-y-2 lg:max-h-[35rem] lg:overflow-y-auto lg:pr-1">
+      <%# Each place is a ticket: a numbered stub, torn along a dotted line from the details.
+          Explored places get a stamp. %>
+      <ol class="mt-3 space-y-3 lg:max-h-[35rem] lg:overflow-y-auto lg:pr-1" data-map-target="list">
         <% previous_stop = nil %>
         <% @places.each do |place| %>
           <li data-map-target="item" data-slug="<%= place.slug %>" data-kinds="<%= place.kinds.join(" ") %>">
-            <%= link_to place_path(place), class: "card flex items-start gap-3 p-3", data: { turbo_frame: "panel" } do %>
-              <span class="map-pin shrink-0" data-pin aria-hidden="true"><%= place.trail_order %></span>
-              <span class="min-w-0">
+            <%= link_to place_path(place), class: "trip-ticket", data: { turbo_frame: "panel" } do %>
+              <span class="trip-ticket-stub" aria-hidden="true">
+                <span class="text-[0.625rem] font-bold uppercase tracking-[0.2em]"><%= place.trail_order ? "Stop" : "Map" %></span>
+                <span class="font-serif text-3xl font-bold leading-none"><%= place.trail_order || "•" %></span>
+              </span>
+              <span class="trip-ticket-body">
                 <span class="block font-serif text-lg font-bold leading-snug text-forest-900"><%= place.name %></span>
-                <span class="block text-sm text-brown-700"><%= [ place.state, place.years ].compact_blank.join(" · ") %></span>
+                <span class="block text-sm font-semibold uppercase tracking-wide text-brown-700"><%= [ place.state, place.years ].compact_blank.join(" · ") %></span>
                 <% if place.trail_order && previous_stop %>
-                  <span class="block text-sm text-slate-600">About <%= number_with_delimiter(previous_stop.miles_to(place)) %> miles from <%= previous_stop.name %></span>
+                  <span class="mt-1 block text-sm text-slate-600">
+                    <span aria-hidden="true">&#8627;</span> About <%= number_with_delimiter(previous_stop.miles_to(place)) %> miles from <%= previous_stop.name %>
+                  </span>
+                <% elsif place.trail_order %>
+                  <span class="mt-1 block text-sm text-slate-600">Where the journey begins</span>
                 <% end %>
-                <span class="block text-sm font-semibold text-forest-700" data-visited-label hidden>Explored</span>
+                <span class="trip-stamp" data-visited-label hidden>Explored</span>
               </span>
             <% end %>
           </li>

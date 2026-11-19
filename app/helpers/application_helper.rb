@@ -78,9 +78,16 @@ module ApplicationHelper
 
   # What the map needs to know about each place, as JSON for the map controller.
   def map_places_json(places)
+    previous = nil
+
     places.map do |place|
+      # Straight-line miles from the stop before this one on the road trip.
+      leg = { miles: previous.miles_to(place), from: previous.name } if place.trail_order && previous
+      previous = place if place.trail_order
+
       { slug: place.slug, name: place.name, lat: place.latitude.to_f, lng: place.longitude.to_f,
-        kinds: place.kinds, stop: place.trail_order, url: place_path(place) }
+        kinds: place.kinds, stop: place.trail_order, url: place_path(place),
+        facts: [ place.state, place.years ].compact_blank.join(" · "), leg: leg }
     end.to_json
   end
 

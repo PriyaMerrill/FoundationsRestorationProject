@@ -24,8 +24,14 @@ class RoadTripTest < ActionDispatch::IntegrationTest
     places = JSON.parse(css_select("[data-controller=map]").first["data-map-places-value"])
 
     assert_equal [ "palmyra", "kirtland", "hawn-s-mill" ], places.map { |place| place["slug"] }
+    kirtland = places[1]
     assert_equal({ "slug" => "kirtland", "name" => "Kirtland", "lat" => 41.6253, "lng" => -81.3622,
-      "kinds" => %w[temple revelation_site], "stop" => 2, "url" => "/places/kirtland" }, places[1])
+      "kinds" => %w[temple revelation_site], "stop" => 2, "url" => "/places/kirtland", "facts" => "Ohio · 1831–1838" },
+      kirtland.except("leg"))
+    assert_equal "Palmyra", kirtland.dig("leg", "from")
+    assert_in_delta 235, kirtland.dig("leg", "miles"), 15
+    assert_nil places[0]["leg"]
+    assert_nil places[2]["leg"]
   end
 
   test "lists the places with links that open in the panel" do
@@ -43,8 +49,7 @@ class RoadTripTest < ActionDispatch::IntegrationTest
     assert_select "button[data-map-target=filter]", count: 5
     assert_select "button[data-kind=temple]", text: "Temples"
     assert_select "button[data-kind=revelation_site]", text: "Revelation sites"
-    assert_select "button[data-map-target=routeButton]", text: "Road-trip route"
-    assert_select "button[data-action='map#resetView']", text: "Reset map view"
+    assert_select "button[data-map-target=routeButton][data-action='map#toggleTrip']", text: "Start the road trip"
   end
 
   test "a deep link opens the place in the panel and selects it on the map" do
@@ -81,9 +86,25 @@ class RoadTripTest < ActionDispatch::IntegrationTest
     assert_equal 0, @kirtland.miles_to(@kirtland)
   end
 
-  test "the route note gives the distance without commenting on driving" do
+  test "has a trip bar, hidden until a trip starts, with the controls to travel the route" do
     get road_trip_path
-    assert_select "[data-map-target=routeNote]", text: /The route joins the 2 stops in historical order: about \d+ miles\s+in straight lines\./
-    assert_select "[data-map-target=routeNote]", text: /Driving/, count: 0
+
+    assert_select "section[data-map-target=trip][hidden]" do
+      assert_select "button[data-action='map#previousStop']", text: /Back/
+      assert_select "button[data-action='map#nextStop']"
+      assert_select "button[data-action='map#toggleStopExplored']"
+      assert_select "button[data-action='map#readAboutStop']", text: "Read about this place"
+      assert_select "p", text: /2 stops · about \d+ miles in straight lines/
+    end
+    assert_select "body", text: /Driving distances/, count: 0
+  end
+
+  test "lists each place as a ticket with its stop number" do
+    get road_trip_path
+
+    assert_select "li[data-slug=palmyra] a.trip-ticket .trip-ticket-stub", text: /Stop\s+1/
+    assert_select "li[data-slug=palmyra]", text: /Where the journey begins/
+    assert_select "li[data-slug=kirtland] .trip-ticket-stub", text: /Stop\s+2/
+    assert_select "li[data-slug=kirtland] .trip-stamp[hidden]", text: "Explored"
   end
 end

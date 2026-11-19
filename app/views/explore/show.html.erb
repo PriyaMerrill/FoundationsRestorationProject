@@ -3,13 +3,16 @@
 
 <%= render layout: "shared/page_header", locals: { eyebrow: "Historical database", title: "Explore History",
       lead: "Search every person, place, event and revelation on this site, with the sources behind each one." } do %>
-  <%= form_with url: explore_path, method: :get, class: "mt-6 flex max-w-2xl flex-wrap items-end gap-3", role: "search" do |form| %>
+  <%= form_with url: explore_path, method: :get, class: "mt-6 flex max-w-2xl flex-wrap items-end gap-3", html: { role: "search" } do |form| %>
     <div class="min-w-0 flex-1">
       <%= form.label :q, "Search the records", class: "block text-sm font-semibold text-slate-700" %>
       <%= form.search_field :q, value: @query, placeholder: "Try Emma Smith, Liberty Jail or D&C 76",
             class: "mt-1 w-full rounded-md border border-slate-400 bg-white px-3 py-2.5 text-lg" %>
     </div>
     <%= form.submit "Search", class: "btn btn-primary cursor-pointer" %>
+    <% if @query.present? %>
+      <%= link_to "Clear search", explore_path, class: "btn btn-outline bg-white" %>
+    <% end %>
   <% end %>
 <% end %>
 
@@ -18,7 +21,7 @@
   <div class="flex flex-wrap items-center justify-between gap-3">
     <p class="text-lg" role="status">
       <% if @query.present? %>
-        <%= pluralize(@total, "result") %> for <strong>“<%= @query %>”</strong> · <%= link_to "Show everything", explore_path, class: "text-link" %>
+        <%= pluralize(@total, "result") %> for <strong>“<%= @query %>”</strong>
       <% else %>
         <%= pluralize(@total, "record") %> in the database.
       <% end %>
@@ -37,7 +40,7 @@
     <div class="card mx-auto mt-10 max-w-xl text-center">
       <p class="text-xl">Nothing matches “<%= @query %>”.</p>
       <p class="mt-2 text-base text-slate-700">Try a name, a place, a year’s event, or a section such as “D&C 76”.</p>
-      <p class="mt-4"><%= link_to "Show everything", explore_path, class: "btn btn-primary" %></p>
+      <p class="mt-4"><%= link_to "Clear search", explore_path, class: "btn btn-primary" %></p>
     </div>
   <% end %>
 

@@ -70,6 +70,15 @@ class ExploreTest < ActionDispatch::IntegrationTest
     assert_select "p[role=status]", text: /results? for/
   end
 
+  test "a search can be cleared, and the button only shows while searching" do
+    get explore_path
+    assert_select "a", text: "Clear search", count: 0
+
+    get explore_path(q: "Liberty Jail")
+    assert_select "form[role=search] a.btn[href=?]", explore_path, text: "Clear search"
+    assert_select "body", text: /Show everything/, count: 0
+  end
+
   test "a search with no matches says so" do
     get explore_path(q: "zzzz")
     assert_select "p", text: /Nothing matches/

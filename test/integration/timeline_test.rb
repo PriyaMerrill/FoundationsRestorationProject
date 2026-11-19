@@ -27,7 +27,7 @@ class TimelineTest < ActionDispatch::IntegrationTest
 
   test "event cards open in the panel" do
     get timeline_path
-    assert_select "a[href=?][data-turbo-frame=panel]", event_path(@jail), text: /December 1, 1838 – April 6, 1839/
+    assert_select "a[href=?][data-turbo-frame=panel]", event_path(@jail), text: /Dec 1 – Apr 6, 1839\s+1838\s+Imprisonment in Liberty Jail/
     assert_select "turbo-frame#panel"
   end
 
@@ -80,5 +80,22 @@ class TimelineTest < ActionDispatch::IntegrationTest
       assert_select "a[href=?]", road_trip_path(place: "liberty"), text: /on the map/
       assert_select "a[href=?]", event_path(@jail), text: "Open the full page"
     end
+  end
+
+  test "each event leads with a large year and only the date detail that is known" do
+    get timeline_path
+
+    assert_select "a[href=?] .timeline-date", event_path(@dedication), text: /March 27\s+1836/
+    assert_select "a[href=?] .timeline-date", event_path(@vision), text: /Year\s+1820/
+  end
+
+  test "each event is coloured by its category and has a dot that brings it to the front" do
+    get timeline_path
+
+    assert_select "li.cat-persecution a[href=?]", event_path(@jail)
+    assert_select "li.cat-temples a[href=?]", event_path(@dedication)
+    assert_select "li.cat-persecution button.timeline-dot[data-action='track#bringToFront'][aria-label*='Imprisonment in Liberty Jail']"
+    assert_select "ol[data-controller=track]", count: 3
+    assert_select "a.cat-persecution .cat-swatch"
   end
 end

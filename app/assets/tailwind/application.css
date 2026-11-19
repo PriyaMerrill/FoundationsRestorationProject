@@ -158,6 +158,46 @@
     font-family: var(--font-sans);
   }
 
+  /* ---- Timeline ---- */
+
+  /* Each kind of event has its own colour. It is always paired with the
+     category's name, so the colour is never the only clue. */
+  .cat-revelations { --cat: #6f581b; }
+  .cat-leadership { --cat: #264a37; }
+  .cat-temples { --cat: #2b5d7d; }
+  .cat-migration { --cat: #7a4a25; }
+  .cat-missionary_work { --cat: #1c6b66; }
+  .cat-persecution { --cat: #8f3329; }
+  .cat-scripture_translation { --cat: #5a4691; }
+
+  .cat-swatch {
+    @apply inline-block h-2.5 w-2.5 shrink-0 rounded-full;
+    background: var(--cat);
+  }
+
+
+  .timeline-card {
+    @apply block h-auto p-3;
+    border-top: 5px solid var(--cat);
+    background: color-mix(in srgb, var(--cat) 7%, white);
+  }
+
+  .timeline-date {
+    @apply block;
+    color: var(--cat);
+  }
+
+  /* The dot on the line. It is a button: choosing it brings its event to the front. */
+  .timeline-dot {
+    @apply h-5 w-5 cursor-pointer rounded-full border-[3px] border-white shadow transition-transform hover:scale-125;
+    background: var(--cat);
+  }
+
+  .timeline-dot[aria-current="true"] {
+    @apply scale-125 ring-2 ring-offset-1;
+    --tw-ring-color: var(--cat);
+  }
+
   /* ---- Trivia ---- */
 
   /* A radio button with its label, shown as a pill. */

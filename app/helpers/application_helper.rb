@@ -109,4 +109,29 @@ module ApplicationHelper
     text = record.is_a?(Person) ? record.biography : record.summary
     truncate(text.to_s, length: 170, separator: " ")
   end
+
+  # An event's date split for the timeline: a small line and a large year.
+  # Only what is known about the date is shown.
+  #   exact:       [ "March 27", 1836 ]            month: [ "June", 1828 ]
+  #   year:        [ "Year", 1820 ]                approximate: [ "About", 1829 ]
+  #   with an end: [ "Dec 1 – Apr 6, 1839", 1838 ]
+  def timeline_date_parts(event)
+    date = event.start_date
+
+    small =
+      case event.date_precision
+      when "exact"
+        if event.end_date
+          finish = event.end_date
+          "#{date.strftime("%b %-d")} – #{finish.strftime(finish.year == date.year ? "%b %-d" : "%b %-d, %Y")}"
+        else
+          date.strftime("%B %-d")
+        end
+      when "month" then date.strftime("%B")
+      when "year" then "Year"
+      else "About"
+      end
+
+    [ small, date.year ]
+  end
 end

@@ -296,9 +296,102 @@
 
   /* ---- Trivia ---- */
 
-  /* A radio button with its label, shown as a pill. */
-  .quiz-option {
-    @apply inline-flex cursor-pointer items-center gap-2 rounded-full border border-parchment-300 bg-white px-4 py-2 text-base text-forest-900 has-[:checked]:border-forest-700 has-[:checked]:bg-forest-50 has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-gold-500;
+  /* The top of the trivia page: a dark "lobby" with a dotted pattern. */
+  .game-lobby {
+    background-color: var(--color-forest-900);
+    background-image: radial-gradient(color-mix(in srgb, var(--color-gold-300) 22%, transparent) 1.5px, transparent 1.5px);
+    background-size: 22px 22px;
+  }
+
+  /* A level button: a hidden radio button with a label that looks pressed when chosen. */
+  .level-option {
+    @apply inline-flex cursor-pointer items-center gap-3 rounded-lg border-2 border-parchment-300/50 bg-forest-800 px-5 py-2.5 text-parchment-100 transition hover:border-gold-400;
+  }
+
+  .level-option:has(:checked) {
+    @apply border-gold-400 bg-gold-400 text-forest-900;
+    box-shadow: 0 4px 0 var(--color-gold-600);
+    translate: 0 -2px;
+  }
+
+  .level-option:has(:focus-visible) {
+    outline: 3px solid var(--color-gold-300);
+    outline-offset: 3px;
+  }
+
+  .scoreboard {
+    @apply flex flex-col rounded-lg border-2 border-dashed border-gold-400/70 bg-forest-800/80 px-5 py-3;
+  }
+
+  /* Each game has its own colour, set here and used by its card. */
+  .game-gold { --game: #c08a1e; --game-ink: #2e2114; }
+  .game-blue { --game: #2f6fa8; --game-ink: #ffffff; }
+  .game-purple { --game: #7558b0; --game-ink: #ffffff; }
+  .game-red { --game: #a23c2c; --game-ink: #ffffff; }
+  .game-green { --game: #1f7a4a; --game-ink: #ffffff; }
+
+  /* A game on the trivia page, like a card from a board game box. */
+  .game-card {
+    @apply flex w-full flex-col overflow-hidden rounded-2xl bg-white transition duration-200;
+    border: 3px solid var(--game);
+    box-shadow: 0 6px 0 var(--game);
+  }
+
+  .game-card:hover {
+    translate: 0 -4px;
+    rotate: -0.6deg;
+    box-shadow: 0 10px 0 var(--game);
+  }
+
+  .game-card-top {
+    @apply relative flex h-36 items-center justify-center;
+    background-color: var(--game);
+    color: var(--game-ink);
+    /* soft diagonal stripes */
+    background-image: repeating-linear-gradient(135deg, rgb(255 255 255 / 0.1) 0 14px, transparent 14px 28px);
+  }
+
+  .game-card-icon {
+    @apply h-20 w-20 transition-transform duration-200;
+  }
+
+  .game-card:hover .game-card-icon {
+    scale: 1.12;
+    rotate: 6deg;
+  }
+
+  .game-card-number {
+    @apply absolute left-4 top-3 text-xs font-bold uppercase tracking-[0.2em];
+  }
+
+  .game-card-kind {
+    @apply absolute bottom-3 right-4 rounded-full bg-white/90 px-3 py-0.5 text-xs font-bold uppercase tracking-wide text-slate-800;
+  }
+
+  .game-best {
+    @apply text-sm font-semibold text-slate-600;
+  }
+
+  .game-best-set {
+    @apply rounded-full bg-gold-200 px-3 py-1 text-brown-900;
+  }
+
+  /* A chunky button that sinks when pressed. */
+  .play-button {
+    @apply inline-flex cursor-pointer items-center gap-2 rounded-xl px-6 py-2.5 text-lg font-bold uppercase tracking-wide transition;
+    background-color: var(--game);
+    color: var(--game-ink);
+    box-shadow: 0 5px 0 color-mix(in srgb, var(--game) 65%, black);
+  }
+
+  .play-button:hover {
+    translate: 0 -1px;
+    box-shadow: 0 6px 0 color-mix(in srgb, var(--game) 65%, black);
+  }
+
+  .play-button:active {
+    translate: 0 4px;
+    box-shadow: 0 1px 0 color-mix(in srgb, var(--game) 65%, black);
   }
 
   .quiz-choice {

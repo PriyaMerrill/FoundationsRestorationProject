@@ -22,6 +22,20 @@ class TriviaTest < ActionDispatch::IntegrationTest
     assert_select "h3", text: "Who Am I?"
   end
 
+  test "the trivia page presents each game as a card with its own colour, kind and play button" do
+    get trivia_path
+
+    assert_select "article.game-card", count: 5
+    assert_select "article.game-card.game-blue h3", text: "Guess the Location"
+    assert_select "article.game-card.game-blue .game-card-kind", text: "Places"
+    assert_select "article.game-card.game-blue .game-card-number", text: "Game 2"
+    assert_select "button.play-button[aria-label='Play Chronology Challenge']", text: /Play/
+    assert_select "[data-scores-target=best][data-mode=who_am_i]", text: "Not played yet"
+    assert_select "[data-scores-target=summary]"
+    assert_select "label.level-option", count: 3
+    assert_select "body", text: /Harder games give you/, count: 0
+  end
+
   test "the game page starts the quiz for the chosen mode and difficulty" do
     get trivia_play_path(mode: "guess_location", difficulty: "hard")
 

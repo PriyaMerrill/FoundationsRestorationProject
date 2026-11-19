@@ -3,7 +3,7 @@ require "application_system_test_case"
 class TriviaRoundTest < ApplicationSystemTestCase
   test "a visitor plays a whole round of general trivia" do
     visit trivia_path
-    choose "Easy"
+    find("label.level-option", text: "Easy").click
     click_on "Play General Restoration Trivia"
 
     assert_text "Question 1 of 5"
@@ -26,8 +26,9 @@ class TriviaRoundTest < ApplicationSystemTestCase
 
     # The best score shows on the trivia page afterwards.
     click_on "Choose another game"
-    choose "Easy"
+    find("label.level-option", text: "Easy").click
     assert_text(/Your best: \d of 5/)
+    assert_text "1 of 5 games played at this level"
   end
 
   test "who am I reveals clues one at a time" do

@@ -6,12 +6,13 @@
 class TriviaGame
   include Rails.application.routes.url_helpers
 
+  # Each game has a kind (shown as a tag) and a look (its colour and icon on the trivia page).
   MODES = {
-    "general" => { title: "General Restoration Trivia", description: "Multiple-choice questions across the whole story." },
-    "guess_location" => { title: "Guess the Location", description: "Read about an event and name where it happened." },
-    "dc_challenge" => { title: "Doctrine and Covenants Challenge", description: "Match a revelation to its description." },
-    "who_am_i" => { title: "Who Am I?", description: "Name the person from as few clues as you can." },
-    "chronology" => { title: "Chronology Challenge", description: "Put events in the order they happened." }
+    "general" => { title: "General Restoration Trivia", description: "Multiple-choice questions across the whole story.", kind: "Multiple choice", look: "gold" },
+    "guess_location" => { title: "Guess the Location", description: "Read about an event and name where it happened.", kind: "Places", look: "blue" },
+    "dc_challenge" => { title: "Doctrine and Covenants Challenge", description: "Match a revelation to its description.", kind: "Scripture", look: "purple" },
+    "who_am_i" => { title: "Who Am I?", description: "Name the person from as few clues as you can.", kind: "People", look: "red" },
+    "chronology" => { title: "Chronology Challenge", description: "Put events in the order they happened.", kind: "Put in order", look: "green" }
   }.freeze
   DIFFICULTIES = TriviaQuestion::DIFFICULTIES
 

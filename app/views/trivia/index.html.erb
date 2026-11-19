@@ -1,38 +1,78 @@
 <% content_for :title, "Restoration Trivia" %>
 <% content_for :description, "Five trivia games on early Church history: general trivia, guess the location, the Doctrine and Covenants challenge, who am I, and chronology." %>
 
-<%= render "shared/page_header", eyebrow: "Test your knowledge", title: "Restoration Trivia",
-      lead: "Five games built from the same records as the timeline and map. Every answer links back to the history behind it." %>
+<%# Icons for the five games, drawn as simple line art. %>
+<% icons = {
+     "general" => "M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1 1-1 1.700V14 M12 17.500h.01 M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z",
+     "guess_location" => "M12 21s-7-6.2-7-11.500a7 7 0 0 1 14 0C19 14.800 12 21 12 21z M12 12a2.500 2.500 0 1 0 0-5 2.500 2.500 0 0 0 0 5z",
+     "dc_challenge" => "M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z M5 17a3 3 0 0 1 3-3h11 M9 8h6 M9 11h4",
+     "who_am_i" => "M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z M4 21a8 8 0 0 1 16 0",
+     "chronology" => "M7 3h10 M7 21h10 M8 3v3a4 4 0 0 0 1.600 3.200L12 11l2.400-1.800A4 4 0 0 0 16 6V3 M8 21v-3a4 4 0 0 1 1.600-3.200L12 13l2.400 1.800A4 4 0 0 1 16 18v3"
+   } %>
 
-<div class="page py-8" data-controller="scores">
-  <%= form_with url: trivia_play_path, method: :get do |form| %>
-    <fieldset>
-      <legend class="text-2xl font-bold font-serif text-forest-900">1. Choose a difficulty</legend>
-      <div class="mt-3 flex flex-wrap gap-3">
-        <% TriviaGame::DIFFICULTIES.each do |difficulty| %>
-          <label class="quiz-option">
-            <%= form.radio_button :difficulty, difficulty, checked: difficulty == "medium", class: "accent-forest-700", data: { scores_target: "difficulty", action: "scores#render" } %>
-            <span class="font-semibold"><%= difficulty.capitalize %></span>
-          </label>
-        <% end %>
-      </div>
-      <p class="mt-2 text-base text-slate-600">Harder games give you more answers to choose from, or more events to put in order.</p>
-    </fieldset>
+<%= form_with url: trivia_play_path, method: :get, data: { controller: "scores" } do |form| %>
+  <%# ---- The lobby: title and level ---- %>
+  <section class="game-lobby">
+    <div class="page py-10 sm:py-12">
+      <p class="eyebrow text-gold-300">Test your knowledge</p>
+      <h1 class="mt-2 text-4xl font-bold text-parchment-50 sm:text-5xl">Restoration Trivia</h1>
+      <p class="mt-3 max-w-2xl text-xl text-parchment-100">
+        Five games built from the same records as the timeline and map. Pick a level, pick a game, and play.
+      </p>
 
-    <h2 class="mt-10 text-2xl font-bold">2. Choose a game</h2>
-    <ul class="mt-4 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      <% TriviaGame::MODES.each do |mode, details| %>
-        <li class="flex">
-          <div class="card flex w-full flex-col">
-            <h3 class="text-2xl font-bold"><%= details[:title] %></h3>
-            <p class="mt-2 flex-1 text-base text-slate-700"><%= details[:description] %></p>
-            <p class="mt-3 text-sm font-semibold text-brown-700" data-scores-target="best" data-mode="<%= mode %>"></p>
-            <p class="mt-3">
-              <%= form.button "Play", name: :mode, value: mode, class: "btn btn-primary cursor-pointer", aria: { label: "Play #{details[:title]}" } %>
-            </p>
+      <div class="mt-8 flex flex-wrap items-end justify-between gap-6">
+        <fieldset>
+          <legend class="text-sm font-bold uppercase tracking-widest text-gold-300">Level</legend>
+          <div class="mt-2 flex flex-wrap gap-2">
+            <% TriviaGame::DIFFICULTIES.each_with_index do |difficulty, index| %>
+              <label class="level-option">
+                <%= form.radio_button :difficulty, difficulty, checked: difficulty == "medium", class: "sr-only", data: { scores_target: "difficulty", action: "scores#render" } %>
+                <span class="text-lg font-bold"><%= difficulty.capitalize %></span>
+                <span class="tracking-widest" aria-hidden="true"><%= "★" * (index + 1) %><span class="opacity-30"><%= "★" * (2 - index) %></span></span>
+              </label>
+            <% end %>
           </div>
+        </fieldset>
+
+        <p class="scoreboard" role="status">
+          <span class="text-sm font-bold uppercase tracking-widest text-gold-300">Scoreboard</span>
+          <span class="font-serif text-2xl font-bold text-parchment-50" data-scores-target="summary">Play a game to get on the board</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <%# ---- The games ---- %>
+  <section class="page py-10" aria-labelledby="games-heading">
+    <h2 id="games-heading" class="sr-only">Choose a game</h2>
+
+    <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-6">
+      <% TriviaGame::MODES.each_with_index do |(mode, details), index| %>
+        <%# Two large cards on the first row, three on the second. %>
+        <li class="flex <%= index < 2 ? "lg:col-span-3" : "lg:col-span-2" %>">
+          <article class="game-card game-<%= details[:look] %>">
+            <div class="game-card-top">
+              <span class="game-card-number">Game <%= index + 1 %></span>
+              <svg class="game-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <%= tag.path d: icons.fetch(mode) %>
+              </svg>
+              <span class="game-card-kind"><%= details[:kind] %></span>
+            </div>
+
+            <div class="flex flex-1 flex-col p-5">
+              <h3 class="text-2xl font-bold"><%= details[:title] %></h3>
+              <p class="mt-2 flex-1 text-base text-slate-700"><%= details[:description] %></p>
+
+              <div class="mt-5 flex flex-wrap items-center justify-between gap-3">
+                <p class="game-best" data-scores-target="best" data-mode="<%= mode %>">Not played yet</p>
+                <%= form.button name: :mode, value: mode, class: "play-button", aria: { label: "Play #{details[:title]}" } do %>
+                  Play <span aria-hidden="true">&#9654;</span>
+                <% end %>
+              </div>
+            </div>
+          </article>
         </li>
       <% end %>
     </ul>
-  <% end %>
-</div>
+  </section>
+<% end %>

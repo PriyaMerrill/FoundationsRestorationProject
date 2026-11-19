@@ -65,7 +65,7 @@ module HistorySeeds
   end
 
   def load_revelations
-    sync(Revelation, "revelations", "place" => Place) do |revelation, row|
+    sync(Revelation, "revelations", { "place" => Place }) do |revelation, row|
       revelation.people = lookup_all(Person, row["people"])
       cite(revelation, row["sources"])
     end
@@ -100,7 +100,8 @@ module HistorySeeds
   end
 
   def load_events
-    sync(Event, "events", "place" => Place) do |event, row|
+    # The longer write-up of each event is kept in its own file, by slug.
+    sync(Event, "events", { "place" => Place }, extra: read("event_details")) do |event, row|
       event.revelations = lookup_all(Revelation, row["revelations"])
 
       # People may be listed as "slug" or as "slug: role".
@@ -150,8 +151,8 @@ module HistorySeeds
   # Creates or updates one record per row, matched by slug, then removes
   # records that are no longer in the file. `references` maps a row key to
   # the model it points at (for example "place" => Place).
-  def sync(model, name, references = {})
-    rows = read(name)
+  def sync(model, name, references = {}, extra: {})
+    rows = read(name).map { |row| row.merge(extra.fetch(row.fetch("slug"), {})) }
 
     rows.each do |row|
       attributes = row.except("sources", "people", "revelations")

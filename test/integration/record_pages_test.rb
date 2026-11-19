@@ -24,6 +24,33 @@ class RecordPagesTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", "https://www.josephsmithpapers.org"
   end
 
+  test "an event page tells the full story and links to the events around it" do
+    @event.update!(background: "The temple took three years to build.",
+      account: "People gathered early.\n\nThe prayer was read.", significance: "It was the first temple.", context: "Short context.")
+    earlier = create_event(title: "Earlier event", start_date: Date.new(1835, 2, 14))
+    later = create_event(title: "Later event", start_date: Date.new(1836, 4, 3))
+
+    get event_path(@event)
+
+    assert_select "h2", text: "What led to it"
+    assert_select "h2", text: "What happened"
+    assert_select "p", text: "People gathered early."
+    assert_select "p", text: "The prayer was read."
+    assert_select "h2", text: "Why it matters"
+    assert_select "h2", text: "Historical context", count: 0
+    assert_select "nav[aria-label='Earlier and later events']" do
+      assert_select "a[href=?]", event_path(earlier), text: /Before this/
+      assert_select "a[href=?]", event_path(later), text: /After this/
+    end
+  end
+
+  test "an event without a write-up falls back to its context" do
+    @event.update!(context: "Short context.")
+    get event_path(@event)
+    assert_select "h2", text: "Historical context"
+    assert_select "h2", text: "What happened", count: 0
+  end
+
   test "place, person and revelation pages load and link back to the event" do
     [ place_path(@place), person_path(@person), revelation_path(@revelation) ].each do |path|
       get path

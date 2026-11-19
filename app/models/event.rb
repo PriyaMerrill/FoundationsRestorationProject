@@ -6,7 +6,7 @@ class Event < ApplicationRecord
 
   include Searchable
 
-  searchable against: { title: "A", summary: "B", context: "C" },
+  searchable against: { title: "A", summary: "B", context: "C", background: "D", account: "D", significance: "D" },
     associated: { place: :name, people: :name, revelations: :title }
 
   CATEGORIES = %w[revelations leadership temples migration missionary_work persecution scripture_translation].freeze
@@ -34,6 +34,20 @@ class Event < ApplicationRecord
 
   # The timeline's search: the events that match, without changing their order.
   scope :search, ->(query) { query.to_s.strip.blank? ? all : where(id: matching(query).reorder(nil).pluck(:id)) }
+
+  # The account of what happened, one string per paragraph.
+  def account_paragraphs
+    account.to_s.split(/\n\s*\n/).map(&:squish).compact_blank
+  end
+
+  # The events just before and after this one on the timeline.
+  def previous_event
+    Event.chronological.where("(start_date, id) < (?, ?)", start_date, id).last
+  end
+
+  def next_event
+    Event.chronological.where("(start_date, id) > (?, ?)", start_date, id).first
+  end
 
   scope :chronological, -> { order(:start_date, :id) }
 end

@@ -119,6 +119,11 @@
 
   .badge-forest { @apply bg-forest-100 text-forest-800; }
   .badge-gold { @apply bg-gold-200 text-brown-800; }
+  /* The "before this / after this" links at the foot of an event page. */
+  .story-step {
+    @apply block rounded-lg border border-parchment-300 bg-white p-4 text-forest-800 no-underline transition hover:border-gold-500 hover:shadow-md;
+  }
+
   .badge-brown { @apply bg-parchment-200 text-brown-800; }
   .badge-slate { @apply bg-slate-100 text-slate-700; }
 

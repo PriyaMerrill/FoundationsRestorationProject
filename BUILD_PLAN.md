@@ -217,6 +217,7 @@ Content and functionality get reviewed together, once the site is built. Until t
 
 **Content**
 - [ ] Check every event: date, date precision, place, people, summary and context
+- [ ] Check the full write-up of every event in `db/seeds/event_details.yml` (what led to it, what happened, why it matters): names, numbers, dates and quotations. Written from memory, not yet checked against the sources
 - [ ] Check every revelation against its section heading: date, place and people
 - [ ] Spot-check the verse text on a few revelation pages against the official edition (1,053 verses were downloaded from the Open Scripture API)
 - [ ] Spot-check the year and place of Doctrine and Covenants sections in `db/data/doctrine_and_covenants.yml` (read from the section headings; five were set by hand and are listed in the file)

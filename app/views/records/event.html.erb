@@ -8,9 +8,26 @@
 <article class="page-narrow py-10">
   <p class="text-xl"><%= @record.summary %></p>
 
-  <% if @record.context.present? %>
+  <% if @record.background.present? %>
+    <h2 class="mt-8 text-2xl font-bold">What led to it</h2>
+    <p class="mt-3"><%= @record.background %></p>
+  <% end %>
+
+  <% if @record.account_paragraphs.any? %>
+    <h2 class="mt-8 text-2xl font-bold">What happened</h2>
+    <% @record.account_paragraphs.each do |paragraph| %>
+      <p class="mt-3"><%= paragraph %></p>
+    <% end %>
+  <% elsif @record.context.present? %>
     <h2 class="mt-8 text-2xl font-bold">Historical context</h2>
     <p class="mt-3"><%= @record.context %></p>
+  <% end %>
+
+  <% if @record.significance.present? %>
+    <section class="mt-8 rounded-lg border-l-4 border-gold-500 bg-parchment-100 p-5">
+      <h2 class="text-2xl font-bold">Why it matters</h2>
+      <p class="mt-2"><%= @record.significance %></p>
+    </section>
   <% end %>
 
   <% if @record.event_participants.any? %>
@@ -27,4 +44,21 @@
   <%= render "shared/record_links", title: "Where it happened", records: [ @record.place ].compact %>
   <%= render "shared/record_links", title: "Related revelations", records: @record.revelations.order(:section_number) %>
   <%= render "shared/sources", record: @record %>
+
+  <nav class="mt-10 grid gap-3 border-t border-parchment-300 pt-6 sm:grid-cols-2" aria-label="Earlier and later events">
+    <% if (earlier = @record.previous_event) %>
+      <%= link_to event_path(earlier), class: "story-step" do %>
+        <span class="eyebrow">&larr; Before this</span>
+        <span class="mt-1 block font-bold"><%= earlier.title %></span>
+        <span class="block text-base text-brown-700"><%= earlier.display_date %></span>
+      <% end %>
+    <% end %>
+    <% if (later = @record.next_event) %>
+      <%= link_to event_path(later), class: "story-step sm:col-start-2 sm:text-right" do %>
+        <span class="eyebrow">After this &rarr;</span>
+        <span class="mt-1 block font-bold"><%= later.title %></span>
+        <span class="block text-base text-brown-700"><%= later.display_date %></span>
+      <% end %>
+    <% end %>
+  </nav>
 </article>

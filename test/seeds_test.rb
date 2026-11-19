@@ -107,6 +107,11 @@ class SeedsTest < ActiveSupport::TestCase
     assert_equal %w[kanesville winter-quarters salt-lake-city], Place.where(trail_order: 13..15).order(:trail_order).pluck(:slug)
   end
 
+  test "every event has a full write-up" do
+    missing = Event.all.reject { |event| event.background.present? && event.account_paragraphs.size >= 2 && event.significance.present? }
+    assert_empty missing.map(&:slug), "events without background, account and significance"
+  end
+
   test "every person, place and revelation has facts at a glance" do
     [ Person, Place, Revelation ].each do |model|
       assert_empty model.all.select { |record| record.fact_list.empty? }.map(&:slug), "#{model.name} records without facts"

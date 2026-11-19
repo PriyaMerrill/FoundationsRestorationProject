@@ -9,7 +9,7 @@ class VisitorJourneyTest < ApplicationSystemTestCase
 
     # Timeline: choose Liberty Jail and read it in the panel.
     assert_selector "h1", text: "Interactive Timeline"
-    click_on "Imprisonment in Liberty Jail"
+    click_link "Imprisonment in Liberty Jail" # the card; its dot on the line is a button with a similar name
 
     within "aside[role=dialog]" do
       assert_selector "h2", text: "Imprisonment in Liberty Jail"
@@ -100,5 +100,16 @@ class VisitorJourneyTest < ApplicationSystemTestCase
     assert_text "results for"
     assert_selector "section#events a.card", text: "Imprisonment in Liberty Jail"
     assert_selector "section#revelations a.card", minimum: 3
+  end
+
+  test "choosing a dot on the timeline brings its event to the front" do
+    visit timeline_path
+    track = find("#period-ohio ol")
+    dot = track.all("button.timeline-dot")[6]
+
+    dot.click
+
+    assert_selector "#period-ohio button.timeline-dot[aria-current=true]", count: 1
+    assert_operator track.evaluate_script("this.scrollLeft"), :>, 0
   end
 end

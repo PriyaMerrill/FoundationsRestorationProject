@@ -147,6 +147,25 @@ class RecordPagesTest < ActionDispatch::IntegrationTest
     assert_select "dl dd", text: "3"
   end
 
+  test "person, place and revelation pages show their longer story" do
+    story = [ { "heading" => "Early life", "body" => "Born in Vermont.\n\nMoved to New York." } ]
+
+    { @person => person_path(@person), @place => place_path(@place), @revelation => revelation_path(@revelation) }.each do |record, path|
+      record.update!(story: story)
+      get path
+      assert_select "h2", text: "Early life"
+      assert_select "p", text: "Born in Vermont."
+      assert_select "p", text: "Moved to New York."
+    end
+  end
+
+  test "a revelation with a story does not repeat its short context" do
+    @revelation.update!(context: "Short context.", story: [ { "heading" => "Background", "body" => "The longer background." } ])
+    get revelation_path(@revelation)
+    assert_select "h2", text: "Historical context", count: 0
+    assert_select "h2", text: "Background"
+  end
+
   test "a record without facts has no at-a-glance box" do
     get person_path(@person)
     assert_select "#facts-heading", count: 0

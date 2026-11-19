@@ -112,6 +112,12 @@ class SeedsTest < ActiveSupport::TestCase
     assert_empty missing.map(&:slug), "events without background, account and significance"
   end
 
+  test "every person, place and revelation has a longer story in three parts" do
+    [ Person, Place, Revelation ].each do |model|
+      assert_empty model.all.reject { |record| record.story_sections.size == 3 }.map(&:slug), "#{model.name} records without a three-part story"
+    end
+  end
+
   test "every person, place and revelation has facts at a glance" do
     [ Person, Place, Revelation ].each do |model|
       assert_empty model.all.select { |record| record.fact_list.empty? }.map(&:slug), "#{model.name} records without facts"

@@ -30,7 +30,8 @@ class ExploreTest < ActionDispatch::IntegrationTest
 
   test "Emma Smith finds her and the events she took part in" do
     results = results_for("Emma Smith")
-    assert_equal [ "Emma Smith" ], results.fetch("People")
+    # Other people follow when their longer stories mention her.
+    assert_equal "Emma Smith", results.fetch("People").first
     assert_includes results.fetch("Events"), "The Relief Society is organized"
   end
 

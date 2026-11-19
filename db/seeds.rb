@@ -21,6 +21,7 @@ module HistorySeeds
       load_revelations
       load_verses
       load_facts
+      load_stories
       load_events
       load_membership
       load_trivia
@@ -99,6 +100,20 @@ module HistorySeeds
     end
   end
 
+  # The longer write-ups of people, places and revelations, from db/seeds/stories.yml.
+  # Each is a list of headings with their text, in the order they are shown.
+  def load_stories
+    stories = read("stories")
+
+    { "people" => Person, "places" => Place, "revelations" => Revelation }.each do |key, model|
+      wanted = stories.fetch(key, {})
+      model.find_each do |record|
+        sections = wanted.fetch(record.slug, {}).map { |heading, body| { "heading" => heading, "body" => body } }
+        record.update!(story: sections) unless record.story == sections
+      end
+    end
+  end
+
   def load_events
     # The longer write-up of each event is kept in its own file, by slug.
     sync(Event, "events", { "place" => Place }, extra: read("event_details")) do |event, row|
@@ -171,7 +186,7 @@ module HistorySeeds
   # Every content column set back to its default, so deleting a line from
   # a YAML file clears that value in the database.
   def blank_attributes(model, reference_keys)
-    skip = %w[id slug created_at updated_at facts] + reference_keys.map { |key| "#{key}_id" } # facts are loaded separately
+    skip = %w[id slug created_at updated_at facts story] + reference_keys.map { |key| "#{key}_id" } # facts and stories are loaded separately
     defaults = model.column_defaults.except(*skip)
     reference_keys.each { |key| defaults[key] = nil }
     defaults

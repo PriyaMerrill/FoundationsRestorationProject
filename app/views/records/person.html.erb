@@ -25,6 +25,7 @@
   </div>
 
   <div class="clear-both">
+    <%= render "records/story", sections: @record.story_sections %>
     <%= render "shared/record_links", title: "Events", records: @record.events.chronological %>
     <%= render "shared/record_links", title: "Revelations", records: @record.revelations.order(:section_number) %>
     <%= render "shared/record_links", title: "Places", records: @record.places.order(:name) %>

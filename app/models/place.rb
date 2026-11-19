@@ -1,8 +1,8 @@
 class Place < ApplicationRecord
   include Sluggable, Citable, Illustrated
-  include Searchable, WithFacts
+  include Searchable, WithFacts, WithStory
 
-  searchable against: { name: "A", modern_name: "B", state: "B", summary: "B", significance: "C" }
+  searchable against: { name: "A", modern_name: "B", state: "B", summary: "B", significance: "C", story: "D" }
 
   # A place can be more than one kind (Kirtland is a temple site and a revelation site).
   KINDS = %w[temple revelation_site settlement landmark].freeze

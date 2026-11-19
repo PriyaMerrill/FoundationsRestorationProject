@@ -16,6 +16,8 @@
     <p class="mt-3"><%= @record.significance %></p>
   <% end %>
 
+  <%= render "records/story", sections: @record.story_sections %>
+
   <%= render "shared/record_links", title: "Events here", records: @record.events.chronological %>
   <%= render "shared/record_links", title: "Revelations received here", records: @record.revelations.order(:section_number) %>
   <%= render "shared/record_links", title: "People connected to this place", records: @record.people.order(:name) %>

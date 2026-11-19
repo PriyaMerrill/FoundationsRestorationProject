@@ -3,7 +3,7 @@ import { visitedPlaces, toggleVisited } from "visited_places"
 
 // The "Mark as explored" button in a place panel.
 export default class extends Controller {
-  static targets = ["label"]
+  static targets = ["label", "hint", "tick"]
   static values = { slug: String }
 
   connect() {
@@ -18,6 +18,8 @@ export default class extends Controller {
   render() {
     const visited = visitedPlaces().includes(this.slugValue)
     this.element.setAttribute("aria-pressed", visited)
-    this.labelTarget.textContent = visited ? "Explored ✓" : "Mark as explored"
+    this.labelTarget.textContent = visited ? "Explored" : "Mark as explored"
+    this.hintTarget.textContent = visited ? "Select to remove the stamp" : "Stamp this place on your road trip"
+    this.tickTarget.style.visibility = visited ? "visible" : "hidden"
   }
 }

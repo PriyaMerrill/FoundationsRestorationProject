@@ -49,7 +49,7 @@ class RoadTripTest < ActionDispatch::IntegrationTest
     assert_select "button[data-map-target=filter]", count: 5
     assert_select "button[data-kind=temple]", text: "Temples"
     assert_select "button[data-kind=revelation_site]", text: "Revelation sites"
-    assert_select "button[data-map-target=routeButton][data-action='map#toggleTrip']", text: "Start the road trip"
+    assert_select "button[data-map-target=routeButton][data-action='map#startTrip']", text: "Start the road trip"
   end
 
   test "a deep link opens the place in the panel and selects it on the map" do
@@ -77,7 +77,7 @@ class RoadTripTest < ActionDispatch::IntegrationTest
       assert_select "a[href=?]", timeline_path(event: @dedication.slug)
       assert_select "a[href=?]", revelation_path(@section), text: /D&C 110/
       assert_select "a[href=?]", person_path(@joseph)
-      assert_select "button[data-controller=visited][data-visited-slug-value=kirtland]"
+      assert_select "button.explore-button[data-controller=visited][data-visited-slug-value=kirtland]", text: /Mark as explored/
     end
   end
 
@@ -92,8 +92,9 @@ class RoadTripTest < ActionDispatch::IntegrationTest
     assert_select "section[data-map-target=trip][hidden]" do
       assert_select "button[data-action='map#previousStop']", text: /Back/
       assert_select "button[data-action='map#nextStop']"
-      assert_select "button[data-action='map#toggleStopExplored']"
+      assert_select "button", text: /explored/i, count: 0 # marking a place explored happens in its panel only
       assert_select "button[data-action='map#readAboutStop']", text: "Read about this place"
+      assert_select "button.trip-button-small[data-action='map#endTrip']", text: "Finish the trip"
       assert_select "p", text: /2 stops · about \d+ miles in straight lines/
     end
     assert_select "body", text: /Driving distances/, count: 0

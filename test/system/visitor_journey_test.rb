@@ -126,7 +126,17 @@ class VisitorJourneyTest < ApplicationSystemTestCase
       assert_text "Not explored yet"
       assert_button "Back", disabled: true
 
+      assert_no_button "Mark as explored" # that button lives in the place's panel
+      click_on "Read about this place"
+    end
+
+    within "aside[role=dialog]" do
       click_on "Mark as explored"
+      assert_selector "button[aria-pressed=true]", text: "Explored"
+      click_on "Close"
+    end
+
+    within "section[aria-label='Road trip']" do
       assert_text "✓ Explored"
 
       click_on "Next stop: Harmony"
@@ -141,7 +151,9 @@ class VisitorJourneyTest < ApplicationSystemTestCase
     assert_selector "li[data-slug=harmony].is-active"
     assert_selector ".leaflet-overlay-pane path"
 
-    click_on "End the road trip"
+    # "Finish the trip" is there at every stop, not only the last.
+    assert_no_button "Start the road trip"
+    click_on "Finish the trip"
     assert_no_selector "section[aria-label='Road trip']"
     assert_button "Start the road trip"
   end

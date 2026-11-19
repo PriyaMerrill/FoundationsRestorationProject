@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 import L from "leaflet"
-import { visitedPlaces, toggleVisited } from "visited_places"
+import { visitedPlaces } from "visited_places"
 
 // The Road Trip map. Draws a marker for each place, opens a place in the
 // slide-over panel when its marker is chosen, filters by kind of place,
@@ -8,7 +8,7 @@ import { visitedPlaces, toggleVisited } from "visited_places"
 export default class extends Controller {
   static targets = [
     "canvas", "filter", "item", "list", "routeButton", "progress", "empty",
-    "trip", "tripNumber", "tripCount", "tripName", "tripFacts", "tripLeg", "tripStatus", "tripPrevious", "tripNext", "tripExplore"
+    "trip", "tripNumber", "tripCount", "tripName", "tripFacts", "tripLeg", "tripStatus", "tripPrevious", "tripNext"
   ]
   static values = { places: Array, selected: String }
 
@@ -92,18 +92,13 @@ export default class extends Controller {
 
   // --- the road trip: travel the route one stop at a time ---
 
-  toggleTrip() {
-    this.touring ? this.endTrip() : this.startTrip()
-  }
-
   startTrip() {
     this.touring = true
     this.kind = ""
     this.filterTargets.forEach((button) => button.setAttribute("aria-pressed", button.dataset.kind === ""))
 
     this.route.addTo(this.map)
-    this.routeButtonTarget.setAttribute("aria-pressed", "true")
-    this.routeButtonTarget.textContent = "End the road trip"
+    this.routeButtonTarget.hidden = true // the trip bar has its own "Finish the trip" button
     this.tripTarget.hidden = false
 
     this.goToStop(0)
@@ -113,8 +108,7 @@ export default class extends Controller {
   endTrip() {
     this.touring = false
     this.route.remove()
-    this.routeButtonTarget.setAttribute("aria-pressed", "false")
-    this.routeButtonTarget.textContent = "Start the road trip"
+    this.routeButtonTarget.hidden = false
     this.tripTarget.hidden = true
 
     this.selectedValue = ""
@@ -123,7 +117,7 @@ export default class extends Controller {
   }
 
   nextStop() {
-    this.stopIndex < this.stops.length - 1 ? this.goToStop(this.stopIndex + 1) : this.endTrip()
+    if (this.stopIndex < this.stops.length - 1) this.goToStop(this.stopIndex + 1)
   }
 
   previousStop() {
@@ -139,10 +133,6 @@ export default class extends Controller {
     const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches
     this.map.flyTo([stop.lat, stop.lng], 8, { animate: !still, duration: 1.4 })
     this.refresh()
-  }
-
-  toggleStopExplored() {
-    toggleVisited(this.stops[this.stopIndex].slug) // announces visited:change, which redraws everything
   }
 
   readAboutStop() {
@@ -164,10 +154,10 @@ export default class extends Controller {
 
     this.tripStatusTarget.textContent = explored ? "✓ Explored" : "Not explored yet"
     this.tripStatusTarget.classList.toggle("trip-status-explored", explored)
-    this.tripExploreTarget.textContent = explored ? "Mark as not explored" : "Mark as explored"
 
     this.tripPreviousTarget.disabled = this.stopIndex === 0
-    this.tripNextTarget.textContent = last ? "Finish the trip" : `Next stop: ${this.stops[this.stopIndex + 1].name} →`
+    this.tripNextTarget.hidden = last
+    if (!last) this.tripNextTarget.textContent = `Next stop: ${this.stops[this.stopIndex + 1].name} →`
   }
 
   // --- explored places ---

@@ -12,12 +12,17 @@
       <% end %>
     </p>
 
-    <p class="mt-4">
-      <button type="button" class="map-filter" aria-pressed="false"
-              data-controller="visited" data-visited-slug-value="<%= @record.slug %>" data-action="visited#toggle">
-        <span data-visited-target="label">Mark as explored</span>
-      </button>
-    </p>
+    <%# Marking a place explored: the one place this can be done, so the button is hard to miss. %>
+    <button type="button" class="explore-button mt-5" aria-pressed="false"
+            data-controller="visited" data-visited-slug-value="<%= @record.slug %>" data-action="visited#toggle">
+      <svg class="h-6 w-6 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" /><path d="M8 12.500l3 3 5-6" data-visited-target="tick" />
+      </svg>
+      <span>
+        <span class="block text-lg font-bold leading-tight" data-visited-target="label">Mark as explored</span>
+        <span class="block text-sm font-normal" data-visited-target="hint">Stamp this place on your road trip</span>
+      </span>
+    </button>
 
     <%= render "shared/then_and_now", record: @record %>
 

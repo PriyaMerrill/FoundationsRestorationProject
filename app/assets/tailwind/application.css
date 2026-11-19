@@ -171,8 +171,12 @@
 
   /* The rubber stamp on an explored place. */
   .trip-stamp {
-    @apply absolute bottom-2 right-2 rounded border-2 border-gold-600 px-1.5 py-0.5 text-[0.625rem] font-bold uppercase tracking-[0.15em] text-gold-700;
-    rotate: 8deg;
+    @apply mt-2 w-fit rounded border-2 border-gold-600 px-1.5 py-0.5 text-[0.625rem] font-bold uppercase tracking-[0.15em] text-gold-700;
+    rotate: -4deg;
+  }
+
+  .trip-stamp:not([hidden]) {
+    display: block;
   }
 
   .is-visited .trip-ticket-stub {
@@ -181,6 +185,16 @@
 
   .is-active .trip-ticket {
     @apply border-gold-500 ring-2 ring-gold-400;
+  }
+
+  /* The button in a place's panel that marks it explored. Big and gold
+     until it is pressed, then green with a tick. */
+  .explore-button {
+    @apply flex w-full cursor-pointer items-center gap-3 rounded-lg border-2 border-gold-600 bg-gold-400 px-5 py-3 text-left text-forest-900 shadow-md transition hover:bg-gold-300;
+  }
+
+  .explore-button[aria-pressed="true"] {
+    @apply border-forest-800 bg-forest-700 text-parchment-50 hover:bg-forest-800;
   }
 
   /* The panel that describes the current stop during a trip. */
@@ -202,6 +216,10 @@
 
   .trip-button {
     @apply inline-flex cursor-pointer items-center gap-2 rounded-md border border-parchment-300/60 px-4 py-2 text-base font-semibold text-parchment-50 transition-colors hover:bg-forest-700 disabled:cursor-default disabled:opacity-40 disabled:hover:bg-transparent;
+  }
+
+  .trip-button-small {
+    @apply px-3 py-1 text-sm;
   }
 
   .trip-button-main {

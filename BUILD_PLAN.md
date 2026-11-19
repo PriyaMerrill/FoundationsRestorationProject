@@ -171,6 +171,7 @@ Every page reads from these tables.
 - [x] Clicking a bar or point opens the matching records (Chart.js `onClick` in a Stimulus controller)
 - [x] Under every chart: source notes, definitions, and a caveat for approximate figures
 - [ ] Stretch: relationship network diagram of people, events and places using D3
+- [x] Reworked in review: charts now count only complete data (membership, and all 138 Doctrine and Covenants sections). The charts that counted this site's selection of events and revelations, the period comparison, and the period, category and place filters were removed.
 
 ## Phase 10: Restoration Trivia
 
@@ -218,6 +219,7 @@ Content and functionality get reviewed together, once the site is built. Until t
 - [ ] Check every event: date, date precision, place, people, summary and context
 - [ ] Check every revelation against its section heading: date, place and people
 - [ ] Spot-check the verse text on a few revelation pages against the official edition (1,053 verses were downloaded from the Open Scripture API)
+- [ ] Spot-check the year and place of Doctrine and Covenants sections in `db/data/doctrine_and_covenants.yml` (read from the section headings; five were set by hand and are listed in the file)
 - [ ] Check every person: birth and death dates, roles, biography and clues
 - [ ] Check every place: years, summary, and coordinates on a real map (least reliable)
 - [ ] Check every membership figure against the Church Almanac (least reliable)

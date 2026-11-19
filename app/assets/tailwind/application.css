@@ -153,6 +153,24 @@
     @apply ring-4 ring-gold-400;
   }
 
+  /* ---- By the Numbers ---- */
+
+  /* A chart's card, with a stripe of its own colour across the top. */
+  .chart-card {
+    border-top: 5px solid var(--accent, var(--color-forest-600));
+  }
+
+  /* A headline figure. */
+  .stat-tile {
+    @apply rounded-lg border-l-4 px-4 py-4 shadow-sm;
+  }
+
+  .stat-forest { @apply border-forest-600 bg-forest-50 text-forest-900; }
+  .stat-gold { @apply border-gold-500 bg-gold-200/50 text-brown-900; }
+  .stat-brown { @apply border-brown-600 bg-parchment-200 text-brown-900; }
+  .stat-blue { border-color: #2f6fa8; background: #e8f0f8; color: #1d3f5f; }
+  .stat-purple { border-color: #7558b0; background: #efebf7; color: #3d2a66; }
+
   /* ---- Road trip ---- */
 
   /* A place in the list, drawn as a travel ticket. */

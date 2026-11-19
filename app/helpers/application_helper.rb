@@ -94,9 +94,18 @@ module ApplicationHelper
   # Turns report points into JSON for the chart controller.
   def chart_points_json(points)
     points.map do |point|
-      { label: point.label, value: point.value, detail: point.detail,
-        records: point.records.map { |record| { label: record_label(record), type: record_type_label(record), url: polymorphic_path(record) } } }
+      { label: point.label, value: point.value, detail: point.detail, color: point.color,
+        records: point.records.map { |record| chart_record(record) } }
     end.to_json
+  end
+
+  # A record behind a chart figure: one of the site's own records, or a ready-made link.
+  def chart_record(record)
+    if record.is_a?(NumbersReport::Link)
+      { label: record.label, type: record.type, url: record.url }
+    else
+      { label: record_label(record), type: record_type_label(record), url: polymorphic_path(record) }
+    end
   end
 
   # The line of facts shown under a record in search results.

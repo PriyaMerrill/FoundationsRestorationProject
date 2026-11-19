@@ -1,100 +1,96 @@
 <% content_for :title, "Restoration by the Numbers" %>
-<% content_for :description, "Charts of early Church history: membership growth, revelations by place and year, events over time, and the spread of the Church from 1830 to 1850." %>
+<% content_for :description, "Charts of early Church history: membership growth from 1830 to 1850, every section of the Doctrine and Covenants by year and place, and the spread of the Church." %>
 
 <%= render "shared/page_header", eyebrow: "Charts and maps", title: "Restoration by the Numbers",
-      lead: "See the patterns in the history. Every chart counts records in this site's database and links back to them." %>
+      lead: "See the patterns in the history. Every chart here counts something complete, so the shapes are real." %>
 
 <div class="page space-y-8 py-8">
-  <%# ---- Filters ---- %>
-  <%= form_with url: numbers_path, method: :get, class: "rounded-lg border border-parchment-300 bg-white p-4 sm:p-5" do |form| %>
-    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-      <% field = "mt-1 w-full rounded-md border border-slate-400 bg-white px-3 py-2 text-base" %>
-      <% label = "block text-sm font-semibold text-slate-700" %>
-      <div>
-        <%= form.label :from, "From year", class: label %>
-        <%= form.number_field :from, value: @report.from, min: NumbersReport::YEARS.first, max: NumbersReport::YEARS.last, placeholder: NumbersReport::YEARS.first, class: field %>
-      </div>
-      <div>
-        <%= form.label :to, "To year", class: label %>
-        <%= form.number_field :to, value: @report.to, min: NumbersReport::YEARS.first, max: NumbersReport::YEARS.last, placeholder: NumbersReport::YEARS.last, class: field %>
-      </div>
-      <div>
-        <%= form.label :period, "Period", class: label %>
-        <%= form.select :period, Event::PERIODS.map { |period| [ period_label(period), period ] }, { include_blank: "All periods", selected: @report.period }, class: field %>
-      </div>
-      <div>
-        <%= form.label :category, "Event category", class: label %>
-        <%= form.select :category, Event::CATEGORIES.map { |category| [ category_label(category), category ] }, { include_blank: "All categories", selected: @report.category }, class: field %>
-      </div>
-      <div>
-        <%= form.label :place, "Place", class: label %>
-        <%= form.select :place, @places.map { |place| [ place.name, place.slug ] }, { include_blank: "All places", selected: @report.place&.slug }, class: field %>
-      </div>
-    </div>
-    <p class="mt-4 flex flex-wrap items-center gap-3">
-      <%= form.submit "Apply filters", class: "btn btn-primary cursor-pointer" %>
-      <% if @report.filtered? %>
-        <%= link_to "Clear filters", numbers_path, class: "text-link" %>
+  <%# ---- Headline figures ---- %>
+  <% highlights = @report.highlights %>
+  <% if highlights.any? %>
+    <dl class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+      <% tones = %w[stat-forest stat-gold stat-brown stat-blue stat-purple] %>
+      <% highlights.each_with_index do |(figure, label), index| %>
+        <div class="stat-tile <%= tones[index % tones.size] %>">
+          <dd class="font-serif text-4xl font-bold leading-none"><%= figure %></dd>
+          <dt class="mt-2 text-sm font-semibold leading-snug"><%= label %></dt>
+        </div>
       <% end %>
-      <span class="text-sm text-slate-600">Period, category and place narrow the event and revelation charts. Membership uses the years only.</span>
-    </p>
+    </dl>
+  <% end %>
+
+  <%# ---- Years ---- %>
+  <%= form_with url: numbers_path, method: :get, class: "flex flex-wrap items-end gap-3 rounded-lg border border-parchment-300 bg-white p-4" do |form| %>
+    <% field = "mt-1 w-28 rounded-md border border-slate-400 bg-white px-3 py-2 text-base" %>
+    <% label = "block text-sm font-semibold text-slate-700" %>
+    <div>
+      <%= form.label :from, "From year", class: label %>
+      <%= form.number_field :from, value: @report.from, min: NumbersReport::YEARS.first, max: NumbersReport::YEARS.last, placeholder: NumbersReport::YEARS.first, class: field %>
+    </div>
+    <div>
+      <%= form.label :to, "To year", class: label %>
+      <%= form.number_field :to, value: @report.to, min: NumbersReport::YEARS.first, max: NumbersReport::YEARS.last, placeholder: NumbersReport::YEARS.last, class: field %>
+    </div>
+    <%= form.submit "Show these years", class: "btn btn-primary cursor-pointer" %>
+    <% if @report.filtered? %>
+      <%= link_to "Show all years", numbers_path, class: "text-link py-2" %>
+    <% end %>
   <% end %>
 
   <%# ---- Membership ---- %>
-  <%= render layout: "numbers/chart", locals: { title: "Church membership growth", type: "line", unit: "members", label_heading: "Year",
-        points: @report.membership_growth, description: "Estimated members of the Church at the end of each year." } do %>
-    <p><strong>Source:</strong> <%= @membership_source&.title || "Church Almanac" %>.</p>
-    <p><strong>Caveat:</strong> these are estimates. Early totals were compiled later from incomplete records, so treat each figure as approximate.</p>
-  <% end %>
-
   <div class="grid gap-8 lg:grid-cols-2">
-    <%# ---- Revelations by place ---- %>
-    <%= render layout: "numbers/chart", locals: { title: "Revelations by location", type: "hbar", unit: "revelations", label_heading: "Place",
-          points: @report.revelations_by_place, description: "Where the Doctrine and Covenants sections in this database were received." } do %>
-      <p><strong>Source:</strong> Doctrine and Covenants section headings.</p>
-      <p><strong>Caveat:</strong> this counts the <%= Revelation.count %> sections in this site's database, not all of the Doctrine and Covenants.</p>
+    <%= render layout: "numbers/chart", locals: { title: "Church membership growth", type: "line", unit: "members", label_heading: "Year",
+          points: @report.membership_growth, accent: "#1f7a4a", description: "Estimated members of the Church at the end of each year." } do %>
+      <p><strong>Source:</strong> <%= @membership_source&.title || "Church Almanac" %>.</p>
+      <p><strong>Caveat:</strong> these are estimates. Early totals were compiled later from incomplete records, so treat each figure as approximate.</p>
     <% end %>
 
-    <%# ---- Revelations by year ---- %>
-    <%= render layout: "numbers/chart", locals: { title: "Revelations over time", type: "bar", unit: "revelations", label_heading: "Year",
-          points: @report.revelations_by_year, description: "The year each section was received or recorded." } do %>
-      <p><strong>Definition:</strong> a section received over several days is counted once, in the year it began.</p>
-      <p><strong>Caveat:</strong> this counts the <%= Revelation.count %> sections in this site's database, not all of the Doctrine and Covenants.</p>
+    <%= render layout: "numbers/chart", locals: { title: "Members gained each year", type: "bar", unit: "members", label_heading: "Year",
+          points: @report.membership_change, accent: "#c08a1e", key: { "More members than the year before" => NumbersReport::GAIN, "Fewer" => NumbersReport::LOSS },
+          description: "The change in membership from the end of one year to the end of the next." } do %>
+      <p><strong>How it is worked out:</strong> each year’s estimate minus the estimate for the year before.</p>
+      <p><strong>Caveat:</strong> because both figures are estimates, small changes are less certain than large ones.</p>
     <% end %>
   </div>
 
-  <%# ---- Events by year ---- %>
-  <%= render layout: "numbers/chart", locals: { title: "Events over time", type: "bar", unit: "events", label_heading: "Year",
-        points: @report.events_by_year, description: "Events on the timeline, by the year they began." } do %>
-    <p><strong>Caveat:</strong> this counts the <%= Event.count %> events chosen for this site, so it shows which years the site covers most closely, not how much happened.</p>
+  <%# ---- The whole Doctrine and Covenants ---- %>
+  <% by_year = @report.sections_by_year %>
+  <%= render layout: "numbers/chart", locals: { title: "Doctrine and Covenants sections by year", type: "bar", unit: "sections", label_heading: "Year",
+        points: by_year[:points], series: by_year[:series], accent: "#7558b0",
+        description: "Every section, by the year it was received or recorded, coloured by the state where it was received." } do %>
+    <p><strong>What is counted:</strong> all <%= DoctrineAndCovenants.sections.size %> sections of the Doctrine and Covenants, not only the ones with a page on this site.</p>
+    <p><strong>Definition:</strong> a section received over several days, or given a range of dates, is counted once, in the first year its heading names.</p>
+    <% @report.sections_outside_range.each do |section| %>
+      <p><strong>Not shown:</strong> <%= section.reference %>, received in <%= section.year %> at <%= section.place %>, <%= section.state %>.</p>
+    <% end %>
+    <p><strong>Source:</strong> the section headings of the Doctrine and Covenants.</p>
   <% end %>
 
-  <%# ---- Period comparison: one small chart per measure, never two scales on one chart ---- %>
-  <section aria-labelledby="periods-heading">
-    <h2 id="periods-heading" class="text-3xl font-bold">Comparing the periods</h2>
-    <p class="mt-1 text-slate-700">The same five periods, measured four ways. Each chart has its own scale.</p>
-    <div class="mt-5 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
-      <% @report.period_comparison.each do |title, points| %>
-        <%= render layout: "numbers/chart", locals: { title: title, type: "bar", unit: (title.start_with?("Members") ? "members" : title.downcase), label_heading: "Period", points: points, compact: true } do %><% end %>
-      <% end %>
-    </div>
-    <p class="mt-3 text-sm text-slate-600">
-      <strong>Definitions:</strong> an event belongs to the period assigned to it on the timeline. A revelation belongs to the period of the place
-      where it was received. Membership is the estimate for the last year with an event in that period. The Ohio and Missouri periods overlap in time.
-    </p>
-  </section>
+  <%= render layout: "numbers/chart", locals: { title: "Doctrine and Covenants sections by place", type: "hbar", unit: "sections", label_heading: "Place",
+        points: @report.sections_by_place, accent: "#2f6fa8", key: @report.place_key,
+        description: "Where each section was received. Places with a single section share the last bar." } do %>
+    <p><strong>What is counted:</strong> all <%= DoctrineAndCovenants.sections.size %> sections, within the years chosen.</p>
+    <p><strong>Definition:</strong> sections headed “Zion” or “Independence, Jackson County” are counted together as Independence.</p>
+    <p><strong>Source:</strong> the section headings of the Doctrine and Covenants.</p>
+  <% end %>
 
   <%# ---- Expansion map ---- %>
-  <section class="card" aria-labelledby="expansion-heading"
+  <section class="card chart-card" style="--accent: #b4472e" aria-labelledby="expansion-heading"
            data-controller="expansion" data-expansion-places-value="<%= @report.expansion_places.map { |place| { name: place.name, lat: place.latitude.to_f, lng: place.longitude.to_f, start: place.start_year, end: place.end_year, url: place_path(place) } }.to_json %>">
     <h2 id="expansion-heading" class="text-2xl font-bold">Geographic expansion</h2>
     <p class="mt-1 text-base text-slate-700">Move the slider to see where the Saints were gathered in each year, and the places they had left behind.</p>
 
-    <div class="mt-4 flex flex-wrap items-center gap-4">
+    <div class="mt-4 flex flex-wrap items-center gap-3">
       <label for="expansion-year" class="text-base font-semibold">Year: <output class="font-serif text-2xl text-forest-800" data-expansion-target="year">1830</output></label>
       <input id="expansion-year" type="range" min="1830" max="1850" step="1" value="1830" class="min-w-0 flex-1 accent-forest-700"
              data-expansion-target="slider" data-action="input->expansion#show">
       <button type="button" class="map-filter" aria-pressed="false" data-expansion-target="playButton" data-action="expansion#togglePlay">Play</button>
+      <button type="button" class="map-filter" data-action="expansion#reset">
+        <svg class="mr-2 h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 12a9 9 0 1 0 3-6.700" /><path d="M3 4v5h5" />
+        </svg>
+        Reset
+      </button>
     </div>
 
     <div class="isolate mt-4 h-[24rem] overflow-hidden rounded-lg border border-parchment-300 bg-parchment-200" data-expansion-target="canvas"

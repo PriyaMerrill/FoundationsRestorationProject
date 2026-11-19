@@ -82,14 +82,22 @@ class VisitorJourneyTest < ApplicationSystemTestCase
     assert_selector "aside[role=dialog] button[aria-pressed=true]", text: "Explored"
   end
 
-  test "choosing a chart bar lists the records behind it" do
+  test "the charts draw, show their figures as tables, and the expansion map resets" do
     visit numbers_path
+    assert_selector "canvas", count: 4
 
-    within("section", text: "Revelations by location") do
+    within("section", text: "Doctrine and Covenants sections by place") do
       find("summary", text: "Show as a table").click
       assert_link "D&C 110"
+      assert_selector "td", text: "46"
     end
-    assert_selector "canvas", minimum: 8
+
+    within("section", text: "Geographic expansion") do
+      find("input[type=range]").set(1845)
+      assert_text "In 1845:"
+      click_on "Reset"
+      assert_text "In 1830:"
+    end
   end
 
   test "searching finds records of every type" do

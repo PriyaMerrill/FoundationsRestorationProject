@@ -27,9 +27,7 @@ export default class extends Controller {
       return { place, marker }
     })
 
-    if (this.placesValue.length) {
-      this.map.fitBounds(this.placesValue.map((place) => [place.lat, place.lng]), { padding: [30, 30] })
-    }
+    this.fit()
     this.show()
   }
 
@@ -57,6 +55,20 @@ export default class extends Controller {
 
     this.yearTarget.textContent = year
     this.statusTarget.textContent = `In ${year}: ${active} active ${active === 1 ? "place" : "places"}, ${past} left behind.`
+  }
+
+  // Back to the start: the first year, and the map showing every place.
+  reset() {
+    this.stop()
+    this.sliderTarget.value = this.sliderTarget.min
+    this.fit()
+    this.show()
+  }
+
+  fit() {
+    if (this.placesValue.length) {
+      this.map.fitBounds(this.placesValue.map((place) => [place.lat, place.lng]), { padding: [30, 30] })
+    }
   }
 
   togglePlay() {

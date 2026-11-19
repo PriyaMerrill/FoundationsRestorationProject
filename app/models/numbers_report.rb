@@ -1,53 +1,68 @@
 # Builds the figures behind the "Restoration by the Numbers" charts.
 #
-# Every chart is a list of data points. Each point has a label, a value,
-# a sentence of detail, and the records behind it, so a chart can always
-# lead back to the history it counts.
+# Every chart here counts something complete: the Church's yearly
+# membership estimates, or all 138 sections of the Doctrine and Covenants.
+# Nothing counts the events, places or revelations chosen for this site,
+# because a count of a selection says more about the selection than about
+# history.
 class NumbersReport
   YEARS = (1820..1850)
-  Point = Struct.new(:label, :value, :detail, :records, keyword_init: true)
+  Point = Struct.new(:label, :value, :detail, :records, :color, keyword_init: true)
+  Series = Struct.new(:name, :color, :values, keyword_init: true)
+  Link = Struct.new(:label, :type, :url, keyword_init: true)
 
-  attr_reader :from, :to, :period, :category, :place
+  # One colour per state, checked for contrast and colour-blind safety.
+  REGION_COLORS = {
+    "New York" => "#2f6fa8", "Pennsylvania" => "#c08a1e", "Ohio" => "#238a63",
+    "Missouri" => "#b4472e", "Illinois" => "#7558b0", DoctrineAndCovenants::ELSEWHERE => "#d0609a"
+  }.freeze
+  GAIN = "#1f7a4a".freeze
+  LOSS = "#b4472e".freeze
+
+  attr_reader :from, :to
 
   def initialize(params = {})
     @from = params[:from].to_i.clamp(YEARS.first, YEARS.last) if params[:from].present?
     @to = params[:to].to_i.clamp(YEARS.first, YEARS.last) if params[:to].present?
     @from, @to = @to, @from if @from && @to && @from > @to
-    @period = params[:period].presence_in(Event::PERIODS)
-    @category = params[:category].presence_in(Event::CATEGORIES)
-    @place = Place.find_by(slug: params[:place]) if params[:place].present?
   end
 
   def filtered?
-    [ from, to, period, category, place ].any?
+    from.present? || to.present?
   end
 
   def year_range
     (from || YEARS.first)..(to || YEARS.last)
   end
 
-  # --- the records being counted ---
-
-  def events
-    @events ||= begin
-      scope = Event.chronological.includes(:place)
-      scope = scope.where(period: period) if period
-      scope = scope.where(category: category) if category
-      scope = scope.where(place: place) if place
-      scope.select { |event| year_range.cover?(event.start_date.year) }
-    end
-  end
-
-  def revelations
-    @revelations ||= begin
-      scope = Revelation.chronological.includes(:place).where.not(received_on: nil)
-      scope = scope.where(place: place) if place
-      scope.select { |revelation| year_range.cover?(revelation.received_on.year) && (period.nil? || revelation.period == period) }
-    end
-  end
+  # --- what is being counted ---
 
   def membership
     @membership ||= MembershipEstimate.chronological.includes(:source).select { |estimate| year_range.cover?(estimate.year) }
+  end
+
+  def sections
+    @sections ||= DoctrineAndCovenants.sections.select { |section| year_range.cover?(section.year) }
+  end
+
+  # Sections received outside the years the charts cover (section 138, in 1918).
+  def sections_outside_range
+    DoctrineAndCovenants.sections.reject { |section| YEARS.cover?(section.year) }
+  end
+
+  # --- headline figures ---
+
+  def highlights
+    first, last = membership.first, membership.last
+    busiest = sections.group_by(&:year).max_by { |_, list| list.size }
+
+    [
+      (first && [ first.members.to_fs(:delimited), "members in #{first.year}" ]),
+      (last && last != first && [ last.members.to_fs(:delimited), "members in #{last.year}" ]),
+      (first && last && last != first && first.members.positive? && [ "#{(last.members.to_f / first.members).round}×", "growth in #{last.year - first.year} years" ]),
+      (sections.any? && [ sections.size.to_s, "Doctrine and Covenants #{"section".pluralize(sections.size)}, #{sections.map(&:year).minmax.uniq.join("–")}" ]),
+      (busiest && [ busiest.first.to_s, "the busiest year: #{busiest.last.size} sections" ])
+    ].select(&:itself) # drops the figures that could not be worked out
   end
 
   # --- the charts ---
@@ -60,36 +75,63 @@ class NumbersReport
     end
   end
 
-  def revelations_by_place
-    revelations.group_by(&:place).reject { |place, _| place.nil? }.sort_by { |place, list| [ -list.size, place.name ] }.map do |place, list|
-      Point.new(label: place.name, value: list.size,
-        detail: "#{list.size} of the revelations in this database were received at #{place.name}.",
-        records: [ place ] + list)
+  # How many members were gained, or lost, from one year to the next.
+  def membership_change
+    membership.each_cons(2).filter_map do |before, after|
+      next unless after.year == before.year + 1
+
+      change = after.members - before.members
+      Point.new(label: after.year.to_s, value: change, color: (change.negative? ? LOSS : GAIN), records: [],
+        detail: "#{change.negative? ? "About #{change.abs.to_fs(:delimited)} fewer" : "About #{change.to_fs(:delimited)} more"} members than at the end of #{before.year}.")
     end
   end
 
-  def revelations_by_year
-    by_year(revelations) { |revelation| revelation.received_on.year }.map do |year, list|
-      Point.new(label: year.to_s, value: list.size, detail: "#{count_of(list, "revelation")} in this database dated #{year}.", records: list)
+  # Sections of the Doctrine and Covenants by year, split by the state where each was received.
+  def sections_by_year
+    by_year = sections.group_by(&:year)
+    return { points: [], series: [] } if by_year.empty?
+
+    years = (by_year.keys.min..by_year.keys.max).to_a
+    points = years.map do |year|
+      list = by_year.fetch(year, [])
+      Point.new(label: year.to_s, value: list.size, records: list.map { |section| section_link(section) },
+        detail: list.empty? ? "No sections are dated #{year}." : "#{count_of(list, "section")} dated #{year}: #{places_summary(list)}.")
     end
+    series = DoctrineAndCovenants.regions.filter_map do |region|
+      values = years.map { |year| by_year.fetch(year, []).count { |section| DoctrineAndCovenants.region(section) == region } }
+      Series.new(name: region, color: REGION_COLORS.fetch(region), values: values) if values.sum.positive?
+    end
+
+    { points: points, series: series }
   end
 
-  def events_by_year
-    by_year(events) { |event| event.start_date.year }.map do |year, list|
-      Point.new(label: year.to_s, value: list.size, detail: "#{count_of(list, "event")} in this database dated #{year}.", records: list)
+  # Sections by the town where each was received. Towns with one section share a bar.
+  def sections_by_place
+    grouped = sections.group_by { |section| [ section.place, section.state ] }
+    major, minor = grouped.partition { |_, list| list.size > 1 }
+
+    points = major.sort_by { |(place, _), list| [ -list.size, place ] }.map do |(place, state), list|
+      Point.new(label: "#{place}, #{state}", value: list.size, color: REGION_COLORS.fetch(DoctrineAndCovenants.region(list.first)),
+        detail: "#{count_of(list, "section")} received at #{place}, #{state}.", records: list.map { |section| section_link(section) })
     end
+
+    others = minor.flat_map(&:last).sort_by(&:number)
+    if others.any?
+      points << Point.new(label: "#{others.size} other #{"place".pluralize(others.size)}", value: others.size, color: OTHER_PLACES,
+        detail: "One section each: #{others.map { |section| "#{section.place}, #{section.state}" }.join("; ")}.",
+        records: others.map { |section| section_link(section) })
+    end
+    points
   end
 
-  # One small chart per measure, each comparing the five periods.
-  def period_comparison
-    periods = period ? [ period ] : Event::PERIODS
+  OTHER_PLACES = "#64748b".freeze
 
-    {
-      "Events" => periods.map { |name| period_point(name, events.select { |event| event.period == name }, "event") },
-      "Revelations" => periods.map { |name| period_point(name, revelations.select { |revelation| revelation.period == name }, "revelation") },
-      "Temple events" => periods.map { |name| period_point(name, events.select { |event| event.period == name && event.category == "temples" }, "temple event") },
-      "Members at the period's end" => periods.filter_map { |name| membership_point(name) }
-    }
+  # The key for the place chart: only the colours that appear in it.
+  def place_key
+    colors = sections_by_place.map(&:color)
+    key = REGION_COLORS.select { |_, color| colors.include?(color) }
+    key["Several places"] = OTHER_PLACES if colors.include?(OTHER_PLACES)
+    key
   end
 
   # Places for the expansion map, with the years each was active.
@@ -98,26 +140,19 @@ class NumbersReport
   end
 
   private
-    # Counts per year across the whole range, so quiet years show as gaps.
-    def by_year(records, &year_of)
-      grouped = records.group_by(&year_of)
-      return [] if grouped.empty?
-
-      (grouped.keys.min..grouped.keys.max).map { |year| [ year, grouped.fetch(year, []) ] }
+    # Links to this site's page for a section when it has one, otherwise to the official edition.
+    def section_link(section)
+      revelation = revelations_by_number[section.number]
+      url = revelation ? Rails.application.routes.url_helpers.revelation_path(revelation) : section.official_url
+      Link.new(label: section.reference, type: "Section", url: url)
     end
 
-    def period_point(name, records, noun)
-      Point.new(label: name.titleize, value: records.size, detail: "#{count_of(records, noun)} in the #{name.titleize} period.", records: records)
+    def revelations_by_number
+      @revelations_by_number ||= Revelation.where.not(section_number: nil).index_by(&:section_number)
     end
 
-    # Membership at the end of the last year with an event in that period.
-    def membership_point(name)
-      last_year = Event.where(period: name).maximum(:start_date)&.year
-      estimate = last_year && membership.select { |candidate| candidate.year <= last_year }.last
-      return unless estimate
-
-      Point.new(label: name.titleize, value: estimate.members,
-        detail: "About #{estimate.members.to_fs(:delimited)} members at the end of #{estimate.year}.", records: [])
+    def places_summary(list)
+      list.group_by(&:place).map { |place, group| "#{group.size} at #{place}" }.to_sentence
     end
 
     def count_of(records, noun)

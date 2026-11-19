@@ -1,0 +1,154 @@
+# Every section of the Doctrine and Covenants: the year it was received or
+# recorded, where, and how many verses it has. Used by the charts on
+# "Restoration by the Numbers", which count the complete book.
+#
+# The years and places were read from each section's heading, fetched from
+# the Open Scripture API (https://openscriptureapi.org). Where a heading
+# gives a range or says "likely", the first year it names is used.
+# A few were set by hand:
+#   20  - the heading says it was recorded soon after April 6, 1830
+#   31  - the heading gives no place; it followed the conference at Fayette (see section 30)
+#   96  - the heading gives no place; it concerned a conference at Kirtland
+#   57-60, 82, 83 - "Zion" and "Independence, Jackson County" are counted together as Independence
+#   136 - Winter Quarters is in present-day Nebraska
+#
+# DRAFT: spot-check against the official edition before launch.
+
+- { section: 1, year: 1831, place: "Hiram", state: "Ohio", verses: 39 }
+- { section: 2, year: 1823, place: "Palmyra", state: "New York", verses: 3 }
+- { section: 3, year: 1828, place: "Harmony", state: "Pennsylvania", verses: 20 }
+- { section: 4, year: 1829, place: "Harmony", state: "Pennsylvania", verses: 7 }
+- { section: 5, year: 1829, place: "Harmony", state: "Pennsylvania", verses: 35 }
+- { section: 6, year: 1829, place: "Harmony", state: "Pennsylvania", verses: 37 }
+- { section: 7, year: 1829, place: "Harmony", state: "Pennsylvania", verses: 8 }
+- { section: 8, year: 1829, place: "Harmony", state: "Pennsylvania", verses: 12 }
+- { section: 9, year: 1829, place: "Harmony", state: "Pennsylvania", verses: 14 }
+- { section: 10, year: 1829, place: "Harmony", state: "Pennsylvania", verses: 70 }
+- { section: 11, year: 1829, place: "Harmony", state: "Pennsylvania", verses: 30 }
+- { section: 12, year: 1829, place: "Harmony", state: "Pennsylvania", verses: 9 }
+- { section: 13, year: 1829, place: "Harmony", state: "Pennsylvania", verses: 1 }
+- { section: 14, year: 1829, place: "Fayette", state: "New York", verses: 11 }
+- { section: 15, year: 1829, place: "Fayette", state: "New York", verses: 6 }
+- { section: 16, year: 1829, place: "Fayette", state: "New York", verses: 6 }
+- { section: 17, year: 1829, place: "Fayette", state: "New York", verses: 9 }
+- { section: 18, year: 1829, place: "Fayette", state: "New York", verses: 47 }
+- { section: 19, year: 1829, place: "Manchester", state: "New York", verses: 41 }
+- { section: 20, year: 1830, place: "Fayette", state: "New York", verses: 84 }
+- { section: 21, year: 1830, place: "Fayette", state: "New York", verses: 12 }
+- { section: 22, year: 1830, place: "Manchester", state: "New York", verses: 4 }
+- { section: 23, year: 1830, place: "Manchester", state: "New York", verses: 7 }
+- { section: 24, year: 1830, place: "Harmony", state: "Pennsylvania", verses: 19 }
+- { section: 25, year: 1830, place: "Harmony", state: "Pennsylvania", verses: 16 }
+- { section: 26, year: 1830, place: "Harmony", state: "Pennsylvania", verses: 2 }
+- { section: 27, year: 1830, place: "Harmony", state: "Pennsylvania", verses: 18 }
+- { section: 28, year: 1830, place: "Fayette", state: "New York", verses: 16 }
+- { section: 29, year: 1830, place: "Fayette", state: "New York", verses: 50 }
+- { section: 30, year: 1830, place: "Fayette", state: "New York", verses: 11 }
+- { section: 31, year: 1830, place: "Fayette", state: "New York", verses: 13 }
+- { section: 32, year: 1830, place: "Manchester", state: "New York", verses: 5 }
+- { section: 33, year: 1830, place: "Fayette", state: "New York", verses: 18 }
+- { section: 34, year: 1830, place: "Fayette", state: "New York", verses: 12 }
+- { section: 35, year: 1830, place: "Fayette", state: "New York", verses: 27 }
+- { section: 36, year: 1830, place: "Fayette", state: "New York", verses: 8 }
+- { section: 37, year: 1830, place: "Fayette", state: "New York", verses: 4 }
+- { section: 38, year: 1831, place: "Fayette", state: "New York", verses: 42 }
+- { section: 39, year: 1831, place: "Fayette", state: "New York", verses: 24 }
+- { section: 40, year: 1831, place: "Fayette", state: "New York", verses: 3 }
+- { section: 41, year: 1831, place: "Kirtland", state: "Ohio", verses: 12 }
+- { section: 42, year: 1831, place: "Kirtland", state: "Ohio", verses: 93 }
+- { section: 43, year: 1831, place: "Kirtland", state: "Ohio", verses: 35 }
+- { section: 44, year: 1831, place: "Kirtland", state: "Ohio", verses: 6 }
+- { section: 45, year: 1831, place: "Kirtland", state: "Ohio", verses: 75 }
+- { section: 46, year: 1831, place: "Kirtland", state: "Ohio", verses: 33 }
+- { section: 47, year: 1831, place: "Kirtland", state: "Ohio", verses: 4 }
+- { section: 48, year: 1831, place: "Kirtland", state: "Ohio", verses: 6 }
+- { section: 49, year: 1831, place: "Kirtland", state: "Ohio", verses: 28 }
+- { section: 50, year: 1831, place: "Kirtland", state: "Ohio", verses: 46 }
+- { section: 51, year: 1831, place: "Thompson", state: "Ohio", verses: 20 }
+- { section: 52, year: 1831, place: "Kirtland", state: "Ohio", verses: 44 }
+- { section: 53, year: 1831, place: "Kirtland", state: "Ohio", verses: 7 }
+- { section: 54, year: 1831, place: "Kirtland", state: "Ohio", verses: 10 }
+- { section: 55, year: 1831, place: "Kirtland", state: "Ohio", verses: 6 }
+- { section: 56, year: 1831, place: "Kirtland", state: "Ohio", verses: 20 }
+- { section: 57, year: 1831, place: "Independence", state: "Missouri", verses: 16 }
+- { section: 58, year: 1831, place: "Independence", state: "Missouri", verses: 65 }
+- { section: 59, year: 1831, place: "Independence", state: "Missouri", verses: 24 }
+- { section: 60, year: 1831, place: "Independence", state: "Missouri", verses: 17 }
+- { section: 61, year: 1831, place: "McIlwaine's Bend", state: "Missouri", verses: 39 }
+- { section: 62, year: 1831, place: "Chariton", state: "Missouri", verses: 9 }
+- { section: 63, year: 1831, place: "Kirtland", state: "Ohio", verses: 66 }
+- { section: 64, year: 1831, place: "Kirtland", state: "Ohio", verses: 43 }
+- { section: 65, year: 1831, place: "Hiram", state: "Ohio", verses: 6 }
+- { section: 66, year: 1831, place: "Hiram", state: "Ohio", verses: 13 }
+- { section: 67, year: 1831, place: "Hiram", state: "Ohio", verses: 14 }
+- { section: 68, year: 1831, place: "Hiram", state: "Ohio", verses: 35 }
+- { section: 69, year: 1831, place: "Hiram", state: "Ohio", verses: 8 }
+- { section: 70, year: 1831, place: "Hiram", state: "Ohio", verses: 18 }
+- { section: 71, year: 1831, place: "Hiram", state: "Ohio", verses: 11 }
+- { section: 72, year: 1831, place: "Kirtland", state: "Ohio", verses: 26 }
+- { section: 73, year: 1832, place: "Hiram", state: "Ohio", verses: 6 }
+- { section: 74, year: 1830, place: "Wayne County", state: "New York", verses: 7 }
+- { section: 75, year: 1832, place: "Amherst", state: "Ohio", verses: 36 }
+- { section: 76, year: 1832, place: "Hiram", state: "Ohio", verses: 119 }
+- { section: 77, year: 1832, place: "Hiram", state: "Ohio", verses: 15 }
+- { section: 78, year: 1832, place: "Kirtland", state: "Ohio", verses: 22 }
+- { section: 79, year: 1832, place: "Hiram", state: "Ohio", verses: 4 }
+- { section: 80, year: 1832, place: "Hiram", state: "Ohio", verses: 5 }
+- { section: 81, year: 1832, place: "Hiram", state: "Ohio", verses: 7 }
+- { section: 82, year: 1832, place: "Independence", state: "Missouri", verses: 24 }
+- { section: 83, year: 1832, place: "Independence", state: "Missouri", verses: 6 }
+- { section: 84, year: 1832, place: "Kirtland", state: "Ohio", verses: 120 }
+- { section: 85, year: 1832, place: "Kirtland", state: "Ohio", verses: 12 }
+- { section: 86, year: 1832, place: "Kirtland", state: "Ohio", verses: 11 }
+- { section: 87, year: 1832, place: "Kirtland", state: "Ohio", verses: 8 }
+- { section: 88, year: 1832, place: "Kirtland", state: "Ohio", verses: 141 }
+- { section: 89, year: 1833, place: "Kirtland", state: "Ohio", verses: 21 }
+- { section: 90, year: 1833, place: "Kirtland", state: "Ohio", verses: 37 }
+- { section: 91, year: 1833, place: "Kirtland", state: "Ohio", verses: 6 }
+- { section: 92, year: 1833, place: "Kirtland", state: "Ohio", verses: 2 }
+- { section: 93, year: 1833, place: "Kirtland", state: "Ohio", verses: 53 }
+- { section: 94, year: 1833, place: "Kirtland", state: "Ohio", verses: 17 }
+- { section: 95, year: 1833, place: "Kirtland", state: "Ohio", verses: 17 }
+- { section: 96, year: 1833, place: "Kirtland", state: "Ohio", verses: 9 }
+- { section: 97, year: 1833, place: "Kirtland", state: "Ohio", verses: 28 }
+- { section: 98, year: 1833, place: "Kirtland", state: "Ohio", verses: 48 }
+- { section: 99, year: 1832, place: "Hiram", state: "Ohio", verses: 8 }
+- { section: 100, year: 1833, place: "Perrysburg", state: "New York", verses: 17 }
+- { section: 101, year: 1833, place: "Kirtland", state: "Ohio", verses: 101 }
+- { section: 102, year: 1834, place: "Kirtland", state: "Ohio", verses: 34 }
+- { section: 103, year: 1834, place: "Kirtland", state: "Ohio", verses: 40 }
+- { section: 104, year: 1834, place: "Kirtland", state: "Ohio", verses: 86 }
+- { section: 105, year: 1834, place: "Clay County", state: "Missouri", verses: 41 }
+- { section: 106, year: 1834, place: "Kirtland", state: "Ohio", verses: 8 }
+- { section: 107, year: 1835, place: "Kirtland", state: "Ohio", verses: 100 }
+- { section: 108, year: 1835, place: "Kirtland", state: "Ohio", verses: 8 }
+- { section: 109, year: 1836, place: "Kirtland", state: "Ohio", verses: 80 }
+- { section: 110, year: 1836, place: "Kirtland", state: "Ohio", verses: 16 }
+- { section: 111, year: 1836, place: "Salem", state: "Massachusetts", verses: 11 }
+- { section: 112, year: 1837, place: "Kirtland", state: "Ohio", verses: 34 }
+- { section: 113, year: 1838, place: "Far West", state: "Missouri", verses: 10 }
+- { section: 114, year: 1838, place: "Far West", state: "Missouri", verses: 2 }
+- { section: 115, year: 1838, place: "Far West", state: "Missouri", verses: 19 }
+- { section: 116, year: 1838, place: "Spring Hill", state: "Missouri", verses: 1 }
+- { section: 117, year: 1838, place: "Far West", state: "Missouri", verses: 16 }
+- { section: 118, year: 1838, place: "Far West", state: "Missouri", verses: 6 }
+- { section: 119, year: 1838, place: "Far West", state: "Missouri", verses: 7 }
+- { section: 120, year: 1838, place: "Far West", state: "Missouri", verses: 1 }
+- { section: 121, year: 1839, place: "Liberty", state: "Missouri", verses: 46 }
+- { section: 122, year: 1839, place: "Liberty", state: "Missouri", verses: 9 }
+- { section: 123, year: 1839, place: "Liberty", state: "Missouri", verses: 17 }
+- { section: 124, year: 1841, place: "Nauvoo", state: "Illinois", verses: 145 }
+- { section: 125, year: 1841, place: "Nauvoo", state: "Illinois", verses: 4 }
+- { section: 126, year: 1841, place: "Nauvoo", state: "Illinois", verses: 3 }
+- { section: 127, year: 1842, place: "Nauvoo", state: "Illinois", verses: 12 }
+- { section: 128, year: 1842, place: "Nauvoo", state: "Illinois", verses: 25 }
+- { section: 129, year: 1843, place: "Nauvoo", state: "Illinois", verses: 9 }
+- { section: 130, year: 1843, place: "Ramus", state: "Illinois", verses: 23 }
+- { section: 131, year: 1843, place: "Ramus", state: "Illinois", verses: 8 }
+- { section: 132, year: 1843, place: "Nauvoo", state: "Illinois", verses: 66 }
+- { section: 133, year: 1831, place: "Hiram", state: "Ohio", verses: 74 }
+- { section: 134, year: 1835, place: "Kirtland", state: "Ohio", verses: 12 }
+- { section: 135, year: 1844, place: "Carthage", state: "Illinois", verses: 7 }
+- { section: 136, year: 1847, place: "Winter Quarters", state: "Nebraska", verses: 42 }
+- { section: 137, year: 1836, place: "Kirtland", state: "Ohio", verses: 10 }
+- { section: 138, year: 1918, place: "Salt Lake City", state: "Utah", verses: 60 }

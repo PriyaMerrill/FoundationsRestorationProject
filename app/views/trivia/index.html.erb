@@ -48,8 +48,9 @@
 
     <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-6">
       <% TriviaGame::MODES.each_with_index do |(mode, details), index| %>
-        <%# Two large cards on the first row, three on the second. %>
-        <li class="flex <%= index < 2 ? "lg:col-span-3" : "lg:col-span-2" %>">
+        <%# Three cards on the first row. The last two sit on a second row, centred under the gaps between them.
+            On a medium screen there are two per row, with the fifth centred on its own. %>
+        <li class="flex lg:col-span-2 <%= "lg:col-start-2" if index == 3 %> <%= "sm:max-lg:col-span-2 sm:max-lg:mx-auto sm:max-lg:w-[calc(50%-0.75rem)]" if index == 4 %>">
           <article class="game-card game-<%= details[:look] %>">
             <div class="game-card-top">
               <span class="game-card-number">Game <%= index + 1 %></span>

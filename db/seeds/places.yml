@@ -19,7 +19,7 @@
   trail_order: 1
   summary: The Smith family farm, the Sacred Grove, the Hill Cumorah, and the print shop where the Book of Mormon was published.
   significance: The Restoration began here with Joseph Smith's First Vision in 1820, followed by the visits of the angel Moroni and the publication of the Book of Mormon in 1830.
-  sources: [joseph-smith-history, saints-volume-1]
+  sources: [joseph-smith-history, saints-volume-1, wikidata]
 
 - slug: harmony
   name: Harmony
@@ -33,7 +33,7 @@
   trail_order: 2
   summary: Home of Emma Hale's family, where Joseph and Emma Smith lived beside the Susquehanna River.
   significance: Most of the Book of Mormon was translated here, and the Aaronic Priesthood was restored on the riverbank in May 1829.
-  sources: [joseph-smith-history, saints-volume-1]
+  sources: [joseph-smith-history, saints-volume-1, wikidata]
 
 - slug: fayette
   name: Fayette
@@ -47,7 +47,7 @@
   trail_order: 3
   summary: The farm of Peter Whitmer Sr., who gave Joseph Smith a place to finish the translation.
   significance: The Book of Mormon translation was completed here, the Three Witnesses saw the plates nearby, and the Church was formally organized here on April 6, 1830.
-  sources: [saints-volume-1]
+  sources: [saints-volume-1, wikidata]
 
 - slug: kirtland
   name: Kirtland
@@ -60,20 +60,20 @@
   trail_order: 4
   summary: Headquarters of the Church through most of the 1830s and site of its first temple.
   significance: Many revelations in the Doctrine and Covenants were received here. The School of the Prophets met here, the Quorum of the Twelve was organized here, and the Kirtland Temple was dedicated in 1836.
-  sources: [saints-volume-1, doctrine-and-covenants]
+  sources: [saints-volume-1, doctrine-and-covenants, wikidata]
 
 - slug: hiram
   name: Hiram
   state: Ohio
-  latitude: 41.3100
-  longitude: -81.1500
+  latitude: 41.2967
+  longitude: -81.1681
   kinds: [revelation_site, landmark]
   start_year: 1831
   end_year: 1832
   trail_order: 5
   summary: The John Johnson farm, where Joseph and Emma Smith lived for about a year.
   significance: Joseph Smith and Sidney Rigdon received the vision of the degrees of glory here in February 1832. A mob attacked both men here the following month.
-  sources: [saints-volume-1, doctrine-and-covenants]
+  sources: [saints-volume-1, doctrine-and-covenants, wikidata]
 
 - slug: independence
   name: Independence
@@ -86,7 +86,7 @@
   trail_order: 6
   summary: Seat of Jackson County, on what was then the western edge of the United States.
   significance: A revelation in July 1831 named Independence the center place of Zion and identified a site for a temple. The Saints were driven from the county in 1833.
-  sources: [saints-volume-1, doctrine-and-covenants]
+  sources: [saints-volume-1, doctrine-and-covenants, wikidata]
 
 - slug: liberty
   name: Liberty
@@ -99,7 +99,7 @@
   trail_order: 7
   summary: Seat of Clay County and site of the jail where Joseph Smith and his companions were held.
   significance: Joseph Smith spent the winter of 1838–39 in Liberty Jail. A letter he wrote there in March 1839 is the source of Doctrine and Covenants 121, 122 and 123.
-  sources: [saints-volume-1, doctrine-and-covenants]
+  sources: [saints-volume-1, doctrine-and-covenants, wikidata]
 
 - slug: far-west
   name: Far West
@@ -112,7 +112,7 @@
   trail_order: 8
   summary: The main Latter-day Saint settlement in Caldwell County and headquarters of the Church in 1838.
   significance: The full name of the Church was revealed here and a temple site was dedicated. The city surrendered to the state militia in the autumn of 1838.
-  sources: [saints-volume-1, doctrine-and-covenants]
+  sources: [saints-volume-1, doctrine-and-covenants, wikidata]
 
 - slug: hawns-mill
   name: Hawn's Mill
@@ -126,7 +126,7 @@
   trail_order: 9
   summary: A small Latter-day Saint settlement around Jacob Hawn's mill on Shoal Creek.
   significance: A militia force attacked the settlement on October 30, 1838, killing seventeen men and boys.
-  sources: [saints-volume-1, church-history-topics]
+  sources: [saints-volume-1, church-history-topics, wikidata]
 
 - slug: jefferson-city
   name: Jefferson City
@@ -139,7 +139,7 @@
   trail_order: 10
   summary: The capital of Missouri.
   significance: Governor Lilburn W. Boggs issued the extermination order against the Latter-day Saints from here in October 1838.
-  sources: [saints-volume-1, church-history-topics]
+  sources: [saints-volume-1, church-history-topics, wikidata]
 
 - slug: nauvoo
   name: Nauvoo
@@ -152,7 +152,7 @@
   trail_order: 11
   summary: A city the Saints built on a bend of the Mississippi River after leaving Missouri.
   significance: The Relief Society was organized here, the Nauvoo Temple was built, and temple ordinances were introduced. The Saints began leaving for the West in 1846.
-  sources: [saints-volume-1]
+  sources: [saints-volume-1, wikidata]
 
 - slug: carthage
   name: Carthage
@@ -165,7 +165,7 @@
   trail_order: 12
   summary: Seat of Hancock County and site of Carthage Jail.
   significance: Joseph and Hyrum Smith were killed by a mob at Carthage Jail on June 27, 1844.
-  sources: [saints-volume-1, doctrine-and-covenants]
+  sources: [saints-volume-1, doctrine-and-covenants, wikidata]
 
 - slug: kanesville
   name: Kanesville
@@ -179,7 +179,7 @@
   trail_order: 13
   summary: A Latter-day Saint settlement on the east bank of the Missouri River, across from Winter Quarters.
   significance: Brigham Young was sustained here as President of the Church in December 1847, and it served for years as an outfitting point for companies heading west.
-  sources: [saints-volume-2]
+  sources: [saints-volume-2, wikidata]
 
 - slug: winter-quarters
   name: Winter Quarters
@@ -193,7 +193,7 @@
   trail_order: 14
   summary: A temporary settlement on the west bank of the Missouri River.
   significance: Thousands of Saints wintered here in 1846–47. Brigham Young received Doctrine and Covenants 136 here, and the first pioneer company set out from here in 1847.
-  sources: [saints-volume-2, doctrine-and-covenants]
+  sources: [saints-volume-2, doctrine-and-covenants, wikidata]
 
 - slug: salt-lake-city
   name: Salt Lake City
@@ -205,4 +205,4 @@
   trail_order: 15
   summary: The settlement the pioneers founded in the Salt Lake Valley.
   significance: The first pioneer company arrived in July 1847. Brigham Young chose the site for a temple a few days later, and the city became the headquarters of the Church.
-  sources: [saints-volume-2]
+  sources: [saints-volume-2, wikidata]

@@ -4,7 +4,7 @@ class Revelation < ApplicationRecord
   slug_from :title
   precise_date :received_on
 
-  include Searchable
+  include Searchable, WithFacts
 
   searchable against: { title: "A", subjects: "B", summary: "B", context: "C" },
     associated: { place: :name, people: :name, verses: :text }

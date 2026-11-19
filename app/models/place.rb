@@ -1,6 +1,6 @@
 class Place < ApplicationRecord
   include Sluggable, Citable, Illustrated
-  include Searchable
+  include Searchable, WithFacts
 
   searchable against: { name: "A", modern_name: "B", state: "B", summary: "B", significance: "C" }
 

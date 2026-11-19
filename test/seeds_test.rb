@@ -106,4 +106,22 @@ class SeedsTest < ActiveSupport::TestCase
     assert_equal %w[far-west hawns-mill jefferson-city nauvoo], Place.where(trail_order: 8..11).order(:trail_order).pluck(:slug)
     assert_equal %w[kanesville winter-quarters salt-lake-city], Place.where(trail_order: 13..15).order(:trail_order).pluck(:slug)
   end
+
+  test "every person, place and revelation has facts at a glance" do
+    [ Person, Place, Revelation ].each do |model|
+      assert_empty model.all.select { |record| record.fact_list.empty? }.map(&:slug), "#{model.name} records without facts"
+    end
+
+    assert_equal [ "Born", "December 23, 1805, Sharon, Vermont" ], Person.find_by!(slug: "joseph-smith").fact_list.first
+    assert_includes Place.find_by!(slug: "kirtland").fact_list, [ "Recognition", "National Historic Landmark" ]
+    assert_includes Revelation.find_by!(slug: "dc-76").fact_list, [ "Given to", "Joseph Smith and Sidney Rigdon" ]
+  end
+
+  test "people's dates of birth and death in their facts match their records" do
+    Person.find_each do |person|
+      facts = person.fact_list.to_h
+      assert facts.fetch("Born").start_with?(person.birth_date.strftime("%B %-d, %Y")), "#{person.name}: born"
+      assert facts.fetch("Died").start_with?(person.death_date.strftime("%B %-d, %Y")), "#{person.name}: died"
+    end
+  end
 end

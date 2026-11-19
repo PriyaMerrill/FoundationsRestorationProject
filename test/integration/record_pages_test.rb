@@ -89,4 +89,39 @@ class RecordPagesTest < ActionDispatch::IntegrationTest
     get person_path(@person)
     assert_select "figure", count: 0
   end
+
+  test "a person page shows their facts at a glance" do
+    @person.update!(facts: [ { "label" => "Born", "value" => "December 23, 1805, Sharon, Vermont" }, { "label" => "Parents", "value" => "Joseph Smith Sr. and Lucy Mack Smith" } ])
+
+    get person_path(@person)
+
+    assert_select "#facts-heading", text: "At a glance"
+    assert_select "dl dt", text: "Born"
+    assert_select "dl dd", text: "December 23, 1805, Sharon, Vermont"
+    assert_select "dl dd", text: "Joseph Smith Sr. and Lucy Mack Smith"
+  end
+
+  test "a place page shows its facts at a glance" do
+    @place.update!(facts: [ { "label" => "County", "value" => "Lake County, Ohio" } ])
+
+    get place_path(@place)
+    assert_select "dl dd", text: "Lake County, Ohio"
+  end
+
+  test "a revelation page adds its number of verses to its facts" do
+    @revelation.update!(facts: [ { "label" => "Kind", "value" => "Visions" } ])
+    3.times { |index| @revelation.verses.create!(number: index + 1, text: "Verse #{index + 1}.") }
+
+    get revelation_path(@revelation)
+
+    assert_select "dl dt", text: "Kind"
+    assert_select "dl dd", text: "Visions"
+    assert_select "dl dt", text: "Verses"
+    assert_select "dl dd", text: "3"
+  end
+
+  test "a record without facts has no at-a-glance box" do
+    get person_path(@person)
+    assert_select "#facts-heading", count: 0
+  end
 end

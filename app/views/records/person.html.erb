@@ -16,7 +16,13 @@
     </figure>
   <% end %>
 
-  <p class="text-xl"><%= @record.biography %></p>
+  <%# The biography and facts sit beside the portrait; "overflow-hidden" keeps them in their own column. %>
+  <div class="overflow-hidden">
+    <p class="text-xl"><%= @record.biography %></p>
+    <div class="mt-6">
+      <%= render "records/facts", facts: @record.fact_list %>
+    </div>
+  </div>
 
   <div class="clear-both">
     <%= render "shared/record_links", title: "Events", records: @record.events.chronological %>

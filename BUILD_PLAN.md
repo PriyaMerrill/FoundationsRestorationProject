@@ -221,6 +221,7 @@ Content and functionality get reviewed together, once the site is built. Until t
 - [ ] Spot-check the verse text on a few revelation pages against the official edition (1,053 verses were downloaded from the Open Scripture API)
 - [ ] Spot-check the year and place of Doctrine and Covenants sections in `db/data/doctrine_and_covenants.yml` (read from the section headings; five were set by hand and are listed in the file)
 - [ ] Check every person: birth and death dates, roles, biography and clues
+- [x] People, places and revelations now have "At a glance" facts from Wikidata and the section headings, and their dates were checked against Wikipedia (see `FACT_CHECK.md`, kept on your computer, for what was changed and what is still unchecked)
 - [ ] Check every place: years, summary, and coordinates on a real map (least reliable)
 - [ ] Check every membership figure against the Church Almanac (least reliable)
 - [ ] Check every trivia answer and explanation

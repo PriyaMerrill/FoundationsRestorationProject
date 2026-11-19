@@ -183,29 +183,31 @@
   people: [joseph-smith]
   subjects: Suffering, priesthood, righteous leadership
   summary: A prayer and the Lord's answer, with counsel on how priesthood authority should be used.
-  context: Taken from a letter Joseph Smith wrote to the Church from Liberty Jail, dated March 20, 1839, after months of imprisonment.
+  context: Taken from two letters Joseph Smith wrote to the Church from Liberty Jail after months of imprisonment. The first is dated March 20, 1839; the second was written about two days later.
   sources: [{ source: doctrine-and-covenants, note: Section heading }, joseph-smith-papers]
 
 - slug: dc-122
   section_number: 122
   title: Doctrine and Covenants 122
-  received_on: 1839-03-20
+  received_on: 1839-03-22
+  date_precision: month
   place: liberty
   people: [joseph-smith]
   subjects: Adversity, the example of Christ
   summary: Words of comfort to Joseph Smith, teaching that hardship can give experience and be for his good.
-  context: From the same Liberty Jail letter as section 121.
+  context: From a letter Joseph Smith wrote to the Church from Liberty Jail about March 22, 1839, soon after the letter quoted in section 121.
   sources: [{ source: doctrine-and-covenants, note: Section heading }, joseph-smith-papers]
 
 - slug: dc-123
   section_number: 123
   title: Doctrine and Covenants 123
-  received_on: 1839-03-20
+  received_on: 1839-03-22
+  date_precision: month
   place: liberty
   people: [joseph-smith]
   subjects: Recording persecution, perseverance
   summary: Counsel that the Saints should gather and publish accounts of what they suffered in Missouri.
-  context: From the same Liberty Jail letter as sections 121 and 122.
+  context: From the same Liberty Jail letter as section 122, written about March 22, 1839.
   sources: [{ source: doctrine-and-covenants, note: Section heading }, joseph-smith-papers]
 
 - slug: dc-124
@@ -222,7 +224,7 @@
 - slug: dc-128
   section_number: 128
   title: Doctrine and Covenants 128
-  received_on: 1842-09-06
+  received_on: 1842-09-07
   place: nauvoo
   people: [joseph-smith]
   subjects: Baptism for the dead, record keeping

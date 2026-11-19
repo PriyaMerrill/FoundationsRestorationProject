@@ -1,0 +1,252 @@
+# Short "at a glance" facts shown on record pages, keyed by each record's slug.
+#
+# Where they come from:
+#   people      - Wikidata (wikidata.org), checked against the opening of each
+#                 person's Wikipedia article. Wikidata's lists of spouses,
+#                 children and offices are incomplete, so those are left out.
+#   places      - Wikidata: the county and the historic site that stands there now.
+#   revelations - the heading of each section of the Doctrine and Covenants,
+#                 put into this site's own words.
+#
+# DRAFT: check against the Church's own records before launch.
+
+people:
+  joseph-smith:
+    - { label: "Born", value: "December 23, 1805, Sharon, Vermont" }
+    - { label: "Died", value: "June 27, 1844, Carthage, Illinois" }
+    - { label: "Buried", value: "Smith Family Cemetery, Nauvoo, Illinois" }
+    - { label: "Parents", value: "Joseph Smith Sr. and Lucy Mack Smith" }
+  emma-smith:
+    - { label: "Born", value: "July 10, 1804, Harmony Township, Pennsylvania" }
+    - { label: "Died", value: "April 30, 1879, Nauvoo, Illinois" }
+    - { label: "Buried", value: "Smith Family Cemetery, Nauvoo, Illinois" }
+    - { label: "Mother", value: "Elizabeth Hale" }
+  hyrum-smith:
+    - { label: "Born", value: "February 9, 1800, Tunbridge, Vermont" }
+    - { label: "Died", value: "June 27, 1844, Carthage, Illinois" }
+    - { label: "Buried", value: "Smith Family Cemetery, Nauvoo, Illinois" }
+    - { label: "Parents", value: "Joseph Smith Sr. and Lucy Mack Smith" }
+  lucy-mack-smith:
+    - { label: "Born", value: "July 8, 1775, Gilsum, New Hampshire" }
+    - { label: "Died", value: "May 14, 1856, Nauvoo, Illinois" }
+    - { label: "Buried", value: "Smith Family Cemetery, Nauvoo, Illinois" }
+    - { label: "Parents", value: "Solomon Mack and Lydia Gates" }
+  joseph-smith-sr:
+    - { label: "Born", value: "July 12, 1771, Topsfield, Massachusetts" }
+    - { label: "Died", value: "September 14, 1840, Nauvoo, Illinois" }
+    - { label: "Buried", value: "Smith Family Cemetery, Nauvoo, Illinois" }
+  oliver-cowdery:
+    - { label: "Born", value: "October 3, 1806, Wells, Vermont" }
+    - { label: "Died", value: "March 3, 1850, Richmond, Missouri" }
+    - { label: "Buried", value: "Pioneer Cemetery, Richmond, Missouri" }
+    - { label: "Parents", value: "William Cowdery and Rebecca Cowdery" }
+  martin-harris:
+    - { label: "Born", value: "May 18, 1783, Saratoga County, New York" }
+    - { label: "Died", value: "July 10, 1875" }
+    - { label: "Buried", value: "Clarkston, Utah" }
+    - { label: "Parents", value: "Nathan Harris and Rhoda Harris" }
+  david-whitmer:
+    - { label: "Born", value: "January 7, 1805, Harrisburg, Pennsylvania" }
+    - { label: "Died", value: "January 25, 1888" }
+    - { label: "Buried", value: "Richmond Cemetery, Richmond, Missouri" }
+    - { label: "Parents", value: "Peter Whitmer Sr. and Mary Whitmer" }
+  sidney-rigdon:
+    - { label: "Born", value: "February 19, 1793, Allegheny County, Pennsylvania" }
+    - { label: "Died", value: "July 14, 1876, Friendship, New York" }
+    - { label: "Buried", value: "Maple Grove Cemetery, Friendship, New York" }
+  brigham-young:
+    - { label: "Born", value: "June 1, 1801, Whitingham, Vermont" }
+    - { label: "Died", value: "August 29, 1877, Salt Lake City, Utah" }
+    - { label: "Buried", value: "Mormon Pioneer Memorial Monument, Salt Lake City, Utah" }
+    - { label: "Parents", value: "John Young and Abigail Howe" }
+  heber-c-kimball:
+    - { label: "Born", value: "June 14, 1801, Sheldon, Vermont" }
+    - { label: "Died", value: "June 22, 1868, Salt Lake City, Utah" }
+    - { label: "Buried", value: "Kimball-Whitney Cemetery, Salt Lake City, Utah" }
+    - { label: "Parents", value: "Solomon Farnham Kimball and Anna Spalding" }
+  parley-p-pratt:
+    - { label: "Born", value: "April 12, 1807, Burlington, New York" }
+    - { label: "Died", value: "May 13, 1857, Alma, Arkansas" }
+    - { label: "Buried", value: "Wynn Graveyard, Arkansas" }
+    - { label: "Parents", value: "Jared Pratt and Charity Dickinson" }
+  edward-partridge:
+    - { label: "Born", value: "August 27, 1793" }
+    - { label: "Died", value: "May 27, 1840, Nauvoo, Illinois" }
+    - { label: "Parents", value: "William Partridge and Jemima Bidwell" }
+  newel-k-whitney:
+    - { label: "Born", value: "February 5, 1795, Marlboro, Vermont" }
+    - { label: "Died", value: "September 23, 1850, Salt Lake City, Utah" }
+    - { label: "Father", value: "Samuel Whitney III" }
+  john-taylor:
+    - { label: "Born", value: "November 1, 1808, Milnthorpe, England" }
+    - { label: "Died", value: "July 25, 1887, Kaysville, Utah" }
+    - { label: "Buried", value: "Salt Lake City Cemetery, Utah" }
+  wilford-woodruff:
+    - { label: "Born", value: "March 1, 1807, Farmington, Connecticut" }
+    - { label: "Died", value: "September 2, 1898, Salt Lake City, Utah" }
+    - { label: "Buried", value: "Salt Lake City Cemetery, Utah" }
+    - { label: "Parents", value: "Aphek Woodruff and Beulah Thompson Woodruff" }
+  willard-richards:
+    - { label: "Born", value: "June 24, 1804, Hopkinton, Massachusetts" }
+    - { label: "Died", value: "March 11, 1854, Salt Lake City, Utah" }
+    - { label: "Buried", value: "Salt Lake City Cemetery, Utah" }
+    - { label: "Parents", value: "Joseph Richards Sr. and Rhoda Howe Richards" }
+  eliza-r-snow:
+    - { label: "Born", value: "January 21, 1804, Becket, Massachusetts" }
+    - { label: "Died", value: "December 5, 1887, Salt Lake City, Utah" }
+    - { label: "Buried", value: "Mormon Pioneer Memorial Monument, Salt Lake City, Utah" }
+    - { label: "Parents", value: "Oliver Snow III and Rosetta Pettibone Snow" }
+  mary-fielding-smith:
+    - { label: "Born", value: "July 21, 1801, Honeydon, England" }
+    - { label: "Died", value: "September 21, 1852, Salt Lake City, Utah" }
+    - { label: "Buried", value: "Salt Lake City Cemetery, Utah" }
+
+places:
+  palmyra:
+    - { label: "County", value: "Wayne County (Palmyra) and Ontario County (Manchester), New York" }
+    - { label: "Historic site", value: "The Sacred Grove" }
+  harmony:
+    - { label: "County", value: "Susquehanna County, Pennsylvania" }
+    - { label: "Historic site", value: "Priesthood Restoration Site" }
+  fayette:
+    - { label: "County", value: "Seneca County, New York" }
+    - { label: "Historic site", value: "Peter Whitmer log home" }
+  kirtland:
+    - { label: "County", value: "Lake County, Ohio" }
+    - { label: "Historic site", value: "Kirtland Temple" }
+    - { label: "Recognition", value: "National Historic Landmark" }
+  hiram:
+    - { label: "County", value: "Portage County, Ohio" }
+    - { label: "Historic site", value: "John Johnson Farm, just west of the village" }
+    - { label: "Recognition", value: "National Register of Historic Places" }
+  independence:
+    - { label: "County", value: "Jackson County, Missouri" }
+    - { label: "Historic site", value: "The Temple Lot" }
+    - { label: "Recognition", value: "National Register of Historic Places" }
+  liberty:
+    - { label: "County", value: "Clay County, Missouri" }
+    - { label: "Historic site", value: "Liberty Jail, now a visitors’ center" }
+  far-west:
+    - { label: "County", value: "Caldwell County, Missouri" }
+    - { label: "Historic site", value: "Far West temple site; the town itself is gone" }
+    - { label: "Recognition", value: "National Register of Historic Places" }
+  hawns-mill:
+    - { label: "County", value: "Caldwell County, Missouri" }
+    - { label: "Historic site", value: "Site of the Hawn’s Mill settlement" }
+  jefferson-city:
+    - { label: "County", value: "Cole County, Missouri" }
+    - { label: "Founded", value: "1821" }
+  nauvoo:
+    - { label: "County", value: "Hancock County, Illinois" }
+    - { label: "Historic site", value: "Nauvoo Temple" }
+  carthage:
+    - { label: "County", value: "Hancock County, Illinois" }
+    - { label: "Historic site", value: "Carthage Jail" }
+    - { label: "Recognition", value: "National Register of Historic Places" }
+  kanesville:
+    - { label: "County", value: "Pottawattamie County, Iowa" }
+    - { label: "Historic site", value: "Kanesville Tabernacle" }
+  winter-quarters:
+    - { label: "Today", value: "The Florence neighborhood of Omaha, Nebraska" }
+    - { label: "Historic site", value: "Winter Quarters, where about 2,500 Saints spent the winter of 1846–47" }
+  salt-lake-city:
+    - { label: "County", value: "Salt Lake County, Utah" }
+    - { label: "Historic site", value: "Temple Square" }
+    - { label: "Recognition", value: "National Historic Landmark" }
+
+revelations:
+  dc-3:
+    - { label: "Kind", value: "Revelation" }
+    - { label: "Given to", value: "Joseph Smith" }
+    - { label: "Occasion", value: "After Martin Harris lost the first 116 pages of the Book of Mormon manuscript" }
+  dc-13:
+    - { label: "Kind", value: "The words of John the Baptist, from Joseph Smith’s history" }
+    - { label: "Given to", value: "Joseph Smith and Oliver Cowdery" }
+    - { label: "Occasion", value: "Their ordination to the Aaronic Priesthood" }
+  dc-20:
+    - { label: "Kind", value: "Revelation on Church organization and government" }
+    - { label: "Given through", value: "Joseph Smith" }
+    - { label: "Known then as", value: "The Articles and Covenants" }
+    - { label: "Occasion", value: "Recorded soon after the Church was organized on April 6, 1830; parts may date from the summer of 1829" }
+  dc-21:
+    - { label: "Kind", value: "Revelation" }
+    - { label: "Given to", value: "Joseph Smith" }
+    - { label: "Occasion", value: "The meeting at which the Church was organized, in the home of Peter Whitmer Sr." }
+  dc-25:
+    - { label: "Kind", value: "Revelation" }
+    - { label: "Given through", value: "Joseph Smith" }
+    - { label: "Addressed to", value: "Emma Smith" }
+  dc-37:
+    - { label: "Kind", value: "Revelation" }
+    - { label: "Given to", value: "Joseph Smith and Sidney Rigdon" }
+    - { label: "Occasion", value: "The first commandment for the Church to gather" }
+  dc-42:
+    - { label: "Kind", value: "Revelation, in two parts" }
+    - { label: "Given through", value: "Joseph Smith" }
+    - { label: "Received", value: "February 9 and February 23, 1831" }
+    - { label: "Occasion", value: "The first part came in the presence of twelve elders, fulfilling a promise that the law would be given in Ohio" }
+  dc-57:
+    - { label: "Kind", value: "Revelation" }
+    - { label: "Given through", value: "Joseph Smith" }
+    - { label: "Occasion", value: "The elders had travelled from Ohio to Missouri’s western border, and Joseph asked where Zion would be built and where its temple would stand" }
+  dc-76:
+    - { label: "Kind", value: "Vision" }
+    - { label: "Given to", value: "Joseph Smith and Sidney Rigdon" }
+    - { label: "Occasion", value: "While they worked on the translation of the Bible, after returning from a conference at Amherst" }
+  dc-84:
+    - { label: "Kind", value: "Revelation on priesthood" }
+    - { label: "Given through", value: "Joseph Smith" }
+    - { label: "Received", value: "September 22 and 23, 1832" }
+    - { label: "Occasion", value: "Elders had returned from missions in the eastern states and were reporting on their work" }
+  dc-88:
+    - { label: "Kind", value: "Revelation, called the “olive leaf”" }
+    - { label: "Given through", value: "Joseph Smith" }
+    - { label: "Received", value: "December 27 and 28, 1832, and January 3, 1833" }
+    - { label: "Occasion", value: "High priests at a conference had prayed to know the Lord’s will about building up Zion" }
+  dc-89:
+    - { label: "Kind", value: "Revelation, known as the Word of Wisdom" }
+    - { label: "Given through", value: "Joseph Smith" }
+    - { label: "Occasion", value: "Joseph asked about the use of tobacco in the brethren’s meetings, which had troubled Emma Smith" }
+  dc-109:
+    - { label: "Kind", value: "Prayer" }
+    - { label: "Offered by", value: "Joseph Smith" }
+    - { label: "Occasion", value: "The dedication of the Kirtland Temple; the prayer was prepared by revelation the night before" }
+  dc-110:
+    - { label: "Kind", value: "Visions" }
+    - { label: "Given to", value: "Joseph Smith and Oliver Cowdery" }
+    - { label: "Occasion", value: "A Sabbath meeting in the Kirtland Temple on Easter Sunday, after the sacrament" }
+  dc-115:
+    - { label: "Kind", value: "Revelation" }
+    - { label: "Given through", value: "Joseph Smith" }
+    - { label: "Occasion", value: "It names the Church and approves Far West as a gathering place" }
+  dc-121:
+    - { label: "Kind", value: "A prayer and prophecies, from two letters to the Church" }
+    - { label: "Written by", value: "Joseph Smith" }
+    - { label: "Written", value: "The first letter is dated March 20, 1839; the second was composed about March 22" }
+    - { label: "Occasion", value: "After months in Liberty Jail, when appeals to government officials had failed" }
+  dc-122:
+    - { label: "Kind", value: "Part of a letter to the Church" }
+    - { label: "Written by", value: "Joseph Smith" }
+    - { label: "Written", value: "About March 22, 1839, in Liberty Jail" }
+  dc-123:
+    - { label: "Kind", value: "Part of a letter to the Church" }
+    - { label: "Written by", value: "Joseph Smith" }
+    - { label: "Written", value: "About March 22, 1839, in Liberty Jail" }
+    - { label: "Subject", value: "The Saints’ duty in relation to those who persecuted them" }
+  dc-124:
+    - { label: "Kind", value: "Revelation" }
+    - { label: "Given to", value: "Joseph Smith" }
+    - { label: "Occasion", value: "The Saints, forced from Missouri, had built Nauvoo on the site of the village of Commerce" }
+  dc-128:
+    - { label: "Kind", value: "Letter" }
+    - { label: "Written by", value: "Joseph Smith, to the Church" }
+    - { label: "Dated", value: "September 7, 1842, at Nauvoo" }
+    - { label: "Subject", value: "Further directions on baptism for the dead" }
+  dc-135:
+    - { label: "Kind", value: "Announcement" }
+    - { label: "Subject", value: "The martyrdom of Joseph and Hyrum Smith at Carthage, Illinois, on June 27, 1844" }
+    - { label: "First published", value: "At the end of the 1844 edition of the Doctrine and Covenants, which was nearly ready when they were killed" }
+  dc-136:
+    - { label: "Kind", value: "Revelation, “the word and will of the Lord”" }
+    - { label: "Given through", value: "Brigham Young" }
+    - { label: "Where", value: "Winter Quarters, on the west bank of the Missouri River" }

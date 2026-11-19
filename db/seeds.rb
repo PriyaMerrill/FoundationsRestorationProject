@@ -20,6 +20,7 @@ module HistorySeeds
       load_portraits
       load_revelations
       load_verses
+      load_facts
       load_events
       load_membership
       load_trivia
@@ -82,6 +83,19 @@ module HistorySeeds
       revelation.verses.delete_all
       rows = texts.each_with_index.map { |text, index| { revelation_id: revelation.id, number: index + 1, text: text } }
       Verse.insert_all!(rows) if rows.any?
+    end
+  end
+
+  # The "at a glance" facts for people, places and revelations, from db/seeds/facts.yml.
+  def load_facts
+    facts = read("facts")
+
+    { "people" => Person, "places" => Place, "revelations" => Revelation }.each do |key, model|
+      wanted = facts.fetch(key, {})
+      model.find_each do |record|
+        list = wanted.fetch(record.slug, [])
+        record.update!(facts: list) unless record.facts == list
+      end
     end
   end
 
@@ -156,7 +170,7 @@ module HistorySeeds
   # Every content column set back to its default, so deleting a line from
   # a YAML file clears that value in the database.
   def blank_attributes(model, reference_keys)
-    skip = %w[id slug created_at updated_at] + reference_keys.map { |key| "#{key}_id" }
+    skip = %w[id slug created_at updated_at facts] + reference_keys.map { |key| "#{key}_id" } # facts are loaded separately
     defaults = model.column_defaults.except(*skip)
     reference_keys.each { |key| defaults[key] = nil }
     defaults

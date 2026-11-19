@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_19_000304) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_19_013337) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -104,6 +104,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_19_000304) do
     t.jsonb "clues", default: [], null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.jsonb "facts", default: [], null: false
     t.index ["slug"], name: "index_people_on_slug", unique: true
   end
 
@@ -122,6 +123,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_19_000304) do
     t.integer "trail_order"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.jsonb "facts", default: [], null: false
     t.index ["slug"], name: "index_places_on_slug", unique: true
   end
 
@@ -147,6 +149,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_19_000304) do
     t.bigint "place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.jsonb "facts", default: [], null: false
     t.index ["place_id"], name: "index_revelations_on_place_id"
     t.index ["received_on"], name: "index_revelations_on_received_on"
     t.index ["section_number"], name: "index_revelations_on_section_number", unique: true

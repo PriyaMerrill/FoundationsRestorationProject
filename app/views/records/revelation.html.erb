@@ -9,6 +9,11 @@
 <% end %>
 
 <article class="page-narrow py-10">
+  <%# The stored facts, plus the things the record already knows about itself. %>
+  <% facts = @record.fact_list %>
+  <% facts += [ [ "Verses", @record.verses.size.to_s ] ] if @record.verses.any? %>
+  <%= render "records/facts", facts: facts %>
+
   <p class="text-xl"><%= @record.summary %></p>
 
   <% if @record.context.present? %>

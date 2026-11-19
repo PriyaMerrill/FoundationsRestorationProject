@@ -247,8 +247,7 @@
 
 - slug: school-of-the-prophets
   title: The School of the Prophets begins
-  start_date: 1833-01-01
-  date_precision: month
+  start_date: 1833-01-23
   category: leadership
   period: ohio
   place: kirtland
@@ -425,7 +424,7 @@
   people: [joseph-smith, hyrum-smith, sidney-rigdon]
   revelations: [dc-121, dc-122, dc-123]
   summary: Joseph Smith and several companions were held through the winter in the cold, cramped jail at Liberty, Missouri.
-  context: In March 1839 Joseph wrote a long letter to the Church from the jail. Parts of it became Doctrine and Covenants 121, 122 and 123. The prisoners were allowed to escape while being moved in April 1839.
+  context: In March 1839 Joseph wrote two long letters to the Church from the jail. Parts of them became Doctrine and Covenants 121, 122 and 123. The prisoners were allowed to escape while being moved in April 1839.
   sources: [doctrine-and-covenants, joseph-smith-papers, saints-volume-1]
 
 - slug: exodus-from-missouri
@@ -493,7 +492,7 @@
 
 - slug: epistle-on-baptism-for-the-dead
   title: Joseph Smith's letter on baptism for the dead
-  start_date: 1842-09-06
+  start_date: 1842-09-07
   category: revelations
   period: nauvoo
   place: nauvoo

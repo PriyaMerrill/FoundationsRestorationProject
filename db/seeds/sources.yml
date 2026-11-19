@@ -49,3 +49,17 @@
   author: Deseret News
   kind: secondary
   citation: Deseret News Church Almanac, historical year-end membership statistics.
+
+- slug: wikidata
+  title: Wikidata
+  author: Wikimedia contributors
+  url: https://www.wikidata.org
+  kind: secondary
+  citation: Wikidata, a free database of facts maintained by volunteers. Used for the dates and places of people's births, deaths and burials, their parents, and details of places.
+
+- slug: wikipedia
+  title: Wikipedia
+  author: Wikimedia contributors
+  url: https://en.wikipedia.org
+  kind: secondary
+  citation: Wikipedia, the free encyclopedia. Used to check dates against a second source.

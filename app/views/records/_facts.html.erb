@@ -1,0 +1,13 @@
+<%# A record's facts "at a glance": a short list of labels and values.
+    Shows nothing when there are none. locals: facts (pairs of label and value) %>
+<% if facts.any? %>
+  <section class="mb-8 rounded-lg border border-parchment-300 bg-parchment-100 p-5" aria-labelledby="facts-heading">
+    <h2 id="facts-heading" class="eyebrow">At a glance</h2>
+    <dl class="mt-3 grid gap-x-6 gap-y-3 sm:grid-cols-[max-content_1fr]">
+      <% facts.each do |label, value| %>
+        <dt class="text-sm font-bold uppercase tracking-wide text-brown-700 sm:pt-0.5"><%= label %></dt>
+        <dd class="text-base text-slate-900"><%= value %></dd>
+      <% end %>
+    </dl>
+  </section>
+<% end %>

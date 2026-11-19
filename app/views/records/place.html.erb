@@ -7,6 +7,8 @@
 <% end %>
 
 <article class="page-narrow py-10">
+  <%= render "records/facts", facts: @record.fact_list %>
+
   <p class="text-xl"><%= @record.summary %></p>
 
   <% if @record.significance.present? %>

@@ -1,6 +1,6 @@
 class Person < ApplicationRecord
   include Sluggable, Citable, Illustrated
-  include Searchable
+  include Searchable, WithFacts
 
   searchable against: { name: "A", roles: "B", biography: "C" }
 

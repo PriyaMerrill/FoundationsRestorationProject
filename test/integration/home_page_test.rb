@@ -70,4 +70,14 @@ class HomePageTest < ActionDispatch::IntegrationTest
     get root_path
     assert_select "dl", count: 0
   end
+
+  test "the featured person shows their portrait in place of initials" do
+    person = create_person
+    person.images.create!(file_name: "people/joseph-smith.jpg", caption: "Joseph Smith")
+
+    get root_path
+
+    assert_select "article img[src*='joseph-smith']"
+    assert_select "article span", text: "JS", count: 0
+  end
 end

@@ -16,7 +16,7 @@ class SeedsTest < ActiveSupport::TestCase
   end
 
   test "running the seeds twice changes nothing" do
-    counts = -> { [ Place, Person, Event, Revelation, Verse, Source, Citation, EventParticipant, TriviaQuestion ].map(&:count) }
+    counts = -> { [ Place, Person, Event, Revelation, Verse, Image, Source, Citation, EventParticipant, TriviaQuestion ].map(&:count) }
     before = counts.call
     capture_io { Rails.application.load_seed }
     assert_equal before, counts.call
@@ -85,5 +85,19 @@ class SeedsTest < ActiveSupport::TestCase
     assert_equal 119, section.verses.size
     assert_equal (1..119).to_a, section.verses.map(&:number)
     assert_equal 1, Revelation.find_by!(section_number: 13).verses.size
+  end
+
+  test "every portrait has its file, a caption, a credit, a licence and a source" do
+    assert_operator Image.count, :>=, 1
+
+    Image.includes(:imageable).find_each do |image|
+      name = image.imageable.name
+      assert image.available?, "#{name}: #{image.file_name} is not in app/assets/images"
+      assert image.caption.present?, "#{name}: no caption"
+      assert image.credit.present?, "#{name}: no credit"
+      assert_equal "Public domain", image.license, "#{name}: licence"
+      assert_match %r{\Ahttps://commons\.wikimedia\.org/wiki/File:}, image.source_url, "#{name}: source"
+    end
+    assert_equal Image.count, Person.joins(:images).distinct.count, "one portrait per person"
   end
 end

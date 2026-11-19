@@ -69,4 +69,24 @@ class RecordPagesTest < ActionDispatch::IntegrationTest
     get revelation_path(@revelation)
     assert_select "#text-heading", count: 0
   end
+
+  test "a person page shows their portrait with its caption, credit and source" do
+    @person.images.create!(file_name: "people/joseph-smith.jpg", caption: "Joseph Smith. Oil painting, about 1842.",
+      credit: "Artist uncertain. Wikimedia Commons.", license: "Public domain", source_url: "https://commons.wikimedia.org/wiki/File:Example.jpg")
+
+    get person_path(@person)
+
+    assert_select "figure img[alt='Portrait of Joseph Smith'][src*='joseph-smith']"
+    assert_select "figcaption", text: /Oil painting, about 1842.*Artist uncertain/m
+    assert_select "figcaption a[href=?]", "https://commons.wikimedia.org/wiki/File:Example.jpg", text: "Image source"
+  end
+
+  test "a person without a portrait, or whose image file is missing, shows no picture" do
+    get person_path(@person)
+    assert_select "figure", count: 0
+
+    @person.images.create!(file_name: "people/not-a-real-file.jpg")
+    get person_path(@person)
+    assert_select "figure", count: 0
+  end
 end

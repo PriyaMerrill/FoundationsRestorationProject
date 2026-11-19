@@ -1,0 +1,143 @@
+# One portrait for each person, keyed by the person's slug.
+# The image files are in app/assets/images/people.
+#
+# Every portrait came from Wikimedia Commons, where it is marked as being in
+# the public domain. source_url is the Commons page, which records where the
+# image came from. Several portraits are later paintings, drawings or
+# engravings, not likenesses made from life; each caption says what it is.
+#
+# DRAFT: the captions and credits were written from the notes on Commons.
+# Check them, and each image's public-domain status, before launch.
+
+joseph-smith:
+  file_name: people/joseph-smith.jpg
+  caption: "Joseph Smith. Oil painting, about 1842."
+  credit: "Artist uncertain. Original owned by Community of Christ. Via Wikimedia Commons."
+  license: Public domain
+  source_url: "https://commons.wikimedia.org/wiki/File:Joseph_Smith,_Jr._portrait_owned_by_Joseph_Smith_III.jpg"
+
+emma-smith:
+  file_name: people/emma-smith.jpg
+  caption: "Emma Smith holding an infant. Photograph, 1844."
+  credit: "Photographer unknown. RLDS Archives. Via Wikimedia Commons."
+  license: Public domain
+  source_url: "https://commons.wikimedia.org/wiki/File:EmmaHSmith3.jpg"
+
+hyrum-smith:
+  file_name: people/hyrum-smith.png
+  caption: "Hyrum Smith. A later copy of a drawing, photographed between about 1880 and 1920."
+  credit: "George Edward Anderson Collection, Brigham Young University. Via Wikimedia Commons."
+  license: Public domain
+  source_url: "https://commons.wikimedia.org/wiki/File:Hyrum_Smith_ca_1880-1920.png"
+
+lucy-mack-smith:
+  file_name: people/lucy-mack-smith.jpg
+  caption: "Lucy Mack Smith. Oil painting; its date and artist are uncertain."
+  credit: "Joseph Smith Birthplace Memorial. Via Wikimedia Commons."
+  license: Public domain
+  source_url: "https://commons.wikimedia.org/wiki/File:Lucy_Mack_Smith2.jpg"
+
+joseph-smith-sr:
+  file_name: people/joseph-smith-sr.jpg
+  caption: "Joseph Smith Sr. Oil painting; its date and artist are unknown, and it may not be a likeness from life."
+  credit: "Joseph Smith Birthplace Memorial. Via Wikimedia Commons."
+  license: Public domain
+  source_url: "https://commons.wikimedia.org/wiki/File:Joseph_Smith,_Sr.jpg"
+
+oliver-cowdery:
+  file_name: people/oliver-cowdery.jpg
+  caption: "Oliver Cowdery. Daguerreotype, 1840s."
+  credit: "James Presley Ball. Library of Congress. Via Wikimedia Commons."
+  license: Public domain
+  source_url: "https://commons.wikimedia.org/wiki/File:Olivercowdery-sm.jpg"
+
+martin-harris:
+  file_name: people/martin-harris.jpg
+  caption: "Martin Harris in old age. Photograph, before 1875."
+  credit: "Photographer unknown. Via Wikimedia Commons."
+  license: Public domain
+  source_url: "https://commons.wikimedia.org/wiki/File:Martinharrisat87.jpg"
+
+david-whitmer:
+  file_name: people/david-whitmer.jpg
+  caption: "David Whitmer. Photograph, before 1888."
+  credit: "Photographer unknown. Via Wikimedia Commons."
+  license: Public domain
+  source_url: "https://commons.wikimedia.org/wiki/File:David_Witmer.JPG"
+
+sidney-rigdon:
+  file_name: people/sidney-rigdon.png
+  caption: "Sidney Rigdon. Photograph, about 1873."
+  credit: "Photographer unknown. Via Wikimedia Commons."
+  license: Public domain
+  source_url: "https://commons.wikimedia.org/wiki/File:Sidney_Rigdon_1873.PNG"
+
+brigham-young:
+  file_name: people/brigham-young.jpg
+  caption: "Brigham Young. Photograph, about 1865."
+  credit: "Charles William Carter. Via Wikimedia Commons."
+  license: Public domain
+  source_url: "https://commons.wikimedia.org/wiki/File:Charles_William_Carter_-_Brigham_Young_-_Google_Art_Project_(3x4_cropped).jpg"
+
+heber-c-kimball:
+  file_name: people/heber-c-kimball.png
+  caption: "Heber C. Kimball. Engraving, 19th century."
+  credit: "Engraver unknown. Via Wikimedia Commons."
+  license: Public domain
+  source_url: "https://commons.wikimedia.org/wiki/File:Heber_Chase_Kimball-2.png"
+
+parley-p-pratt:
+  file_name: people/parley-p-pratt.gif
+  caption: "Parley P. Pratt. Portrait, about 1845."
+  credit: "C. R. Savage collection, Brigham Young University. Via Wikimedia Commons."
+  license: Public domain
+  source_url: "https://commons.wikimedia.org/wiki/File:Parley_P_Pratt.gif"
+
+edward-partridge:
+  file_name: people/edward-partridge.gif
+  caption: "Edward Partridge. Steel engraving, first published in The Contributor."
+  credit: "Charles B. Hall, engraver. Via Wikimedia Commons."
+  license: Public domain
+  source_url: "https://commons.wikimedia.org/wiki/File:Edward_Partridge_Sr.gif"
+
+newel-k-whitney:
+  file_name: people/newel-k-whitney.jpg
+  caption: "Newel K. Whitney. Engraving, published 1901."
+  credit: "From Andrew Jenson, Latter-day Saint Biographical Encyclopedia. Via Wikimedia Commons."
+  license: Public domain
+  source_url: "https://commons.wikimedia.org/wiki/File:Newel_K._Whitney.jpg"
+
+john-taylor:
+  file_name: people/john-taylor.jpg
+  caption: "John Taylor late in life. Photograph, undated."
+  credit: "Photographer unknown. Via Wikimedia Commons."
+  license: Public domain
+  source_url: "https://commons.wikimedia.org/wiki/File:John_Taylor_seated_in_chair.jpg"
+
+wilford-woodruff:
+  file_name: people/wilford-woodruff.jpg
+  caption: "Wilford Woodruff. Photograph, 1889."
+  credit: "Charles Roscoe Savage. Brigham Young University. Via Wikimedia Commons."
+  license: Public domain
+  source_url: "https://commons.wikimedia.org/wiki/File:Wilford_Woodruff_1889.jpg"
+
+willard-richards:
+  file_name: people/willard-richards.jpg
+  caption: "Willard Richards. Daguerreotype, about 1845."
+  credit: "Probably Lucian R. Foster. Church History Library. Via Wikimedia Commons."
+  license: Public domain
+  source_url: "https://commons.wikimedia.org/wiki/File:WillardRichards.jpg"
+
+eliza-r-snow:
+  file_name: people/eliza-r-snow.png
+  caption: "Eliza R. Snow. Photograph, about 1870."
+  credit: "Photographer unknown. Library of Congress. Via Wikimedia Commons."
+  license: Public domain
+  source_url: "https://commons.wikimedia.org/wiki/File:Eliza_Roxcy_Snow_photograph.PNG"
+
+mary-fielding-smith:
+  file_name: people/mary-fielding-smith.png
+  caption: "Mary Fielding Smith. Profile portrait, published 1924."
+  credit: "Artist unknown. Via Wikimedia Commons."
+  license: Public domain
+  source_url: "https://commons.wikimedia.org/wiki/File:Mary_Fielding_Smith_Profile.png"

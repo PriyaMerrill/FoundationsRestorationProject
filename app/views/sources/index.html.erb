@@ -143,7 +143,9 @@
       <div class="mt-4 space-y-4">
         <p>
           Historical photographs, documents and maps are used only when they are in the public domain or licensed for reuse.
-          Each image is credited where it appears and listed here.
+          Each image is credited where it appears and listed here. Portraits come from Wikimedia Commons, where each is marked
+          as being in the public domain. Some are later paintings, drawings or engravings and not likenesses made from life;
+          each caption says what the image is.
         </p>
         <% if @images.any? %>
           <ul class="space-y-2 text-base">
@@ -151,7 +153,8 @@
               <li>
                 <strong><%= image.caption.presence || image.file_name %></strong>
                 <%= [ image.year, image.credit, image.license ].compact_blank.join(" · ") %>
-                (<%= link_to record_label(image.imageable), polymorphic_path(image.imageable), class: "text-link font-normal" %>)
+                (<%= link_to record_label(image.imageable), polymorphic_path(image.imageable), class: "text-link font-normal" %><% if image.source_url.present? %>;
+                <%= link_to "image source", image.source_url, class: "text-link font-normal", rel: "noopener" %><% end %>)
               </li>
             <% end %>
           </ul>

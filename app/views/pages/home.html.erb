@@ -46,7 +46,7 @@
   <section class="border-t border-parchment-300 bg-parchment-100" aria-labelledby="featured-heading">
     <div class="page py-14">
       <h2 id="featured-heading" class="text-center text-3xl font-bold sm:text-4xl">From the records</h2>
-      <p class="mt-2 text-center text-base text-brown-700">An event, a person and a revelation. New ones every day.</p>
+      <p class="mt-2 text-center text-base text-brown-700">An event, a person and a revelation.</p>
 
       <div class="mt-10 grid gap-8 lg:grid-cols-3">
         <%# -- An event, as a page from a calendar -- %>
@@ -86,8 +86,13 @@
         <%# -- A person, as a framed portrait -- %>
         <% if @featured_person %>
           <article class="group relative flex flex-col items-center rounded-lg bg-brown-900 p-6 text-center text-parchment-100 shadow-md transition hover:-translate-y-1 hover:shadow-xl">
-            <div class="flex h-36 w-28 items-center justify-center rounded-[50%] border-4 border-gold-400 bg-brown-700 shadow-inner ring-2 ring-gold-600 ring-offset-4 ring-offset-brown-900" aria-hidden="true">
-              <span class="font-serif text-5xl font-bold text-gold-300"><%= @featured_person.name.split.reject { |word| word.end_with?(".") }.values_at(0, -1).uniq.map(&:first).join %></span>
+            <% portrait = @featured_person.portrait %>
+            <div class="flex h-44 w-36 items-center justify-center overflow-hidden rounded-[50%] border-4 border-gold-400 bg-brown-700 shadow-inner ring-2 ring-gold-600 ring-offset-4 ring-offset-brown-900">
+              <% if portrait&.available? %>
+                <%= image_tag portrait.file_name, alt: "", class: "h-full w-full object-cover object-top" %>
+              <% else %>
+                <span class="font-serif text-5xl font-bold text-gold-300" aria-hidden="true"><%= @featured_person.name.split.reject { |word| word.end_with?(".") }.values_at(0, -1).uniq.map(&:first).join %></span>
+              <% end %>
             </div>
             <p class="eyebrow mt-5 text-gold-300">A person to meet</p>
             <h3 class="mt-1 text-2xl font-bold text-parchment-50">

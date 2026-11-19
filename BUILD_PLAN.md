@@ -226,7 +226,9 @@ Content and functionality get reviewed together, once the site is built. Until t
 - [ ] Check every source: title, author and URL
 - [ ] Read the Sources and Methodology page and make sure every statement matches how the content was actually researched and checked
 - [ ] Add chapter or page notes to the citations, which currently cite whole works
-- [ ] Collect images and record a credit and license for each (none yet)
+- [x] Portraits for all 19 people, from Wikimedia Commons, with captions, credits and sources (approved in review)
+- [ ] Check each portrait's public-domain status and caption, especially Joseph Smith, Hyrum Smith, Lucy Mack Smith, Joseph Smith Sr., Sidney Rigdon and Willard Richards
+- [ ] Collect images for places and events, and record a credit and license for each (none yet)
 - [ ] Add a hero photograph at `app/assets/images/hero.jpg`; the home page uses it automatically in place of the green gradient
 - [ ] Decide whether the Twelve's mission to Britain needs a place on the map (it has none)
 - [ ] Decide whether Jefferson City, Hawn's Mill and Kanesville should be road-trip stops (they are on the map but not on the route)

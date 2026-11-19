@@ -17,6 +17,7 @@ module HistorySeeds
       load_sources
       load_places
       load_people
+      load_portraits
       load_revelations
       load_verses
       load_events
@@ -41,6 +42,24 @@ module HistorySeeds
   def load_people
     sync(Person, "people") do |person, row|
       cite(person, row["sources"])
+    end
+  end
+
+  # One portrait per person, from db/seeds/portraits.yml. The files live in
+  # app/assets/images/people.
+  def load_portraits
+    portraits = read("portraits")
+
+    Person.find_each do |person|
+      attributes = portraits[person.slug]&.slice("file_name", "caption", "credit", "license", "year", "source_url")
+      current = person.images.first
+
+      if attributes.nil?
+        person.images.destroy_all
+      elsif current.nil? || person.images.size > 1 || current.attributes.slice(*attributes.keys) != attributes
+        person.images.destroy_all
+        person.images.create!(attributes)
+      end
     end
   end
 

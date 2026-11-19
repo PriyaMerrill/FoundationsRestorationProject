@@ -11,4 +11,9 @@ class Person < ApplicationRecord
   has_many :places, -> { distinct }, through: :events
 
   validates :name, presence: true
+
+  # The picture shown for this person, if one has been added.
+  def portrait
+    images.find { |image| !image.is_modern }
+  end
 end

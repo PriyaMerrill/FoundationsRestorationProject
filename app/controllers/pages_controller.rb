@@ -3,7 +3,7 @@ class PagesController < ApplicationController
     today = Date.current
 
     @featured_event = pick_for(today, Event.chronological)
-    @featured_person = pick_for(today, Person.order(:name))
+    @featured_person = pick_for(today, Person.includes(:images).order(:name))
     @featured_revelation = pick_for(today, Revelation.where.not(section_number: nil).order(:section_number))
   end
 

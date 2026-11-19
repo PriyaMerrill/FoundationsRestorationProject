@@ -1,7 +1,8 @@
 # Places on the Restoration Road Trip map.
 #
 # kinds: any of temple, revelation_site, settlement, landmark
-# trail_order: the stop number in road-trip mode (leave out to keep a place off the route)
+# trail_order: the stop number on the road trip. The route follows the story,
+#   which runs broadly from east to west. Leave it out to keep a place off the route.
 #
 # DRAFT: coordinates are approximate and point at the main historic site.
 # Check each one on a map, and check the years, before launch.
@@ -113,6 +114,33 @@
   significance: The full name of the Church was revealed here and a temple site was dedicated. The city surrendered to the state militia in the autumn of 1838.
   sources: [saints-volume-1, doctrine-and-covenants]
 
+- slug: hawns-mill
+  name: Hawn's Mill
+  modern_name: Caldwell County (near Braymer)
+  state: Missouri
+  latitude: 39.6680
+  longitude: -93.8380
+  kinds: [settlement, landmark]
+  start_year: 1835
+  end_year: 1838
+  trail_order: 9
+  summary: A small Latter-day Saint settlement around Jacob Hawn's mill on Shoal Creek.
+  significance: A militia force attacked the settlement on October 30, 1838, killing seventeen men and boys.
+  sources: [saints-volume-1, church-history-topics]
+
+- slug: jefferson-city
+  name: Jefferson City
+  state: Missouri
+  latitude: 38.5792
+  longitude: -92.1729
+  kinds: [landmark]
+  start_year: 1838
+  end_year: 1838
+  trail_order: 10
+  summary: The capital of Missouri.
+  significance: Governor Lilburn W. Boggs issued the extermination order against the Latter-day Saints from here in October 1838.
+  sources: [saints-volume-1, church-history-topics]
+
 - slug: nauvoo
   name: Nauvoo
   state: Illinois
@@ -121,7 +149,7 @@
   kinds: [temple, revelation_site, settlement]
   start_year: 1839
   end_year: 1846
-  trail_order: 9
+  trail_order: 11
   summary: A city the Saints built on a bend of the Mississippi River after leaving Missouri.
   significance: The Relief Society was organized here, the Nauvoo Temple was built, and temple ordinances were introduced. The Saints began leaving for the West in 1846.
   sources: [saints-volume-1]
@@ -134,10 +162,24 @@
   kinds: [landmark]
   start_year: 1844
   end_year: 1844
-  trail_order: 10
+  trail_order: 12
   summary: Seat of Hancock County and site of Carthage Jail.
   significance: Joseph and Hyrum Smith were killed by a mob at Carthage Jail on June 27, 1844.
   sources: [saints-volume-1, doctrine-and-covenants]
+
+- slug: kanesville
+  name: Kanesville
+  modern_name: Council Bluffs
+  state: Iowa
+  latitude: 41.2619
+  longitude: -95.8608
+  kinds: [settlement]
+  start_year: 1846
+  end_year: 1852
+  trail_order: 13
+  summary: A Latter-day Saint settlement on the east bank of the Missouri River, across from Winter Quarters.
+  significance: Brigham Young was sustained here as President of the Church in December 1847, and it served for years as an outfitting point for companies heading west.
+  sources: [saints-volume-2]
 
 - slug: winter-quarters
   name: Winter Quarters
@@ -148,7 +190,7 @@
   kinds: [revelation_site, settlement]
   start_year: 1846
   end_year: 1848
-  trail_order: 11
+  trail_order: 14
   summary: A temporary settlement on the west bank of the Missouri River.
   significance: Thousands of Saints wintered here in 1846–47. Brigham Young received Doctrine and Covenants 136 here, and the first pioneer company set out from here in 1847.
   sources: [saints-volume-2, doctrine-and-covenants]
@@ -160,48 +202,7 @@
   longitude: -111.8919
   kinds: [temple, settlement]
   start_year: 1847
-  trail_order: 12
+  trail_order: 15
   summary: The settlement the pioneers founded in the Salt Lake Valley.
   significance: The first pioneer company arrived in July 1847. Brigham Young chose the site for a temple a few days later, and the city became the headquarters of the Church.
-  sources: [saints-volume-2]
-
-# The places below are on the map but not stops on the road-trip route
-# (they have no trail_order).
-
-- slug: jefferson-city
-  name: Jefferson City
-  state: Missouri
-  latitude: 38.5792
-  longitude: -92.1729
-  kinds: [landmark]
-  start_year: 1838
-  end_year: 1838
-  summary: The capital of Missouri.
-  significance: Governor Lilburn W. Boggs issued the extermination order against the Latter-day Saints from here in October 1838.
-  sources: [saints-volume-1, church-history-topics]
-
-- slug: hawns-mill
-  name: Hawn's Mill
-  modern_name: Caldwell County (near Braymer)
-  state: Missouri
-  latitude: 39.6680
-  longitude: -93.8380
-  kinds: [settlement, landmark]
-  start_year: 1835
-  end_year: 1838
-  summary: A small Latter-day Saint settlement around Jacob Hawn's mill on Shoal Creek.
-  significance: A militia force attacked the settlement on October 30, 1838, killing seventeen men and boys.
-  sources: [saints-volume-1, church-history-topics]
-
-- slug: kanesville
-  name: Kanesville
-  modern_name: Council Bluffs
-  state: Iowa
-  latitude: 41.2619
-  longitude: -95.8608
-  kinds: [settlement]
-  start_year: 1846
-  end_year: 1852
-  summary: A Latter-day Saint settlement on the east bank of the Missouri River, across from Winter Quarters.
-  significance: Brigham Young was sustained here as President of the Church in December 1847, and it served for years as an outfitting point for companies heading west.
   sources: [saints-volume-2]

@@ -142,6 +142,11 @@ export default class extends Controller {
     return ["map-pin", "shrink-0", visited ? "map-pin-visited" : "", active ? "map-pin-active" : ""].join(" ").trim()
   }
 
+  // Back to the starting view: every place that is showing, fitted to the map.
+  resetView() {
+    this.fitToVisible()
+  }
+
   fitToVisible() {
     const points = this.placesValue.filter((place) => this.matches(place.kinds)).map((place) => [place.lat, place.lng])
     if (points.length) this.map.fitBounds(points, { padding: [30, 30], maxZoom: 9 })

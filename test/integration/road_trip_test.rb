@@ -44,6 +44,7 @@ class RoadTripTest < ActionDispatch::IntegrationTest
     assert_select "button[data-kind=temple]", text: "Temples"
     assert_select "button[data-kind=revelation_site]", text: "Revelation sites"
     assert_select "button[data-map-target=routeButton]", text: "Road-trip route"
+    assert_select "button[data-action='map#resetView']", text: "Reset map view"
   end
 
   test "a deep link opens the place in the panel and selects it on the map" do
@@ -78,5 +79,11 @@ class RoadTripTest < ActionDispatch::IntegrationTest
   test "measures straight-line distance between places" do
     assert_in_delta 235, @palmyra.miles_to(@kirtland), 15
     assert_equal 0, @kirtland.miles_to(@kirtland)
+  end
+
+  test "the route note gives the distance without commenting on driving" do
+    get road_trip_path
+    assert_select "[data-map-target=routeNote]", text: /The route joins the 2 stops in historical order: about \d+ miles\s+in straight lines\./
+    assert_select "[data-map-target=routeNote]", text: /Driving/, count: 0
   end
 end

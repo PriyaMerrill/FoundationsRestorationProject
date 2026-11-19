@@ -231,7 +231,8 @@ Content and functionality get reviewed together, once the site is built. Until t
 - [ ] Collect images for places and events, and record a credit and license for each (none yet)
 - [ ] Add a hero photograph at `app/assets/images/hero.jpg`; the home page uses it automatically in place of the green gradient
 - [ ] Decide whether the Twelve's mission to Britain needs a place on the map (it has none)
-- [ ] Decide whether Jefferson City, Hawn's Mill and Kanesville should be road-trip stops (they are on the map but not on the route)
+- [x] Jefferson City, Hawn's Mill and Kanesville are now road-trip stops (decided in review: all 15 places are numbered)
+- [ ] Check the order of the 15 road-trip stops
 - [ ] Check the chart caveats and definitions on By the Numbers read correctly once the content is verified
 - [ ] Decide whether the road trip needs real driving distances and travel times (it shows straight-line miles now)
 - [ ] Map markers that sit close together (New York and Ohio) are small touch targets when zoomed out; the place list beside the map is the alternative

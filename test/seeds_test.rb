@@ -100,4 +100,10 @@ class SeedsTest < ActiveSupport::TestCase
     end
     assert_equal Image.count, Person.joins(:images).distinct.count, "one portrait per person"
   end
+
+  test "every place is a numbered stop on the road trip, in one unbroken sequence" do
+    assert_equal (1..Place.count).to_a, Place.order(:trail_order).pluck(:trail_order)
+    assert_equal %w[far-west hawns-mill jefferson-city nauvoo], Place.where(trail_order: 8..11).order(:trail_order).pluck(:slug)
+    assert_equal %w[kanesville winter-quarters salt-lake-city], Place.where(trail_order: 13..15).order(:trail_order).pluck(:slug)
+  end
 end

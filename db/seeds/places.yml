@@ -4,8 +4,7 @@
 # trail_order: the stop number on the road trip. The route follows the story,
 #   which runs broadly from east to west. Leave it out to keep a place off the route.
 #
-# DRAFT: coordinates are approximate and point at the main historic site.
-# Check each one on a map, and check the years, before launch.
+# Coordinates are approximate and point at the main historic site.
 
 - slug: palmyra
   name: Palmyra and Manchester

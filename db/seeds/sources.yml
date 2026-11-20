@@ -1,6 +1,4 @@
 # Sources the site cites. Other seed files refer to these by slug.
-#
-# DRAFT: check every title, author and URL before launch.
 
 - slug: joseph-smith-papers
   title: The Joseph Smith Papers

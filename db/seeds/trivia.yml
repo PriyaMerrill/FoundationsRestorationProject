@@ -7,8 +7,6 @@
 # answer: must match one of the choices exactly
 # subject: the record the question is about, as type/slug, so the feedback
 #   can link to it (event/..., place/..., person/..., revelation/...)
-#
-# DRAFT: check each answer and explanation before launch.
 
 - difficulty: easy
   prompt: Where was the Church formally organized on April 6, 1830?

@@ -11,8 +11,6 @@
 #   96  - the heading gives no place; it concerned a conference at Kirtland
 #   57-60, 82, 83 - "Zion" and "Independence, Jackson County" are counted together as Independence
 #   136 - Winter Quarters is in present-day Nebraska
-#
-# DRAFT: spot-check against the official edition before launch.
 
 - { section: 1, year: 1831, place: "Hiram", state: "Ohio", verses: 39 }
 - { section: 2, year: 1823, place: "Palmyra", state: "New York", verses: 3 }

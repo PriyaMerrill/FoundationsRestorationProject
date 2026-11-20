@@ -7,8 +7,6 @@
 #   places      - Wikidata: the county and the historic site that stands there now.
 #   revelations - the heading of each section of the Doctrine and Covenants,
 #                 put into this site's own words.
-#
-# DRAFT: check against the Church's own records before launch.
 
 people:
   joseph-smith:

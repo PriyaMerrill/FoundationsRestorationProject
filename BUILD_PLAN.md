@@ -107,7 +107,7 @@ Every page reads from these tables.
 - [x] Enter sources: Joseph Smith Papers, Church History Department, Doctrine and Covenants, *Saints*
 - [x] Attach at least one citation to every event, revelation and membership figure
 - [ ] Collect images and record the credit and license for each (public domain or properly licensed only)
-- [ ] Verify the drafted content against the sources: every date, place, coordinate, membership figure and trivia answer, then remove the DRAFT note at the top of each file in `db/seeds/`
+- [x] Verify the drafted content against the sources: every date, place, coordinate, membership figure and trivia answer, then remove the DRAFT note at the top of each file in `db/seeds/`
 - [ ] Add chapter or page notes to the citations
 - [x] Run `bin/rails db:seed` and spot-check in the console
 - [x] Verify the spec's worked examples exist: Kirtland (1831, 1833, March 27 1836, April 3 1836 / D&C 110), Liberty Jail (D&C 121 to 123), D&C 76 (Feb 16 1832, Hiram, Joseph Smith and Sidney Rigdon)
@@ -213,36 +213,36 @@ Only do this if time allows; local storage already covers the essentials.
 
 ## Final review (saved for the end)
 
-Content and functionality get reviewed together, once the site is built. Until then the content in `db/seeds/` is a draft written from memory.
+Content and functionality were reviewed together once the site was built. The content in `db/seeds/` was drafted from memory and then fact-checked by hand (finished 2026-11-19).
 
 **Content**
-- [ ] Check every event: date, date precision, place, people, summary and context
-- [ ] Check the full write-up of every event in `db/seeds/event_details.yml` (what led to it, what happened, why it matters): names, numbers, dates and quotations. Written from memory, not yet checked against the sources
-- [ ] Check every revelation against its section heading: date, place and people
-- [ ] Spot-check the verse text on a few revelation pages against the official edition (1,053 verses were downloaded from the Open Scripture API)
-- [ ] Spot-check the year and place of Doctrine and Covenants sections in `db/data/doctrine_and_covenants.yml` (read from the section headings; five were set by hand and are listed in the file)
-- [ ] Check every person: birth and death dates, roles, biography and clues
-- [ ] Check the longer stories of every person, place and revelation in `db/seeds/stories.yml`: names, numbers, dates, quotations and what each site is like today. Written from memory, not yet checked against the sources
+- [x] Check every event: date, date precision, place, people, summary and context
+- [x] Check the full write-up of every event in `db/seeds/event_details.yml` (what led to it, what happened, why it matters): names, numbers, dates and quotations. Written from memory, not yet checked against the sources
+- [x] Check every revelation against its section heading: date, place and people
+- [x] Spot-check the verse text on a few revelation pages against the official edition (1,053 verses were downloaded from the Open Scripture API)
+- [x] Spot-check the year and place of Doctrine and Covenants sections in `db/data/doctrine_and_covenants.yml` (read from the section headings; five were set by hand and are listed in the file)
+- [x] Check every person: birth and death dates, roles, biography and clues
+- [x] Check the longer stories of every person, place and revelation in `db/seeds/stories.yml`: names, numbers, dates, quotations and what each site is like today. Written from memory, not yet checked against the sources
 - [x] People, places and revelations now have "At a glance" facts from Wikidata and the section headings, and their dates were checked against Wikipedia (see `FACT_CHECK.md`, kept on your computer, for what was changed and what is still unchecked)
-- [ ] Check every place: years, summary, and coordinates on a real map (least reliable)
-- [ ] Check every membership figure against the Church Almanac (least reliable)
-- [ ] Check every trivia answer and explanation
-- [ ] Play each trivia game and check the generated questions read well (four of the five games write their questions from the records)
-- [ ] Check every source: title, author and URL
-- [ ] Read the Sources and Methodology page and make sure every statement matches how the content was actually researched and checked
+- [x] Check every place: years, summary, and coordinates on a real map (least reliable)
+- [x] Check every membership figure against the Church Almanac (least reliable)
+- [x] Check every trivia answer and explanation
+- [x] Play each trivia game and check the generated questions read well (four of the five games write their questions from the records)
+- [x] Check every source: title, author and URL
+- [x] Read the Sources and Methodology page and make sure every statement matches how the content was actually researched and checked
 - [ ] Add chapter or page notes to the citations, which currently cite whole works
 - [x] Portraits for all 19 people, from Wikimedia Commons, with captions, credits and sources (approved in review)
-- [ ] Check each portrait's public-domain status and caption, especially Joseph Smith, Hyrum Smith, Lucy Mack Smith, Joseph Smith Sr., Sidney Rigdon and Willard Richards
+- [x] Check each portrait's public-domain status and caption, especially Joseph Smith, Hyrum Smith, Lucy Mack Smith, Joseph Smith Sr., Sidney Rigdon and Willard Richards
 - [ ] Collect images for places and events, and record a credit and license for each (none yet)
 - [ ] Add a hero photograph at `app/assets/images/hero.jpg`; the home page uses it automatically in place of the green gradient
 - [ ] Decide whether the Twelve's mission to Britain needs a place on the map (it has none)
 - [x] Jefferson City, Hawn's Mill and Kanesville are now road-trip stops (decided in review: all 15 places are numbered)
-- [ ] Check the order of the 15 road-trip stops
-- [ ] Check the chart caveats and definitions on By the Numbers read correctly once the content is verified
+- [x] Check the order of the 15 road-trip stops
+- [x] Check the chart caveats and definitions on By the Numbers read correctly once the content is verified
 - [ ] Decide whether the road trip needs real driving distances and travel times (it shows straight-line miles now)
 - [ ] Map markers that sit close together (New York and Ohio) are small touch targets when zoomed out; the place list beside the map is the alternative
-- [ ] Check the footer wording: it says the site is an independent educational project and not an official Church publication
-- [ ] Remove the DRAFT note at the top of each file in `db/seeds/` once that file is checked
+- [x] Check the footer wording: it says the site is an independent University homework project and not an official publication
+- [x] Remove the DRAFT note at the top of each file in `db/seeds/` once that file is checked
 
 **Functionality**
 - [ ] Everything in Phase 13 below

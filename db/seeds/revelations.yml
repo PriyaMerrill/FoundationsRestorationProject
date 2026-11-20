@@ -2,9 +2,6 @@
 #
 # date_precision: exact, month, year or approximate (how exactly received_on is known)
 # place and people refer to slugs in places.yml and people.yml.
-#
-# DRAFT: check each date and place against the section heading and the
-# Joseph Smith Papers before launch.
 
 - slug: dc-3
   section_number: 3
